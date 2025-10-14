@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=18 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://cinp6vo04icik" path="res://Resources/GUIDE/look_absolute.tres" id="9_dx1n6"]
 [ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="10_sonv7"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
+[ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
@@ -74,3 +75,31 @@ shape = SubResource("RectangleShape2D_i1iex")
 zoom = Vector2(0.2, 0.2)
 script = ExtResource("14_sonv7")
 followed = NodePath("../CharacterBody2D")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DashCountUI" type="HBoxContainer" parent="UICanvasLayer/Control" node_paths=PackedStringArray("player_movement")]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -10.0
+offset_right = 106.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+script = ExtResource("15_4hvx0")
+player_movement = NodePath("../../../World/CharacterBody2D/PlayerMovementComponent")

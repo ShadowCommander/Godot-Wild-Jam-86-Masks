@@ -1,4 +1,7 @@
 extends Node
+class_name PlayerMovementComponent
+
+signal update_dash_ui(dashes_remaining: int, dash_recharge_timer: float)
 
 @export var player_stats: PlayerStats
 
@@ -43,6 +46,7 @@ func process_dash(delta: float) -> void:
 	# Recharge dashes
 	if current_dashes_available < player_stats.dash_count:
 		dash_recharge_timer -= delta
+		update_dash_ui.emit(current_dashes_available, 1 - (dash_recharge_timer / player_stats.dash_recharge_time))
 		if dash_recharge_timer <= 0:
 			current_dashes_available += 1
 			dash_recharge_timer += player_stats.dash_recharge_time
