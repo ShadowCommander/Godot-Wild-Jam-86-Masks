@@ -58,7 +58,6 @@ func process_dash(delta: float) -> void:
 	body.position += lerp(start_position, end_position, distance_this_tick) #player_stats.curve
 	if dash_timer > player_stats.dash_time:
 		dashing = false
-		print("STOP?")
 
 var start_position: Vector2
 var end_position: Vector2
