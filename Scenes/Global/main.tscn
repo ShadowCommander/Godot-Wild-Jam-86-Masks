@@ -1,0 +1,76 @@
+[gd_scene load_steps=17 format=3 uid="uid://gutnfusrxgny"]
+
+[ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
+[ext_resource type="Texture2D" uid="uid://c75jgn8qhkpkg" path="res://Resources/Textures/Shadow.png" id="1_rhh5w"]
+[ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
+[ext_resource type="Script" uid="uid://ninwddymmigh" path="res://Scenes/Player/player_combat_component.gd" id="2_l0goq"]
+[ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
+[ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
+[ext_resource type="Resource" uid="uid://b4ohhg41gt67j" path="res://Resources/GUIDE/movement.tres" id="4_x058x"]
+[ext_resource type="Resource" uid="uid://cyl0vj45n1ot3" path="res://Resources/GUIDE/attack_action.tres" id="5_i1iex"]
+[ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
+[ext_resource type="Resource" uid="uid://da2fk4posdcw2" path="res://Resources/GUIDE/dash.tres" id="8_7j5fq"]
+[ext_resource type="Resource" uid="uid://cinp6vo04icik" path="res://Resources/GUIDE/look_absolute.tres" id="9_dx1n6"]
+[ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="10_sonv7"]
+[ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
+radius = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
+size = Vector2(100, 100)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_wufuc")
+mapping_contexts = Array[ExtResource("2_xpfiu")]([ExtResource("3_vcq4h")])
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="World"]
+
+[node name="Shadow" type="Sprite2D" parent="World/CharacterBody2D"]
+modulate = Color(0, 0, 0, 0.5019608)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_rhh5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D"]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CharacterBody2D"]
+scale = Vector2(0.775, 0.775)
+texture = ExtResource("1_l0goq")
+offset = Vector2(0, -64.29)
+
+[node name="PlayerMovementComponent" type="Node" parent="World/CharacterBody2D" node_paths=PackedStringArray("body")]
+script = ExtResource("1_dnu8j")
+player_stats = ExtResource("7_dx1n6")
+body = NodePath("..")
+move_action = ExtResource("4_x058x")
+dash_action = ExtResource("8_7j5fq")
+look_absolute = ExtResource("9_dx1n6")
+look_relative = ExtResource("10_sonv7")
+
+[node name="PlayerCombatComponent" type="Node" parent="World/CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("2_l0goq")
+player_stats = ExtResource("7_dx1n6")
+attack_action = ExtResource("5_i1iex")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="WeaponPivot" type="Node2D" parent="World/CharacterBody2D"]
+position = Vector2(-1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
+
+[node name="Node2D" type="Node2D" parent="World"]
+position = Vector2(176, 0)
+
+[node name="Area2D" type="Area2D" parent="World/Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Node2D/Area2D"]
+shape = SubResource("RectangleShape2D_i1iex")
+
+[node name="Camera2D" type="Camera2D" parent="World" node_paths=PackedStringArray("followed")]
+zoom = Vector2(0.2, 0.2)
+script = ExtResource("14_sonv7")
+followed = NodePath("../CharacterBody2D")

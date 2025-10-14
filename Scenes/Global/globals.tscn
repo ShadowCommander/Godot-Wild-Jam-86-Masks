@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://gk4xxfjr1exr"]
+
+[ext_resource type="Script" uid="uid://5tkq8ulrryy3" path="res://Scenes/Global/globals.gd" id="1_fl4fp"]
+[ext_resource type="Script" uid="uid://dabn266ja3eup" path="res://Resources/attack_combo_entry.gd" id="2_mvm7m"]
+
+[sub_resource type="Resource" id="Resource_02cqy"]
+script = ExtResource("2_mvm7m")
+animation = "Swing1"
+attack_time = 1.0
+metadata/_custom_type_script = "uid://dabn266ja3eup"
+
+[node name="Globals" type="Node"]
+script = ExtResource("1_fl4fp")
+attack_combo = Array[ExtResource("2_mvm7m")]([SubResource("Resource_02cqy")])
