@@ -10,6 +10,7 @@ extends Node
 
 func _ready() -> void:
 	dash_action.triggered.connect(do_dash)
+	ready_dash()
 
 func _physics_process(delta: float) -> void:
 	process_movement(delta)
@@ -39,6 +40,16 @@ func process_look(delta: float) -> void:
 var progress: float
 	
 func process_dash(delta: float) -> void:
+	# Recharge dashes
+	if current_dashes_available < player_stats.dash_count:
+		dash_recharge_timer -= delta
+		if dash_recharge_timer <= 0:
+			current_dashes_available += 1
+			dash_recharge_timer += player_stats.dash_recharge_time
+	else:
+		dash_recharge_timer = player_stats.dash_recharge_time
+
+	# Dash move player
 	if not dashing:
 		return
 	dash_timer += delta
@@ -54,11 +65,20 @@ var end_position: Vector2
 var dash_timer: float
 var dashing: bool = false
 
+var current_dashes_available: int
+var dash_recharge_timer: float
+
 func do_dash() -> void:
 	if dashing:
+		return
+	if current_dashes_available <= 0:
 		return
 	start_position = Vector2.ZERO #body.global_position
 	end_position = look_direction.normalized() * player_stats.dash_distance
 	dashing = true
 	dash_timer = 0#player_stats.dash_time
+	current_dashes_available -= 1
 	progress = 0
+
+func ready_dash() -> void:
+	current_dashes_available = player_stats.dash_count
