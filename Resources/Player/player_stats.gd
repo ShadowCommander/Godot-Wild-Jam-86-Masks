@@ -1,7 +1,6 @@
 extends Resource
 class_name PlayerStats
 
-
 @export var attack_combo: Array[AttackComboEntry]
 
 @export var speed: float = 400
@@ -11,6 +10,9 @@ class_name PlayerStats
 @export var dash_curve: Curve
 @export var dash_time: float = 0.5
 @export var dash_distance: float = 400
+
+#Health stats
+@export var max_health: float = 10
 
 # Start position
 # End position

@@ -1,4 +1,5 @@
 extends Node
+class_name MovementComponent
 
 @export var player_stats: PlayerStats
 
@@ -24,6 +25,11 @@ func process_movement(delta: float) -> void:
 var look_direction: Vector2
 
 func process_look(delta: float) -> void:
+	var target = _get_controller_target()
+	look_direction = get_look_direction(target)
+	#print(target, look_direction)
+
+func _get_controller_target():
 	var target = Vector2.INF
 	
 	# Looking at absolute coordinates. This is the case when we use a mouse.
@@ -33,9 +39,10 @@ func process_look(delta: float) -> void:
 	elif look_relative.is_triggered():
 		target = body.global_position + look_relative.value_axis_2d
 	
-	look_direction = target - body.global_position
+	return target
 	
-	print(target, look_direction)
+func get_look_direction(target: Vector2):
+	return target - body.global_position
 	
 var progress: float
 	
