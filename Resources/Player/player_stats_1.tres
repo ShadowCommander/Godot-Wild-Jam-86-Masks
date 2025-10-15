@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PlayerStats" load_steps=5 format=3 uid="uid://ctldpqko1cmnb"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=6 format=3 uid="uid://ctldpqko1cmnb"]
 
 [ext_resource type="Script" uid="uid://dabn266ja3eup" path="res://Resources/attack_combo_entry.gd" id="1_3n4w4"]
 [ext_resource type="Script" uid="uid://rhe8kqa7qiqt" path="res://Resources/Player/player_stats.gd" id="2_n2dab"]
@@ -6,7 +6,13 @@
 [sub_resource type="Resource" id="Resource_3n4w4"]
 script = ExtResource("1_3n4w4")
 animation = "Swing1"
-attack_time = 0.5
+attack_time = 0.2
+metadata/_custom_type_script = "uid://dabn266ja3eup"
+
+[sub_resource type="Resource" id="Resource_n2dab"]
+script = ExtResource("1_3n4w4")
+animation = "Swing2"
+attack_time = 0.2
 metadata/_custom_type_script = "uid://dabn266ja3eup"
 
 [sub_resource type="Curve" id="Curve_3n4w4"]
@@ -15,7 +21,7 @@ point_count = 2
 
 [resource]
 script = ExtResource("2_n2dab")
-attack_combo = Array[ExtResource("1_3n4w4")]([SubResource("Resource_3n4w4")])
+attack_combo = Array[ExtResource("1_3n4w4")]([SubResource("Resource_3n4w4"), SubResource("Resource_n2dab")])
 speed = 1000.0
 dash_curve = SubResource("Curve_3n4w4")
 dash_time = 0.2

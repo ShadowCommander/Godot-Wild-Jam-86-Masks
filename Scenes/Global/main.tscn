@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=28 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -27,14 +27,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attack/AttackSprite:frame")
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_sonv7"]
@@ -43,83 +43,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Attack/AttackSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hvx0"]
-_data = {
-&"RESET": SubResource("Animation_8aqcy"),
-&"Swing1": SubResource("Animation_sonv7")
-}
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pmq7r"]
-radius = 116.01724
-
-[sub_resource type="Animation" id="Animation_16ua7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../HitboxComponent:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../HitboxComponent:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_pmq7r"]
-resource_name = "attack"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -131,7 +55,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -143,7 +67,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../HitboxComponent:monitoring")
+tracks/2/path = NodePath("Attack/HitboxComponent:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -155,7 +79,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../HitboxComponent:visible")
+tracks/3/path = NodePath("Attack/HitboxComponent:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -164,12 +88,92 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xq145"]
-_data = {
-&"RESET": SubResource("Animation_16ua7"),
-&"attack": SubResource("Animation_pmq7r")
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
+
+[sub_resource type="Animation" id="Animation_8otfh"]
+resource_name = "Swing2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.023087297, 0.29628697),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hvx0"]
+_data = {
+&"RESET": SubResource("Animation_8aqcy"),
+&"Swing1": SubResource("Animation_sonv7"),
+&"Swing2": SubResource("Animation_8otfh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmq7r"]
+radius = 116.01724
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
 size = Vector2(100, 100)
@@ -215,13 +219,13 @@ script = ExtResource("2_l0goq")
 player_stats = ExtResource("7_dx1n6")
 attack_action = ExtResource("5_i1iex")
 movement_component = NodePath("../PlayerMovementComponent")
-animation_player = NodePath("../AnimationPlayer")
+animation_player = NodePath("../AttackAnimationPlayer")
 attack_node = NodePath("../Attack")
 
 [node name="WeaponPivot" type="Node2D" parent="World/CharacterBody2D"]
 position = Vector2(-1, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_4hvx0")
 }
@@ -230,7 +234,6 @@ libraries = {
 light_mask = 3
 
 [node name="HitboxComponent" parent="World/CharacterBody2D/Attack" instance=ExtResource("14_4hvx0")]
-visible = false
 collision_layer = 3
 monitoring = false
 damage = 2
@@ -239,19 +242,12 @@ damage = 2
 position = Vector2(-1, 63)
 shape = SubResource("CircleShape2D_pmq7r")
 
-[node name="AttackAnimation" type="AnimationPlayer" parent="World/CharacterBody2D/Attack"]
-root_node = NodePath("../AttackSprite")
-libraries = {
-&"": SubResource("AnimationLibrary_xq145")
-}
-
-[node name="AttackSprite" type="Sprite2D" parent="World/CharacterBody2D/Attack"]
+[node name="AttackSprite" type="Sprite2D" parent="World/CharacterBody2D/Attack/HitboxComponent"]
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(4.503, 4.655)
 texture = ExtResource("15_cojqs")
 offset = Vector2(0, 12)
 hframes = 12
-frame = 3
 
 [node name="Node2D" type="Node2D" parent="World"]
 position = Vector2(176, 0)

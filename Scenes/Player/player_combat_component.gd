@@ -16,20 +16,26 @@ func _ready():
 	attack_action.triggered.connect(_attack)
 	animation_player.animation_finished.connect(_end_attack)
 
+func _physics_process(delta: float) -> void:
+	if attack_timer > 0:
+		attack_timer -= delta
+	elif not attack_action.is_triggered():
+		attack_timer = 0
+
 func _attack() -> void:
+	if attack_timer > 0:
+		return
 	var attack = player_stats.attack_combo.get(attack_combo_index)
 	attack_combo_index = (attack_combo_index + 1) % player_stats.attack_combo.size()
 	if attack == null:
 		return
+	attack_timer += attack.attack_time
 		
 	# 🔹 Rotate & position the attack node
 	look_direction = _get_attack_direction()
 	attack_node.rotation = look_direction.angle() - deg_to_rad(90)
 	attack_node.position = look_direction.normalized() * 50
-	if attack_node.has_node("AttackAnimation"):
-		attack_node.get_node("AttackAnimation").play("attack")
 
-	attack_timer = attack.attack_time
 	animation_player.play(attack.animation)
 	
 	attacking = true;
