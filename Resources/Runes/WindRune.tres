@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Rune" load_steps=3 format=3 uid="uid://b3y083w56jen1"]
+
+[ext_resource type="Script" uid="uid://dmhhbrtff2ywi" path="res://Resources/Runes/runes.gd" id="1_ygxxa"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="2_fkevb"]
+
+[resource]
+script = ExtResource("1_ygxxa")
+name = "Wind rune"
+texture = ExtResource("2_fkevb")
+metadata/_custom_type_script = "uid://dmhhbrtff2ywi"

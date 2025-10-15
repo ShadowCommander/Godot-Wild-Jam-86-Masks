@@ -1,0 +1,156 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxvubf44ut0r8"]
+
+[ext_resource type="Script" uid="uid://cef0wsawm7jru" path="res://UI/RuneOptionsMenu/rune_options_menu.gd" id="1_6ible"]
+[ext_resource type="PackedScene" uid="uid://ba5lspyt2iv2y" path="res://UI/RuneOptionsMenu/rune.tscn" id="1_83ayx"]
+[ext_resource type="Script" uid="uid://cfd7t5rqwmsv8" path="res://UI/RuneOptionsMenu/runes_panel.gd" id="1_j0aof"]
+[ext_resource type="Resource" uid="uid://obohus3thhmb" path="res://Resources/Runes/FireRune.tres" id="2_rlujp"]
+[ext_resource type="Script" uid="uid://dmhhbrtff2ywi" path="res://Resources/Runes/runes.gd" id="4_y0mfq"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="5_6ible"]
+
+[sub_resource type="Resource" id="Resource_6yu5x"]
+script = ExtResource("4_y0mfq")
+name = "Second rune"
+texture = ExtResource("5_6ible")
+metadata/_custom_type_script = "uid://dmhhbrtff2ywi"
+
+[sub_resource type="Resource" id="Resource_y0mfq"]
+script = ExtResource("4_y0mfq")
+name = "Third rune"
+texture = ExtResource("5_6ible")
+metadata/_custom_type_script = "uid://dmhhbrtff2ywi"
+
+[sub_resource type="Resource" id="Resource_6ible"]
+script = ExtResource("4_y0mfq")
+name = "Fourth rune"
+texture = ExtResource("5_6ible")
+metadata/_custom_type_script = "uid://dmhhbrtff2ywi"
+
+[node name="RuneOptionsMenu" type="Control"]
+visible = false
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ible")
+
+[node name="RunesMenuPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextContainer" type="VBoxContainer" parent="RunesMenuPanel"]
+custom_minimum_size = Vector2(0, 49)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="RunesMenuPanel/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "Select the rune"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RunesContainer" type="VBoxContainer" parent="RunesMenuPanel"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Runes" type="Control" parent="RunesMenuPanel/RunesContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+script = ExtResource("1_j0aof")
+
+[node name="Rune" parent="RunesMenuPanel/RunesContainer/Runes" instance=ExtResource("1_83ayx")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.134
+anchor_top = 0.273
+anchor_right = 0.22600001
+anchor_bottom = 0.48700002
+offset_left = 0.20000458
+offset_top = 0.099998474
+offset_right = -0.2000122
+offset_bottom = -0.1000061
+grow_vertical = 2
+rune = ExtResource("2_rlujp")
+
+[node name="Rune2" parent="RunesMenuPanel/RunesContainer/Runes" instance=ExtResource("1_83ayx")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.351
+anchor_top = 0.273
+anchor_right = 0.44300002
+anchor_bottom = 0.48700002
+offset_left = 0.2999878
+offset_top = 0.099998474
+offset_right = -0.1000061
+offset_bottom = -0.1000061
+grow_vertical = 2
+rune = SubResource("Resource_6yu5x")
+
+[node name="Rune3" parent="RunesMenuPanel/RunesContainer/Runes" instance=ExtResource("1_83ayx")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.569
+anchor_top = 0.273
+anchor_right = 0.66
+anchor_bottom = 0.48700002
+offset_left = -0.3000183
+offset_top = 0.099998474
+offset_right = -3.0517578e-05
+offset_bottom = -0.1000061
+grow_vertical = 2
+rune = SubResource("Resource_y0mfq")
+
+[node name="Rune4" parent="RunesMenuPanel/RunesContainer/Runes" instance=ExtResource("1_83ayx")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77400005
+anchor_top = 0.273
+anchor_right = 0.86600006
+anchor_bottom = 0.48700002
+offset_left = 0.19995117
+offset_top = 0.099998474
+offset_right = -0.2000122
+offset_bottom = -0.1000061
+grow_vertical = 2
+rune = SubResource("Resource_6ible")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="RunesMenuPanel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="RunesMenuPanel/ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+disabled = true
+text = "Continue"
+
+[connection signal="pressed" from="RunesMenuPanel/ButtonContainer/Button" to="." method="_on_button_pressed"]

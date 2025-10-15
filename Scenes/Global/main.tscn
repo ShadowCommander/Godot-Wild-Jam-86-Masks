@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=31 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -15,10 +15,12 @@
 [ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="10_sonv7"]
 [ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
+[ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 [ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="15_cojqs"]
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
+[ext_resource type="Script" uid="uid://d3a2l2e3b68xu" path="res://Scenes/Global/enemy_dummy.gd" id="17_16ua7"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
-[ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
+[ext_resource type="PackedScene" uid="uid://bxvubf44ut0r8" path="res://UI/RuneOptionsMenu/rune_options_menu.tscn" id="20_xq145"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
@@ -314,6 +316,7 @@ script = ExtResource("14_sonv7")
 followed = NodePath("../CharacterBody2D")
 
 [node name="EnemyDummy" type="CharacterBody2D" parent="World"]
+script = ExtResource("17_16ua7")
 
 [node name="HealthComponent" parent="World/EnemyDummy" instance=ExtResource("17_8otfh")]
 player_stats = ExtResource("7_dx1n6")
@@ -339,6 +342,13 @@ position = Vector2(415, 47)
 shape = SubResource("CircleShape2D_8otfh")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RuneOptionsMenu" parent="UICanvasLayer" instance=ExtResource("20_xq145")]
+process_mode = 3
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 200.0
 
 [node name="Control" type="Control" parent="UICanvasLayer"]
 layout_mode = 3

@@ -35,7 +35,7 @@ func check_death():
 		# later , perbably will rewrite using signal;
 		var parent = get_parent()
 		if parent:
-			parent.queue_free()
+			Callable(parent.queue_free).call_deferred()
 		
 
 func get_curr_health():
