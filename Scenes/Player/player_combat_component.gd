@@ -2,7 +2,7 @@ extends Node
 
 @export var player_stats: PlayerStats
 @export var attack_action: GUIDEAction
-@export var movement_component: MovementComponent
+@export var movement_component: PlayerMovementComponent
 @export var animation_player: AnimationPlayer
 @export var attack_node: Node2D
 
