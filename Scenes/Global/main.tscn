@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
+[ext_resource type="Texture2D" uid="uid://cyk8sdg5b85yx" path="res://Resources/Textures/Programmer art boss.png" id="15_cojq5"]
+[ext_resource type="Script" uid="uid://vaesc3dmdn4q" path="res://Scenes/Boss/bullet_spawner_component.gd" id="16_8aqcy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
@@ -226,6 +228,8 @@ radius = 116.01724
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
 size = Vector2(100, 100)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8aqcy"]
+radius = 301.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16ua7"]
 size = Vector2(127, 125)
@@ -240,6 +244,7 @@ mapping_contexts = Array[ExtResource("2_xpfiu")]([ExtResource("3_vcq4h")])
 [node name="World" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="World"]
+position = Vector2(-1, 1208)
 
 [node name="Shadow" type="Sprite2D" parent="World/CharacterBody2D"]
 modulate = Color(0, 0, 0, 0.5019608)
@@ -337,6 +342,16 @@ light_mask = 0
 visibility_layer = 2
 position = Vector2(415, 47)
 shape = SubResource("CircleShape2D_8otfh")
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="World"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D2"]
+shape = SubResource("CircleShape2D_8aqcy")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/CharacterBody2D2"]
+texture = ExtResource("15_cojq5")
+
+[node name="BulletSpawnerComponent" type="Node" parent="World/CharacterBody2D2"]
+script = ExtResource("16_8aqcy")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
