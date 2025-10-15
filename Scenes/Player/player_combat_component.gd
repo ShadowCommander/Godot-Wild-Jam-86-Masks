@@ -33,8 +33,7 @@ func _attack() -> void:
 		
 	# 🔹 Rotate & position the attack node
 	look_direction = _get_attack_direction()
-	attack_node.rotation = look_direction.angle() - deg_to_rad(90)
-	attack_node.position = look_direction.normalized() * 50
+	attack_node.look_at(look_direction)
 
 	animation_player.play(attack.animation)
 	
