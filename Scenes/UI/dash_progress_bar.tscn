@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw165mv4ontaj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sonv7"]
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="ProgressBar" type="ProgressBar"]
+custom_minimum_size = Vector2(50, 10)
+theme_override_styles/background = SubResource("StyleBoxFlat_sonv7")
+max_value = 1.0
+step = 0.001
+show_percentage = false

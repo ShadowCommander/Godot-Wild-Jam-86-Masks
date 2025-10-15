@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=29 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="15_cojqs"]
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
+[ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
@@ -336,3 +337,31 @@ light_mask = 0
 visibility_layer = 2
 position = Vector2(415, 47)
 shape = SubResource("CircleShape2D_8otfh")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DashCountUI" type="HBoxContainer" parent="UICanvasLayer/Control" node_paths=PackedStringArray("player_movement")]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -10.0
+offset_right = 106.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+script = ExtResource("15_4hvx0")
+player_movement = NodePath("../../../World/CharacterBody2D/PlayerMovementComponent")
