@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://gok5fbdrqerb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2xe2o"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvd2k"]
+radius = 34.132095
+
+[node name="Boss" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_2xe2o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cvd2k")

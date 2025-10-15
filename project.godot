@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GUIDE="*res://addons/guide/guide.gd"
 Globals="*res://Scenes/Global/globals.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="Wild Jam 86"

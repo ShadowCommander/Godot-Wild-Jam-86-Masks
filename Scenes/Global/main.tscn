@@ -29,6 +29,7 @@ mapping_contexts = Array[ExtResource("2_xpfiu")]([ExtResource("3_vcq4h")])
 [node name="World" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="World"]
+scale = Vector2(4, 4)
 
 [node name="Shadow" type="Sprite2D" parent="World/CharacterBody2D"]
 modulate = Color(0, 0, 0, 0.5019608)
