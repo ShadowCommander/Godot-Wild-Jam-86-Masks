@@ -14,11 +14,14 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_cxj5w"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="RuneEntry" type="PanelContainer"]
+[node name="RuneEntry" type="PanelContainer" node_paths=PackedStringArray("icon", "name_label", "button")]
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndffd")
 script = ExtResource("1_cxj5w")
+icon = NodePath("MarginContainer/VBoxContainer/TextureRect")
+name_label = NodePath("MarginContainer/VBoxContainer/Label")
+button = NodePath("TextureButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RuneData" load_steps=5 format=3 uid="uid://dmsorfw5j0r1u"]
+
+[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="1_lqp4l"]
+[ext_resource type="Script" uid="uid://7hwnp45xrhtr" path="res://Scenes/Runes/player_stat_modifier.gd" id="2_offyx"]
+[ext_resource type="Texture2D" uid="uid://p6e8i5ly5iwf" path="res://Resources/Textures/heart.png" id="4_p54nc"]
+
+[sub_resource type="Resource" id="Resource_ht4ou"]
+script = ExtResource("2_offyx")
+max_health_flat = 50.0
+metadata/_custom_type_script = "uid://7hwnp45xrhtr"
+
+[resource]
+script = ExtResource("1_lqp4l")
+texture = ExtResource("4_p54nc")
+name = "Health"
+description = "Increases health by 50"
+stats_modifier = SubResource("Resource_ht4ou")
+metadata/_custom_type_script = "uid://y482ac15g14u"

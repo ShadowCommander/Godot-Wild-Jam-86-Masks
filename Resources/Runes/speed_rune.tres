@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RuneData" load_steps=5 format=3 uid="uid://bcwqx78rkbehp"]
+
+[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="1_0mp8e"]
+[ext_resource type="Script" uid="uid://7hwnp45xrhtr" path="res://Scenes/Runes/player_stat_modifier.gd" id="2_hb7kw"]
+[ext_resource type="Texture2D" uid="uid://yuo77s15aisb" path="res://Resources/Textures/speed_rune.png" id="3_rjgt4"]
+
+[sub_resource type="Resource" id="Resource_1lk02"]
+script = ExtResource("2_hb7kw")
+speed_multiplier = 10.0
+metadata/_custom_type_script = "uid://7hwnp45xrhtr"
+
+[resource]
+script = ExtResource("1_0mp8e")
+texture = ExtResource("3_rjgt4")
+name = "Speed"
+description = "Increases speed by 10%"
+stats_modifier = SubResource("Resource_1lk02")
+metadata/_custom_type_script = "uid://y482ac15g14u"
