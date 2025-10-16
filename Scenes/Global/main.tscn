@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=37 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -15,13 +15,56 @@
 [ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="10_sonv7"]
 [ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
-[ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="15_cojqs"]
-[ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
-[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
+[ext_resource type="Texture2D" uid="uid://ciwvq5sftm566" path="res://Resources/Textures/Walk1.png" id="14_yhfi3"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
+[ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="15_cojqs"]
+[ext_resource type="Texture2D" uid="uid://c6oisnrx5i3fi" path="res://Resources/Textures/Walk2.png" id="15_g6eqj"]
+[ext_resource type="Texture2D" uid="uid://kn3xsw24yrwc" path="res://Resources/Textures/Walk3.png" id="16_nh1kb"]
+[ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
+[ext_resource type="Texture2D" uid="uid://dgcdssxspwm3u" path="res://Resources/Textures/Walk4.png" id="17_ami22"]
+[ext_resource type="Texture2D" uid="uid://dd0p4gddcwlmv" path="res://Resources/Textures/Walk5.png" id="18_bx3om"]
+[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
+
+[sub_resource type="Animation" id="Animation_jwr1e"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("14_yhfi3"), ExtResource("15_g6eqj"), ExtResource("16_nh1kb"), ExtResource("17_ami22"), ExtResource("18_bx3om")]
+}
+
+[sub_resource type="Animation" id="Animation_wgbh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_l0goq")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05t85"]
+_data = {
+&"RESET": SubResource("Animation_wgbh3"),
+&"walk": SubResource("Animation_jwr1e")
+}
 
 [sub_resource type="Animation" id="Animation_8aqcy"]
 length = 0.001
@@ -250,9 +293,9 @@ texture = ExtResource("1_rhh5w")
 shape = SubResource("CircleShape2D_7dm0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="World/CharacterBody2D"]
-scale = Vector2(0.775, 0.775)
+scale = Vector2(0.485, 0.485)
 texture = ExtResource("1_l0goq")
-offset = Vector2(0, -64.29)
+offset = Vector2(0, -165.69)
 
 [node name="PlayerMovementComponent" type="Node" parent="World/CharacterBody2D" node_paths=PackedStringArray("body")]
 script = ExtResource("1_dnu8j")
@@ -273,6 +316,12 @@ attack_node = NodePath("../Attack")
 
 [node name="WeaponPivot" type="Node2D" parent="World/CharacterBody2D"]
 position = Vector2(-1, 0)
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_05t85")
+}
+autoplay = "walk"
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
 libraries = {
