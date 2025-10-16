@@ -1,17 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=9 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
-[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="3_w10q0"]
+[ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
+[ext_resource type="Script" uid="uid://c2ia58o87om5t" path="res://Scenes/Player/States/p_idle_state.gd" id="5_uc58w"]
+[ext_resource type="Script" uid="uid://bsieoxnn5qouh" path="res://Scenes/Player/States/p_follow_state.gd" id="6_w10q0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvd2k"]
 radius = 34.132095
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xe2o"]
 radius = 158.00316
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_qtwxq"]
-radius = 40.012497
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2xe2o"]
 size = Vector2(64, 64)
@@ -43,13 +42,22 @@ debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
 [node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
 max_speed = 60
 
-[node name="Hurtbox" parent="." instance=ExtResource("3_w10q0")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("CircleShape2D_qtwxq")
-debug_color = Color(0.6281663, 0.5270652, 0.18239814, 0.41960785)
-
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 texture = SubResource("PlaceholderTexture2D_2xe2o")
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource("4_2pwef")
+metadata/_custom_type_script = "uid://crm220r5offy1"
+
+[node name="IdleState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("5_uc58w")
+metadata/_custom_type_script = "uid://k1klqgk4sbtm"
+
+[node name="FollowState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("6_w10q0")
+metadata/_custom_type_script = "uid://k1klqgk4sbtm"
+
+[node name="FollowTimer" type="Timer" parent="FiniteStateMachine/FollowState"]
+wait_time = 3.0

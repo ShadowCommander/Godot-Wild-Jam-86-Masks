@@ -8,6 +8,7 @@ func _ready():
 	current_state = get_child(0) as State
 	previous_state = current_state
 	current_state.enter()
+	print("finite")
 
 func change_state(state):
 	if find_child(state) as State == null:
