@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=43 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -24,6 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://dgcdssxspwm3u" path="res://Resources/Textures/Walk4.png" id="17_ami22"]
 [ext_resource type="Texture2D" uid="uid://dd0p4gddcwlmv" path="res://Resources/Textures/Walk5.png" id="18_bx3om"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
+[ext_resource type="Texture2D" uid="uid://di68ui4xw1cru" path="res://Resources/Textures/StaffIdle1.png" id="20_jwr1e"]
+[ext_resource type="Texture2D" uid="uid://sxxjotquo4qr" path="res://Resources/Textures/StaffIdle2.png" id="21_wgbh3"]
+[ext_resource type="Texture2D" uid="uid://dsqe2hmkpl6bx" path="res://Resources/Textures/StaffIdle3.png" id="22_05t85"]
+[ext_resource type="Texture2D" uid="uid://ubej3b4cta6u" path="res://Resources/Textures/StaffIdle4.png" id="23_e0diw"]
+[ext_resource type="Texture2D" uid="uid://co3waqkhjeno3" path="res://Resources/Textures/StaffIdle5.png" id="24_3m14b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
@@ -127,6 +132,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack/HitboxComponent/AttackSprite:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_cojqs")]
 }
 
 [sub_resource type="Animation" id="Animation_sonv7"]
@@ -257,8 +274,37 @@ tracks/4/keys = {
 "values": [true, true]
 }
 
+[sub_resource type="Animation" id="Animation_xhlri"]
+resource_name = "Idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("20_jwr1e"), ExtResource("21_wgbh3"), ExtResource("22_05t85"), ExtResource("23_e0diw"), ExtResource("24_3m14b")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4hvx0"]
 _data = {
+&"Idle": SubResource("Animation_xhlri"),
 &"RESET": SubResource("Animation_8aqcy"),
 &"Swing1": SubResource("Animation_sonv7"),
 &"Swing2": SubResource("Animation_8otfh")
