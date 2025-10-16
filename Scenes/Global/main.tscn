@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=29 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="1_dnu8j"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
@@ -13,14 +13,225 @@
 [ext_resource type="Resource" uid="uid://da2fk4posdcw2" path="res://Resources/GUIDE/dash.tres" id="8_7j5fq"]
 [ext_resource type="Resource" uid="uid://cinp6vo04icik" path="res://Resources/GUIDE/look_absolute.tres" id="9_dx1n6"]
 [ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="10_sonv7"]
+[ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
+[ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="15_cojqs"]
+[ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
+[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 40.0
 
+[sub_resource type="Animation" id="Animation_8aqcy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sonv7"]
+resource_name = "Swing1"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.023087297, 0.29628697),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="Animation" id="Animation_8otfh"]
+resource_name = "Swing2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.023087297, 0.29628697),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hvx0"]
+_data = {
+&"RESET": SubResource("Animation_8aqcy"),
+&"Swing1": SubResource("Animation_sonv7"),
+&"Swing2": SubResource("Animation_8otfh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmq7r"]
+radius = 116.01724
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
 size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16ua7"]
+size = Vector2(127, 125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8otfh"]
+radius = 26.476404
 
 [node name="Main" type="Node"]
 script = ExtResource("1_wufuc")
@@ -53,16 +264,41 @@ dash_action = ExtResource("8_7j5fq")
 look_absolute = ExtResource("9_dx1n6")
 look_relative = ExtResource("10_sonv7")
 
-[node name="PlayerCombatComponent" type="Node" parent="World/CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+[node name="PlayerCombatComponent" type="Node" parent="World/CharacterBody2D" node_paths=PackedStringArray("movement_component", "animation_player", "attack_node")]
 script = ExtResource("2_l0goq")
 player_stats = ExtResource("7_dx1n6")
 attack_action = ExtResource("5_i1iex")
-animation_player = NodePath("../AnimationPlayer")
+movement_component = NodePath("../PlayerMovementComponent")
+animation_player = NodePath("../AttackAnimationPlayer")
+attack_node = NodePath("../Attack")
 
 [node name="WeaponPivot" type="Node2D" parent="World/CharacterBody2D"]
 position = Vector2(-1, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="World/CharacterBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_4hvx0")
+}
+
+[node name="Attack" type="Node2D" parent="World/CharacterBody2D"]
+light_mask = 3
+
+[node name="HitboxComponent" parent="World/CharacterBody2D/Attack" instance=ExtResource("14_4hvx0")]
+visible = false
+position = Vector2(100, 0)
+collision_layer = 3
+monitoring = false
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/CharacterBody2D/Attack/HitboxComponent"]
+shape = SubResource("CircleShape2D_pmq7r")
+
+[node name="AttackSprite" type="Sprite2D" parent="World/CharacterBody2D/Attack/HitboxComponent"]
+modulate = Color(1, 1, 1, 0)
+rotation = -1.5707964
+scale = Vector2(4.503, 4.655)
+texture = ExtResource("15_cojqs")
+hframes = 12
 
 [node name="Node2D" type="Node2D" parent="World"]
 position = Vector2(176, 0)
@@ -70,12 +306,38 @@ position = Vector2(176, 0)
 [node name="Area2D" type="Area2D" parent="World/Node2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Node2D/Area2D"]
+position = Vector2(237, -15)
 shape = SubResource("RectangleShape2D_i1iex")
 
 [node name="Camera2D" type="Camera2D" parent="World" node_paths=PackedStringArray("followed")]
 zoom = Vector2(0.2, 0.2)
 script = ExtResource("14_sonv7")
 followed = NodePath("../CharacterBody2D")
+
+[node name="EnemyDummy" type="CharacterBody2D" parent="World"]
+
+[node name="HealthComponent" parent="World/EnemyDummy" instance=ExtResource("17_8otfh")]
+player_stats = ExtResource("7_dx1n6")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/EnemyDummy"]
+self_modulate = Color(2.052564, 0, 0, 1)
+position = Vector2(413, -16)
+texture = ExtResource("1_l0goq")
+
+[node name="Hurtbox" parent="World/EnemyDummy" node_paths=PackedStringArray("health_component") instance=ExtResource("18_pmq7r")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/EnemyDummy/Hurtbox"]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(414, -17)
+shape = SubResource("RectangleShape2D_16ua7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/EnemyDummy"]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(415, 47)
+shape = SubResource("CircleShape2D_8otfh")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
