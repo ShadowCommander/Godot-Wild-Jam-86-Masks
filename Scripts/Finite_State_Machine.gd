@@ -1,14 +1,20 @@
 class_name FiniteStateMachine
 extends Node
 
-@export var state: State
+var current_state: State
+var previous_state: State
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	change_state(state)
+func _ready():
+	current_state = get_child(0) as State
+	previous_state = current_state
+	current_state.enter()
 
-func change_state(new_state: State):
-	if state is State:
-		state._exit_state()
-	new_state._enter_state()
-	state = new_state
+func change_state(state):
+	if find_child(state) as State == null:
+		print("current state not exist")
+		return
+	current_state = find_child(state) as State
+	current_state.enter()
+	
+	previous_state.exit()
+	previous_state = current_state

@@ -1,10 +1,21 @@
-class_name State
 extends Node
+class_name State
+ 
+@onready var player = get_tree().get_first_node_in_group("player")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var debug: Label = $Debug
 
-signal state_finished
-
-func _enter_state() -> void:
+func _ready():
+	set_physics_process(false)
+ 
+func enter():
+	set_physics_process(true)
+ 
+func exit():
+	set_physics_process(false)
+ 
+func transition():
 	pass
-
-func _exit_state() -> void:
-	pass
+ 
+func _physics_process(_delta):
+	transition()

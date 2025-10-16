@@ -10,7 +10,7 @@ class_name DeathComponent
 func _ready():
 	if gpu_particles_2d != null:
 		gpu_particles_2d.texture = sprite.texture
-	health_component.death.connect(_on_death)
+	health_component.died.connect(_on_death)
 
 func _on_death():
 	if owner == null || not owner is Node2D:

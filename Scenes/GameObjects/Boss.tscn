@@ -1,10 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://gok5fbdrqerb"]
+[gd_scene load_steps=11 format=3 uid="uid://gok5fbdrqerb"]
+
+[ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="1_cvd2k"]
+[ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_rec2m"]
+[ext_resource type="Script" uid="uid://c2ia58o87om5t" path="res://Scenes/Player/States/p_idle_state.gd" id="2_d4wlb"]
+[ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="2_erfeo"]
+[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="3_scol5"]
+[ext_resource type="Script" uid="uid://bsieoxnn5qouh" path="res://Scenes/Player/States/p_follow_state.gd" id="6_rec2m"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2xe2o"]
 size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvd2k"]
 radius = 34.132095
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xe2o"]
+radius = 200.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtwxq"]
+radius = 40.012497
 
 [node name="Boss" type="CharacterBody2D"]
 
@@ -13,3 +26,40 @@ texture = SubResource("PlaceholderTexture2D_2xe2o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cvd2k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Debug" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -64.0
+offset_right = 25.0
+offset_bottom = -41.0
+text = "debug"
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_2xe2o")
+debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
+
+[node name="VelocityComponent" parent="." instance=ExtResource("1_rec2m")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_erfeo")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_scol5")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_qtwxq")
+debug_color = Color(0.6281663, 0.5270652, 0.18239814, 0.41960785)
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+script = ExtResource("1_cvd2k")
+metadata/_custom_type_script = "uid://crm220r5offy1"
+
+[node name="IdleState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("2_d4wlb")
+
+[node name="FollowState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("6_rec2m")
+metadata/_custom_type_script = "uid://k1klqgk4sbtm"
