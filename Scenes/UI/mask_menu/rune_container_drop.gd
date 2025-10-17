@@ -12,5 +12,4 @@ func can_drop_data(_pos, data):
 	return data.rune_data is RuneData
  
 func drop_data(_pos, data):
-	mask_menu.create_rune(data.rune_data)
 	data.rune_data = null
