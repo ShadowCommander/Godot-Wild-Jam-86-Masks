@@ -29,6 +29,9 @@ func decelerate():
 
 
 func move(character_body: CharacterBody2D):
+	if character_body is not CharacterBody2D and character_body is Node2D:
+		character_body.translate(velocity)
+		return
 	character_body.velocity = velocity
 	character_body.move_and_slide()
 	velocity = character_body.velocity
