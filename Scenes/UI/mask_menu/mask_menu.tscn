@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c57d6kcvpo8x"]
+[gd_scene load_steps=9 format=3 uid="uid://c57d6kcvpo8x"]
 
 [ext_resource type="Script" uid="uid://cco4oy8m62hbf" path="res://Scenes/UI/mask_menu/mask_menu.gd" id="1_6ap05"]
 [ext_resource type="Texture2D" uid="uid://dvhvvf3u467n4" path="res://Resources/Textures/mask placeholder.png" id="2_b3p3y"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="3_6ap05"]
+[ext_resource type="PackedScene" uid="uid://cv6er8fvvr5an" path="res://Scenes/UI/mask_menu/drag_drop_texture_rect.tscn" id="4_nsq5q"]
+[ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="5_kkl72"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va0kb"]
 content_margin_left = 4.0
@@ -27,6 +30,9 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsq5q"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="MaskMenu" type="Control" node_paths=PackedStringArray("rune_container")]
 layout_mode = 3
 anchors_preset = 15
@@ -46,6 +52,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/separation = 0
 
 [node name="SpacerTop" type="Control" parent="VBoxContainer"]
 layout_mode = 2
@@ -57,6 +64,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 2
+theme_override_constants/separation = 0
 
 [node name="SpacerLeft" type="Control" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -104,11 +112,95 @@ size_flags_horizontal = 3
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nsq5q")
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 texture = ExtResource("2_b3p3y")
 expand_mode = 3
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 171.0
+offset_top = 117.0
+offset_right = 211.0
+offset_bottom = 157.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_6ap05")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 127.0
+offset_top = 53.0
+offset_right = 167.0
+offset_bottom = 93.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_6ap05")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 224.0
+offset_top = 54.0
+offset_right = 264.0
+offset_bottom = 94.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_6ap05")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButton4" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 274.0
+offset_top = 71.0
+offset_right = 314.0
+offset_bottom = 111.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_6ap05")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButton5" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 76.0
+offset_top = 76.0
+offset_right = 116.0
+offset_bottom = 116.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("3_6ap05")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="DragDropTextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
+initial_rune_data = ExtResource("5_kkl72")
+
+[node name="DragDropTextureRect2" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
+layout_mode = 0
+offset_left = 250.0
+offset_top = -11.0
+offset_right = 290.0
+offset_bottom = 29.0
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

@@ -16,6 +16,7 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="RuneEntry" type="PanelContainer" node_paths=PackedStringArray("icon", "name_label", "button")]
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndffd")
 script = ExtResource("1_cxj5w")
 icon = NodePath("MarginContainer/VBoxContainer/TextureRect")
@@ -45,5 +46,6 @@ label_settings = SubResource("LabelSettings_cxj5w")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 2
+mouse_filter = 1
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

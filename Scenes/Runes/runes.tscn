@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cikyoe7wo62ej"]
+[gd_scene load_steps=8 format=3 uid="uid://d4bdgtvep4750"]
 
-[ext_resource type="Script" uid="uid://b6tle5o10y8ey" path="res://Scenes/Runes/runes.gd" id="1_06kv7"]
+[ext_resource type="Script" path="res://Scenes/Runes/runes.gd" id="1_06kv7"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="2_u2j8j"]
-[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="2_xe1gw"]
+[ext_resource type="Script" path="res://Scenes/Runes/rune.gd" id="2_xe1gw"]
 [ext_resource type="Resource" uid="uid://dmsorfw5j0r1u" path="res://Resources/Runes/health_rune.tres" id="3_6kf6i"]
 [ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="4_6kf6i"]
-[ext_resource type="Script" uid="uid://c7wd1jsjkw8ii" path="res://Scenes/Runes/player_starting_runes.gd" id="4_ieax0"]
+[ext_resource type="Script" path="res://Scenes/Runes/player_starting_runes.gd" id="4_ieax0"]
 
 [sub_resource type="Resource" id="Resource_flbyj"]
 script = ExtResource("4_ieax0")
@@ -17,3 +17,5 @@ script = ExtResource("1_06kv7")
 starting_runes = SubResource("Resource_flbyj")
 
 [node name="MaskMenu" parent="." instance=ExtResource("2_u2j8j")]
+offset_left = -1.0
+offset_right = -1.0
