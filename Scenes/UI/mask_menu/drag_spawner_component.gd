@@ -1,14 +1,10 @@
 extends Node
-class_name DragDropControlComponent
 
 class DataSlot:
 	signal data_changed
 	
-	var removable: bool = true
 	var rune_data: RuneData:
 		set(value):
-			if not removable and rune_data != null:
-				return
 			rune_data = value
 			data_changed.emit()
 
@@ -32,8 +28,8 @@ func get_drag_data(_at_position):
 	rune_entry.set_drag_preview(get_preview())
 	return data_slot
  
-func can_drop_data(_pos, data):
-	return data.rune_data is RuneData
+func can_drop_data(_pos, _data):
+	return false
  
 func drop_data(_pos, data):
 	var temp = data_slot.rune_data

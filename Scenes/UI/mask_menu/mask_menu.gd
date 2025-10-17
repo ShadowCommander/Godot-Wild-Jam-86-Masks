@@ -20,16 +20,13 @@ func create_rune(rune_data: RuneData) -> void:
 	
 	var drag_drop_comp = DragDropControlComponent.new()
 	rune.add_child(drag_drop_comp)
-	
-	var delete_slot_comp = DeleteSlotOnEmptyComponent.new()
-	rune.add_child(delete_slot_comp)
+	drag_drop_comp.data_slot.removable = false
 	
 	rune_entries[rune_data] = rune
 	rune_container.add_child(rune)
 	rune_container.move_child(rune, 0)
 	
 	drag_drop_comp.data_slot.rune_data = rune_data
-	delete_slot_comp.drag_drop_comp = drag_drop_comp
 
 func handle_rune_tree_exiting(rune_data: RuneData) -> void:
 	rune_entries.erase(rune_data)
