@@ -15,6 +15,8 @@ signal pressed
 @export var description: RichTextLabel
 @export var verbosity: Verbosity = Verbosity.IconLabel
 
+var rune_data: RuneData
+
 func _ready() -> void:
 	change_verbosity(verbosity)
 	populate_data(null)
@@ -34,12 +36,13 @@ func change_verbosity(value: Verbosity) -> void:
 func _on_texture_button_pressed() -> void:
 	pressed.emit()
 
-func populate_data(rune_data: RuneData) -> void:
-	if rune_data == null:
+func populate_data(data: RuneData) -> void:
+	rune_data = data
+	if data == null:
 		icon.texture = null
 		name_label.text = ""
 		button.tooltip_text = ""
 		return
-	icon.texture = rune_data.texture
-	name_label.text = rune_data.name
-	button.tooltip_text = rune_data.description
+	icon.texture = data.texture
+	name_label.text = data.name
+	button.tooltip_text = data.description
