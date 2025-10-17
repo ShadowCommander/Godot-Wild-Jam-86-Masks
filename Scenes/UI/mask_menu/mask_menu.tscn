@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c57d6kcvpo8x"]
+[gd_scene load_steps=9 format=3 uid="uid://c57d6kcvpo8x"]
 
 [ext_resource type="Script" uid="uid://cco4oy8m62hbf" path="res://Scenes/UI/mask_menu/mask_menu.gd" id="1_6ap05"]
 [ext_resource type="Texture2D" uid="uid://dvhvvf3u467n4" path="res://Resources/Textures/mask placeholder.png" id="2_b3p3y"]
+[ext_resource type="Script" uid="uid://dyxyi2cnlkwy7" path="res://Scenes/UI/mask_menu/rune_container_drop.gd" id="2_kkl72"]
 [ext_resource type="PackedScene" uid="uid://bj2p0w3hnbpah" path="res://Scenes/UI/mask_menu/rune_entry.tscn" id="5_cedhl"]
 [ext_resource type="Script" uid="uid://fa0fbcvadg4t" path="res://Scenes/UI/mask_menu/drag_drop_control_component.gd" id="6_gyhsb"]
 
@@ -103,6 +104,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
+
+[node name="RuneContainerDrop" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+script = ExtResource("2_kkl72")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

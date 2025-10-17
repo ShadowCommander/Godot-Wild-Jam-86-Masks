@@ -14,8 +14,6 @@ var rune_entry: RuneEntry
 
 var data_slot: DataSlot = DataSlot.new()
 
-var filled : bool = false
-
 func _ready() -> void:
 	data_slot.rune_data = initial_rune_data
 	data_slot.data_changed.connect(handle_data_changed)
