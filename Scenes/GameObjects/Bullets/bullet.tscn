@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgmdchwb3c3t3"]
+
+[ext_resource type="Texture2D" uid="uid://cih6xfecuuxyo" path="res://Assets/P1 Bullet Stream.png" id="1_48wxc"]
+[ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="2_6m5o6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hg8y"]
+radius = 8.062258
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_48wxc")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_6m5o6")
+metadata/_custom_type_script = "uid://b0m372h3eo0vo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_0hg8y")
