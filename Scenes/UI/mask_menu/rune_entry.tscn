@@ -15,6 +15,9 @@ border_color = Color(0, 0, 0, 1)
 font_color = Color(0, 0, 0, 1)
 
 [node name="RuneEntry" type="PanelContainer" node_paths=PackedStringArray("icon", "name_label", "button", "description")]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 6.0
+offset_bottom = 6.0
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ndffd")

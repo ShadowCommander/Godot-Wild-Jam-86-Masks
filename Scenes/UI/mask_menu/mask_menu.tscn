@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c57d6kcvpo8x"]
+[gd_scene load_steps=10 format=3 uid="uid://c57d6kcvpo8x"]
 
 [ext_resource type="Script" uid="uid://cco4oy8m62hbf" path="res://Scenes/UI/mask_menu/mask_menu.gd" id="1_6ap05"]
 [ext_resource type="Texture2D" uid="uid://dvhvvf3u467n4" path="res://Resources/Textures/mask placeholder.png" id="2_b3p3y"]
 [ext_resource type="PackedScene" uid="uid://cv6er8fvvr5an" path="res://Scenes/UI/mask_menu/drag_drop_texture_rect.tscn" id="4_nsq5q"]
+[ext_resource type="PackedScene" uid="uid://bj2p0w3hnbpah" path="res://Scenes/UI/mask_menu/rune_entry.tscn" id="5_cedhl"]
 [ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="5_kkl72"]
+[ext_resource type="Script" uid="uid://fa0fbcvadg4t" path="res://Scenes/UI/mask_menu/drag_drop_control_component.gd" id="6_gyhsb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va0kb"]
 content_margin_left = 4.0
@@ -156,6 +158,17 @@ offset_left = 292.0
 offset_top = 87.0
 offset_right = 332.0
 offset_bottom = 127.0
+
+[node name="RuneEntry" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("5_cedhl")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 40.0
+offset_right = 51.0
+offset_bottom = 80.0
+
+[node name="DragDropControlComponent" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control/RuneEntry"]
+script = ExtResource("6_gyhsb")
+initial_rune_data = ExtResource("5_kkl72")
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
