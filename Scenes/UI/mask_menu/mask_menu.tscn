@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c57d6kcvpo8x"]
+[gd_scene load_steps=8 format=3 uid="uid://c57d6kcvpo8x"]
 
 [ext_resource type="Script" uid="uid://cco4oy8m62hbf" path="res://Scenes/UI/mask_menu/mask_menu.gd" id="1_6ap05"]
 [ext_resource type="Texture2D" uid="uid://dvhvvf3u467n4" path="res://Resources/Textures/mask placeholder.png" id="2_b3p3y"]
-[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="3_6ap05"]
 [ext_resource type="PackedScene" uid="uid://cv6er8fvvr5an" path="res://Scenes/UI/mask_menu/drag_drop_texture_rect.tscn" id="4_nsq5q"]
 [ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="5_kkl72"]
 
@@ -122,85 +121,41 @@ expand_mode = 3
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 0
-offset_left = 171.0
-offset_top = 117.0
-offset_right = 211.0
-offset_bottom = 157.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("3_6ap05")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 0
-offset_left = 127.0
-offset_top = 53.0
-offset_right = 167.0
-offset_bottom = 93.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("3_6ap05")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 0
-offset_left = 224.0
-offset_top = 54.0
-offset_right = 264.0
-offset_bottom = 94.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("3_6ap05")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="TextureButton4" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 0
-offset_left = 274.0
-offset_top = 71.0
-offset_right = 314.0
-offset_bottom = 111.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("3_6ap05")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="TextureButton5" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 0
-offset_left = 76.0
-offset_top = 76.0
-offset_right = 116.0
-offset_bottom = 116.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("3_6ap05")
-ignore_texture_size = true
-stretch_mode = 4
-
 [node name="DragDropTextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 171.0
+offset_top = 119.0
+offset_right = 211.0
+offset_bottom = 159.0
 initial_rune_data = ExtResource("5_kkl72")
 
 [node name="DragDropTextureRect2" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
 layout_mode = 0
-offset_left = 250.0
-offset_top = -11.0
-offset_right = 290.0
-offset_bottom = 29.0
+offset_left = 238.0
+offset_top = 52.0
+offset_right = 278.0
+offset_bottom = 92.0
+
+[node name="DragDropTextureRect3" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 49.0
+offset_right = 155.0
+offset_bottom = 89.0
+
+[node name="DragDropTextureRect4" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 79.0
+offset_right = 104.0
+offset_bottom = 119.0
+
+[node name="DragDropTextureRect5" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control" instance=ExtResource("4_nsq5q")]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 87.0
+offset_right = 332.0
+offset_bottom = 127.0
 
 [node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

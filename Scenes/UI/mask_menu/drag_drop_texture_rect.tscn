@@ -5,11 +5,10 @@
 
 [node name="DragDropTextureRect" type="PanelContainer"]
 custom_minimum_size = Vector2(40, 40)
-offset_left = 74.0
-offset_top = -12.0
-offset_right = 114.0
-offset_bottom = 28.0
+offset_right = 46.0
+offset_bottom = 69.0
 script = ExtResource("2_tflm1")
 
 [node name="RuneEntry" parent="." instance=ExtResource("2_63di6")]
 layout_mode = 2
+verbosity = 0
