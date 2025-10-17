@@ -3,16 +3,16 @@ class_name PlayerStats
 
 @export var attack_combo: Array[AttackComboEntry]
 
-@export var speed: float = 400
+@export var speed: float = 0 # 400
 
-@export var dash_count: int = 3
-@export var dash_recharge_time: float = 1.0 # Time in seconds for one segment to recharge
+@export var dash_count: int = 0 # 3
+@export var dash_recharge_time: float = 0 # 1.0 # Time in seconds for one segment to recharge
 @export var dash_curve: Curve
-@export var dash_time: float = 0.5
-@export var dash_distance: float = 400
+@export var dash_time: float = 0 # 0.5
+@export var dash_distance: float = 0 # 400
 
 #Health stats
-@export var max_health: float = 10
+@export var max_health: float = 0 # 10
 
 # Start position
 # End position
