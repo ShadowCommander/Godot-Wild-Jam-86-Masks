@@ -1,0 +1,170 @@
+[gd_scene load_steps=3 format=3 uid="uid://pyv17qd5iju3"]
+
+[ext_resource type="Script" uid="uid://dd3cfkjhgoy1m" path="res://UI/BossOptionsMenu/boss_options_tree.gd" id="1_pxmnc"]
+[ext_resource type="PackedScene" uid="uid://f3hrp4tsck1u" path="res://UI/BossOptionsMenu/boss_button.tscn" id="1_y77ab"]
+
+[node name="BossOptionsTree" type="Control"]
+layout_mode = 3
+anchor_left = 0.055
+anchor_top = 0.1
+anchor_right = 0.945
+anchor_bottom = 0.895
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pxmnc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VboxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VboxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_font_sizes/font_size = 25
+text = "Choose Boss to fight"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="VboxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="BossButton" parent="VboxContainer/Panel" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47700003
+anchor_top = 0.837
+anchor_right = 0.51600003
+anchor_bottom = 0.94400007
+offset_left = -0.28500366
+offset_top = 0.16201782
+offset_right = -0.26000977
+offset_bottom = 0.14398193
+
+[node name="BossButton2" parent="VboxContainer/Panel/BossButton" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.2
+anchor_top = -1.6
+anchor_right = 4.2000003
+anchor_bottom = -0.6
+offset_right = -1.5258789e-05
+offset_bottom = -1.9073486e-06
+disabled = true
+
+[node name="BossButton6" parent="VboxContainer/Panel/BossButton/BossButton2" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.6
+anchor_top = -1.6
+anchor_right = 2.6000001
+anchor_bottom = -0.6
+offset_right = -7.6293945e-06
+offset_bottom = 0.0
+disabled = true
+
+[node name="BossButton11" parent="VboxContainer/Panel/BossButton/BossButton2/BossButton6" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -2.0
+anchor_right = 1.0
+anchor_bottom = -1.0
+offset_top = 1.5258789e-05
+offset_right = 0.0
+offset_bottom = 0.0
+disabled = true
+
+[node name="BossButton7" parent="VboxContainer/Panel/BossButton/BossButton2" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.4000001
+anchor_top = -1.6
+anchor_right = -0.4
+anchor_bottom = -0.6
+offset_right = 1.9073486e-06
+offset_bottom = -1.9073486e-06
+disabled = true
+
+[node name="BossButton10" parent="VboxContainer/Panel/BossButton/BossButton2/BossButton7" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -2.0
+anchor_right = 1.0
+anchor_bottom = -1.0
+offset_top = 1.5258789e-05
+offset_right = 0.0
+offset_bottom = 0.0
+disabled = true
+
+[node name="BossButton3" parent="VboxContainer/Panel/BossButton" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.0000002
+anchor_top = -1.6
+anchor_right = -2.0
+anchor_bottom = -0.6
+offset_right = 0.0
+offset_bottom = -1.9073486e-06
+disabled = true
+
+[node name="BossButton4" parent="VboxContainer/Panel/BossButton/BossButton3" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.4000001
+anchor_top = -1.6
+anchor_right = -0.4
+anchor_bottom = -0.6
+offset_right = 0.0
+offset_bottom = 0.0
+disabled = true
+
+[node name="BossButton8" parent="VboxContainer/Panel/BossButton/BossButton3/BossButton4" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -2.0
+anchor_right = 1.0
+anchor_bottom = -1.0
+offset_right = -3.8146973e-06
+offset_bottom = -3.8146973e-06
+disabled = true
+
+[node name="BossButton5" parent="VboxContainer/Panel/BossButton/BossButton3" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.6
+anchor_top = -1.6
+anchor_right = 2.6000001
+anchor_bottom = -0.6
+offset_right = -7.6293945e-06
+offset_bottom = 0.0
+disabled = true
+
+[node name="BossButton9" parent="VboxContainer/Panel/BossButton/BossButton3/BossButton5" instance=ExtResource("1_y77ab")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -2.0
+anchor_right = 1.0
+anchor_bottom = -1.0
+offset_right = 0.0
+offset_bottom = 0.0
+disabled = true
+
+[node name="Button" type="Button" parent="VboxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15

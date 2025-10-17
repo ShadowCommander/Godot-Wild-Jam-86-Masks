@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Bosses" load_steps=3 format=3 uid="uid://b58qkvsg3i8v8"]
+
+[ext_resource type="Script" uid="uid://d0lslgmoyo53n" path="res://Resources/Bosses/bosses.gd" id="1_yowt8"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="2_3o6xa"]
+
+[resource]
+script = ExtResource("1_yowt8")
+name = "First Boss"
+texture = ExtResource("2_3o6xa")
+metadata/_custom_type_script = "uid://d0lslgmoyo53n"
