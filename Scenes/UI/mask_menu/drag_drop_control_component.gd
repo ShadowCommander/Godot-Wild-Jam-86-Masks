@@ -29,7 +29,6 @@ func _ready() -> void:
 
 func get_drag_data(_at_position):
 	rune_entry.set_drag_preview(get_preview())
-	print("GetDragData")
 	return data_slot
  
 func can_drop_data(_pos, data):
@@ -39,8 +38,6 @@ func drop_data(_pos, data):
 	var temp = data_slot.rune_data
 	data_slot.rune_data = data.rune_data
 	data.rune_data = temp
-	
-	rune_entry.populate_data(data_slot.rune_data)
  
 func get_preview():
 	var preview_texture = TextureRect.new()

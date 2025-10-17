@@ -17,6 +17,7 @@ signal pressed
 
 func _ready() -> void:
 	change_verbosity(verbosity)
+	populate_data(null)
 
 func change_verbosity(value: Verbosity) -> void:
 	verbosity = value
