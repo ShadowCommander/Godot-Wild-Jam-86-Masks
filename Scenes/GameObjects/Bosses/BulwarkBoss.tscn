@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
 [ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
-[ext_resource type="Script" uid="uid://c2ia58o87om5t" path="res://Scenes/Player/States/p_idle_state.gd" id="5_uc58w"]
-[ext_resource type="Script" uid="uid://bsieoxnn5qouh" path="res://Scenes/Player/States/p_follow_state.gd" id="6_w10q0"]
+[ext_resource type="Script" uid="uid://c2efvbipnx4yx" path="res://Scripts/Boss_Idle_State.gd" id="4_8gn4i"]
+[ext_resource type="Script" uid="uid://cgait63vr837p" path="res://Scripts/Boss_Follow_State.gd" id="5_ttf6s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvd2k"]
 radius = 34.132095
@@ -51,13 +51,12 @@ texture = SubResource("PlaceholderTexture2D_2xe2o")
 script = ExtResource("4_2pwef")
 metadata/_custom_type_script = "uid://crm220r5offy1"
 
-[node name="IdleState" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("5_uc58w")
+[node name="BossIdleState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("4_8gn4i")
+metadata/_custom_type_script = "uid://c2efvbipnx4yx"
+
+[node name="BossFollowState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("5_ttf6s")
 metadata/_custom_type_script = "uid://k1klqgk4sbtm"
 
-[node name="FollowState" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("6_w10q0")
-metadata/_custom_type_script = "uid://k1klqgk4sbtm"
-
-[node name="FollowTimer" type="Timer" parent="FiniteStateMachine/FollowState"]
-wait_time = 3.0
+[node name="FollowTimer" type="Timer" parent="FiniteStateMachine/BossFollowState"]

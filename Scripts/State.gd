@@ -1,21 +1,19 @@
 extends Node
 class_name State
  
-@onready var player = get_tree().get_first_node_in_group("player")
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var debug: Label = $Debug
+var finite_state_machine: FiniteStateMachine
 
-func _ready():
-	set_physics_process(false)
- 
 func enter():
-	set_physics_process(true)
- 
-func exit():
-	set_physics_process(false)
- 
-func transition():
 	pass
- 
-func _physics_process(_delta):
-	transition()
+
+func exit():
+	pass
+
+func update(delta: float):
+	pass
+
+func physics_update(delta: float):
+	pass
+
+func handle_input(event: InputEvent):
+	pass
