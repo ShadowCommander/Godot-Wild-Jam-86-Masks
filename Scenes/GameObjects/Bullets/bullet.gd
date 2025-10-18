@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_screen_exited() -> void:
-	call_deferred("queue_free")
+	queue_free()
 
 
 func get_velocity_component():

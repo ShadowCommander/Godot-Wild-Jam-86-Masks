@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
 [ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
+[ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
 [ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
@@ -30,8 +30,11 @@ mapping_contexts = Array[ExtResource("2_xpfiu")]([ExtResource("3_vcq4h")])
 [node name="World" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
+[node name="BulwarkBoss" parent="World" instance=ExtResource("20_16ua7")]
+position = Vector2(404, -222)
+
 [node name="Player" parent="World" instance=ExtResource("4_qqyxy")]
-position = Vector2(0, -2)
+position = Vector2(-135, 87)
 
 [node name="Node2D" type="Node2D" parent="World"]
 position = Vector2(176, 0)
@@ -71,9 +74,6 @@ position = Vector2(415, 47)
 shape = SubResource("CircleShape2D_8otfh")
 
 [node name="BulletEntities" type="Node" parent="World" groups=["bullet_entities"]]
-
-[node name="BulwarkBoss" parent="World" instance=ExtResource("20_16ua7")]
-position = Vector2(248, -283)
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
@@ -126,9 +126,6 @@ metadata/_edit_use_anchors_ = true
 [node name="MaskMenu" parent="UICanvasLayer/Control" instance=ExtResource("21_faua5")]
 visible = false
 layout_mode = 1
-
-[node name="BulwarkBoss" parent="." instance=ExtResource("20_16ua7")]
-position = Vector2(248, -282)
 
 [connection signal="pressed" from="UICanvasLayer/Control/OutOfBattleButtons/MaskMenuButton" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_button_pressed"]
 [connection signal="mask_saved" from="UICanvasLayer/Control/MaskMenu" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_mask_saved"]
