@@ -28,7 +28,7 @@ func decelerate():
 	accelerate_in_direction(Vector2.ZERO)
 
 
-func move(character_body: CharacterBody2D):
+func move(character_body: Node2D):
 	if character_body is not CharacterBody2D and character_body is Node2D:
 		character_body.translate(velocity)
 		return

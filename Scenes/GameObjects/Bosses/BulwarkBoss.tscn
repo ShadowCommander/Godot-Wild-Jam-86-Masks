@@ -19,34 +19,22 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/LeftLeg:position")
+tracks/0/path = NodePath("Visuals/LeftLeg:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-35, 114)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/LeftLeg:rotation")
+tracks/1/path = NodePath("Visuals/RightLeg:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/RightLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -101,7 +89,7 @@ script = ExtResource("1_uc58w")
 texture = ExtResource("3_w10q0")
 
 [node name="LeftLeg" type="Sprite2D" parent="Visuals"]
-position = Vector2(-35, 114)
+position = Vector2(-35, 66)
 texture = ExtResource("4_gy0wg")
 offset = Vector2(0, 47)
 

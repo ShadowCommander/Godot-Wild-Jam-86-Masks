@@ -10,6 +10,10 @@ func _ready() -> void:
 	visible_on_screen_enabler_2d.screen_exited.connect(_on_screen_exited)
 
 
+func _physics_process(_delta: float) -> void:
+	velocity_component.move(self)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_screen_exited() -> void:
 	queue_free()

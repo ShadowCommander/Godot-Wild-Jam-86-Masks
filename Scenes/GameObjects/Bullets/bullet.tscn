@@ -25,5 +25,4 @@ shape = SubResource("CircleShape2D_0hg8y")
 show_rect = false
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_n0qqh")]
-max_speed = 100
-acceleration = 10.0
+acceleration = 2.0

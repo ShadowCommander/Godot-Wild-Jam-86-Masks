@@ -5,8 +5,9 @@
 
 [node name="BulletSpawnerComp" type="Node2D"]
 script = ExtResource("1_prtd2")
+alpha = 1.5
 bullet_scene = ExtResource("2_hi41i")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 autostart = true
