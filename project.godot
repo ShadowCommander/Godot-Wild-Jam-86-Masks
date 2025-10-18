@@ -22,7 +22,7 @@ Globals="*res://Scenes/Global/globals.tscn"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [dotnet]
 
@@ -31,6 +31,10 @@ project/assembly_name="Wild Jam 86"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/guide/plugin.cfg")
+
+[layer_names]
+
+2d_physics/layer_1="player"
 
 [physics]
 
