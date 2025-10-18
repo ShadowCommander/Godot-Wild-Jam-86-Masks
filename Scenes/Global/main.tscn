@@ -31,10 +31,10 @@ mapping_contexts = Array[ExtResource("2_xpfiu")]([ExtResource("3_vcq4h")])
 position = Vector2(0, 1)
 
 [node name="BulwarkBoss" parent="World" instance=ExtResource("20_16ua7")]
-position = Vector2(404, -222)
+position = Vector2(177, -48)
 
 [node name="Player" parent="World" instance=ExtResource("4_qqyxy")]
-position = Vector2(-135, 87)
+position = Vector2(-407, 114)
 
 [node name="Node2D" type="Node2D" parent="World"]
 position = Vector2(176, 0)

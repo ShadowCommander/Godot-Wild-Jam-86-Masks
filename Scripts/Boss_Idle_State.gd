@@ -3,6 +3,7 @@ class_name BossIdleState
 
 @export var collision_shape_2d: CollisionShape2D
 @export var player_detection: Area2D
+@export var animation_player: AnimationPlayer
 
 var player_entered: bool = false:
 	set(val):
@@ -25,3 +26,5 @@ func enter():
 	print("boss idle state")
 	player_entered = false
 	set_physics_process(false)
+	if animation_player != null:
+		animation_player.play("idle")
