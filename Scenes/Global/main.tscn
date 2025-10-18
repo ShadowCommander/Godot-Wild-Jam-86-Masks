@@ -1,16 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=17 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
 [ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
-[ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
 [ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
+[ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
+[ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
 size = Vector2(100, 100)
@@ -96,7 +98,34 @@ alignment = 1
 script = ExtResource("15_4hvx0")
 player_movement = NodePath("../../../World/Player/PlayerMovementComponent")
 
+[node name="OutOfBattleButtons" type="HBoxContainer" parent="UICanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.95
+offset_left = -49.0
+offset_top = -31.0
+offset_right = 49.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("20_xq145")
+metadata/_edit_use_anchors_ = true
+
+[node name="MaskMenuButton" type="Button" parent="UICanvasLayer/Control/OutOfBattleButtons"]
+layout_mode = 2
+text = "Mask Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="MaskMenu" parent="UICanvasLayer/Control" instance=ExtResource("21_faua5")]
+visible = false
+layout_mode = 1
+
 [node name="BulwarkBoss" parent="." instance=ExtResource("20_16ua7")]
 position = Vector2(248, -282)
+
+[connection signal="pressed" from="UICanvasLayer/Control/OutOfBattleButtons/MaskMenuButton" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_button_pressed"]
+[connection signal="mask_saved" from="UICanvasLayer/Control/MaskMenu" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_mask_saved"]
 
 [editable path="World/Player"]
