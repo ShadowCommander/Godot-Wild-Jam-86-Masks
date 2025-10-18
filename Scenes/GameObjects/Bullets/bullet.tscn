@@ -15,6 +15,7 @@ script = ExtResource("1_n0qqh")
 texture = ExtResource("1_48wxc")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+monitorable = false
 script = ExtResource("2_6m5o6")
 metadata/_custom_type_script = "uid://b0m372h3eo0vo"
 

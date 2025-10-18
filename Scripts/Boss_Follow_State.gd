@@ -27,4 +27,4 @@ func exit():
  
 
 func _on_follow_timer_timeout():
-	finite_state_machine.change_state("bossidlestate")
+	finite_state_machine.change_state("bossshootstate")

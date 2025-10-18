@@ -118,13 +118,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_ur5j5")
 }
 
-[node name="Debug" type="Label" parent="."]
-offset_left = -26.0
-offset_top = -78.0
-offset_right = 23.0
-offset_bottom = -55.0
-text = "debug"
-
 [node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
 
@@ -136,12 +129,16 @@ debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
 [node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
 max_speed = 60
 
+[node name="BulletSpawnerComp" parent="." instance=ExtResource("10_1qmxd")]
+
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("4_2pwef")
 metadata/_custom_type_script = "uid://crm220r5offy1"
 
-[node name="BossIdleState" type="Node" parent="FiniteStateMachine"]
+[node name="BossIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("collision_shape_2d", "player_detection")]
 script = ExtResource("4_8gn4i")
+collision_shape_2d = NodePath("../../PlayerDetection/CollisionShape2D")
+player_detection = NodePath("../../PlayerDetection")
 metadata/_custom_type_script = "uid://c2efvbipnx4yx"
 
 [node name="BossFollowState" type="Node" parent="FiniteStateMachine"]
@@ -153,8 +150,8 @@ metadata/_custom_type_script = "uid://k1klqgk4sbtm"
 [node name="BossGndRipState" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("6_2pwef")
 
-[node name="BossShootState" type="Node" parent="FiniteStateMachine"]
+[node name="BossShootState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "player_detection")]
 script = ExtResource("9_gy0wg")
+animation_player = NodePath("../../AnimationPlayer")
+player_detection = NodePath("../../PlayerDetection")
 metadata/_custom_type_script = "uid://k1klqgk4sbtm"
-
-[node name="BulletSpawnerComp" parent="." instance=ExtResource("10_1qmxd")]

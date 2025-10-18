@@ -21,8 +21,8 @@ func shoot_bullet(angle: float):
 		return
 	
 	var bullet_group = get_tree().get_first_node_in_group("bullet_entities")
-	
-	bullet_group.add_child.call(bullet_instance)
+	if bullet_group != null:
+		bullet_group.add_child.call(bullet_instance)
 	
 	bullet_instance.position = global_position
 	#var vel_comp = bullet_instance.get_velocity_component()

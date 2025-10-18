@@ -1,15 +1,15 @@
 extends State
 class_name BossIdleState
 
-@onready var collision_shape_2d: CollisionShape2D = $"../../PlayerDetection/CollisionShape2D"
-@onready var player_detection: Area2D = $"../../PlayerDetection"
+@export var collision_shape_2d: CollisionShape2D
+@export var player_detection: Area2D
 
 var player_entered: bool = false:
 	set(val):
 		player_entered = val
-		collision_shape_2d.set_deferred("disabled", val)
+		#collision_shape_2d.set_deferred("disabled", val)
 		if val == true:
-			finite_state_machine.change_state("bossfollowstate")
+			finite_state_machine.change_state("bossshootstate")
 
 
 func _ready() -> void:
