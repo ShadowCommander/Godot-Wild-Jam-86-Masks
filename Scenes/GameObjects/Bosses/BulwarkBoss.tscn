@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=12 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
 [ext_resource type="Texture2D" uid="uid://pbphfhqbckyk" path="res://Assets/body.png" id="3_w10q0"]
+[ext_resource type="Script" uid="uid://digudaj1lc523" path="res://Scenes/GameObjects/Bosses/stats_component.gd" id="4_1qmxd"]
 [ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
 [ext_resource type="Script" uid="uid://c2efvbipnx4yx" path="res://Scripts/Boss_Idle_State.gd" id="4_8gn4i"]
 [ext_resource type="Texture2D" uid="uid://cck0rsj1xq511" path="res://Assets/limb.png" id="4_gy0wg"]
@@ -63,6 +64,9 @@ collision_layer = 0
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_2xe2o")
 debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("4_1qmxd")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
 max_speed = 60

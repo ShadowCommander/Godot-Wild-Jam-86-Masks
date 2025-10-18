@@ -1,7 +1,7 @@
 class_name HealthComponent #class name already exists in our code, so you dont need to add it
 extends Node
 
-@export var player_stats: PlayerStats
+@export var player_stats: Stats
 enum UpdateType { DAMAGE, HEALING } # Type of health update, for supporting the healing mechanic
 var current_health: float 
 var max_health: float

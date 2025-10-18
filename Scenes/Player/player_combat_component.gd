@@ -1,10 +1,11 @@
 extends Node
 
-@export var player_stats: PlayerStats
+@export var player_stats: Stats
 @export var attack_action: GUIDEAction
 @export var movement_component: PlayerMovementComponent
 @export var animation_player: AnimationPlayer
 @export var attack_node: Node2D
+@export var attack_box: HitboxComponent
 
 var attack_chambered: bool
 var attack_combo_index: int
@@ -34,7 +35,7 @@ func _attack() -> void:
 	# 🔹 Rotate & position the attack node
 	look_direction = _get_attack_direction()
 	attack_node.look_at(look_direction)
-
+	attack_box.attack(attack)
 	animation_player.play(attack.animation)
 	
 	attacking = true;

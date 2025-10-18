@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcbdtx37ux1tc"]
+[gd_scene load_steps=20 format=3 uid="uid://o4rdm0by3gl2"]
 
-[ext_resource type="Script" uid="uid://byft2libyxvku" path="res://Scenes/Player/player.gd" id="1_06tpx"]
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_06tpx"]
 [ext_resource type="Texture2D" uid="uid://c75jgn8qhkpkg" path="res://Resources/Textures/Shadow.png" id="1_oikmp"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="2_06tpx"]
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="3_7g0yx"]
@@ -245,13 +245,14 @@ dash_action = ExtResource("6_ks1b7")
 look_absolute = ExtResource("7_hnuln")
 look_relative = ExtResource("8_aqm4k")
 
-[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "animation_player", "attack_node")]
+[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "animation_player", "attack_node", "attack_box")]
 script = ExtResource("9_rcvs5")
 player_stats = ExtResource("4_dey5f")
 attack_action = ExtResource("10_h8ma5")
 movement_component = NodePath("../PlayerMovementComponent")
 animation_player = NodePath("../AttackAnimationPlayer")
 attack_node = NodePath("../Attack")
+attack_box = NodePath("../Attack/HitboxComponent")
 
 [node name="WeaponPivot" type="Node2D" parent="."]
 position = Vector2(-1, 0)
@@ -269,7 +270,6 @@ visible = false
 position = Vector2(100, 0)
 collision_layer = 3
 monitoring = false
-damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/HitboxComponent"]
 shape = SubResource("CircleShape2D_pmq7r")
