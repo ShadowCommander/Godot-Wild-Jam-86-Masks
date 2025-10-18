@@ -70,6 +70,11 @@ visibility_layer = 2
 position = Vector2(415, 47)
 shape = SubResource("CircleShape2D_8otfh")
 
+[node name="BulletEntities" type="Node" parent="World" groups=["bullet_entities"]]
+
+[node name="BulwarkBoss" parent="World" instance=ExtResource("20_16ua7")]
+position = Vector2(248, -283)
+
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="UICanvasLayer"]

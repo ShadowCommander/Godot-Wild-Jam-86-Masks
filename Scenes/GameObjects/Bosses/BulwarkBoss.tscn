@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=17 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
@@ -6,11 +6,88 @@
 [ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
 [ext_resource type="Script" uid="uid://c2efvbipnx4yx" path="res://Scripts/Boss_Idle_State.gd" id="4_8gn4i"]
 [ext_resource type="Texture2D" uid="uid://cck0rsj1xq511" path="res://Assets/limb.png" id="4_gy0wg"]
+[ext_resource type="Script" uid="uid://cdv487cu2cjtv" path="res://Scenes/Components/bullet_spawner_comp.gd" id="5_1qmxd"]
 [ext_resource type="Script" uid="uid://cgait63vr837p" path="res://Scripts/Boss_Follow_State.gd" id="5_ttf6s"]
 [ext_resource type="Script" uid="uid://do8jix1sjnpve" path="res://Scripts/Boss_GndRip_State.gd" id="6_2pwef"]
+[ext_resource type="PackedScene" uid="uid://cgmdchwb3c3t3" path="res://Scenes/GameObjects/Bullets/bullet.tscn" id="6_ur5j5"]
+[ext_resource type="Script" uid="uid://b87nvbdksyc1s" path="res://Scripts/boss_shoot_state.gd" id="9_gy0wg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvd2k"]
 radius = 68.359344
+
+[sub_resource type="Animation" id="Animation_1qmxd"]
+resource_name = "shoot"
+length = 0.5
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/LeftLeg:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7330382858376184, 0.6632251157578453]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/RightLeg:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.7330382858376184, -0.6632251157578453]
+}
+
+[sub_resource type="Animation" id="Animation_gy0wg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/LeftLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-35, 114)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/LeftLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/RightLeg:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ur5j5"]
+_data = {
+&"RESET": SubResource("Animation_gy0wg"),
+&"shoot": SubResource("Animation_1qmxd")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xe2o"]
 radius = 388.12885
@@ -27,10 +104,12 @@ texture = ExtResource("3_w10q0")
 [node name="LeftLeg" type="Sprite2D" parent="Visuals"]
 position = Vector2(-35, 114)
 texture = ExtResource("4_gy0wg")
+offset = Vector2(0, 47)
 
 [node name="RightLeg" type="Sprite2D" parent="Visuals"]
-position = Vector2(35, 114)
+position = Vector2(35, 69)
 texture = ExtResource("4_gy0wg")
+offset = Vector2(0, 45)
 flip_h = true
 
 [node name="LeftHand" type="Sprite2D" parent="Visuals"]
@@ -48,6 +127,9 @@ flip_h = true
 shape = SubResource("CircleShape2D_cvd2k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ur5j5")
+}
 
 [node name="Debug" type="Label" parent="."]
 offset_left = -26.0
@@ -67,6 +149,11 @@ debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
 [node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
 max_speed = 60
 
+[node name="BulletSpawnerComp" type="Node2D" parent="."]
+script = ExtResource("5_1qmxd")
+bullet_scene = ExtResource("6_ur5j5")
+metadata/_custom_type_script = "uid://cdv487cu2cjtv"
+
 [node name="FiniteStateMachine" type="Node" parent="."]
 script = ExtResource("4_2pwef")
 metadata/_custom_type_script = "uid://crm220r5offy1"
@@ -84,4 +171,6 @@ metadata/_custom_type_script = "uid://k1klqgk4sbtm"
 [node name="BossGndRipState" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("6_2pwef")
 
-[node name="RipTimer" type="Timer" parent="FiniteStateMachine/BossGndRipState"]
+[node name="BossShootState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("9_gy0wg")
+metadata/_custom_type_script = "uid://k1klqgk4sbtm"

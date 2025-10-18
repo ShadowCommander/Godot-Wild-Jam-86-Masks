@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgmdchwb3c3t3"]
+[gd_scene load_steps=6 format=3 uid="uid://cgmdchwb3c3t3"]
 
 [ext_resource type="Texture2D" uid="uid://cih6xfecuuxyo" path="res://Assets/P1 Bullet Stream.png" id="1_48wxc"]
+[ext_resource type="Script" uid="uid://cu4qohpu2siy4" path="res://Scenes/GameObjects/Bullets/bullet.gd" id="1_n0qqh"]
 [ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="2_6m5o6"]
 [ext_resource type="Script" uid="uid://dncloij8saplu" path="res://Scenes/Components/velocity_component.gd" id="3_0hg8y"]
 
@@ -8,6 +9,7 @@
 radius = 8.062258
 
 [node name="Bullet" type="Node2D"]
+script = ExtResource("1_n0qqh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_48wxc")
@@ -21,4 +23,8 @@ shape = SubResource("CircleShape2D_0hg8y")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_0hg8y")
+max_speed = 100
+acceleration = 20.0
 metadata/_custom_type_script = "uid://dncloij8saplu"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
