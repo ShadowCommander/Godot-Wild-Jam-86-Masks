@@ -1,6 +1,10 @@
 extends Resource
 class_name PlayerStatModifier
 
+@export_category("Attack")
+@export var damage_flat: float = 0
+@export var damage_multiplier: float = 0
+
 @export_category("Speed")
 @export var speed_flat: float = 0
 @export var speed_multiplier: float = 0
