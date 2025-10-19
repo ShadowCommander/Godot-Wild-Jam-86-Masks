@@ -22,6 +22,7 @@ func physics_update(_delta: float):
 
 func exit():
 	velocity_component.disabled = true
+	follow_timer.stop()
  
 
 func _on_follow_timer_timeout():

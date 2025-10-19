@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name BulwarkBoss
 
 signal died
-signal health_updated(health: float)
+signal health_changed(health_percentage: float)
 
 #@onready var player = get_tree().get_first_node_in_group("player")
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -22,3 +22,7 @@ func _ready():
 func _on_health_component_died() -> void:
 	died.emit()
 	finite_state_machine.change_state("BossDeadState")
+
+
+func _on_health_component_health_changed(health_percentage: float) -> void:
+	health_changed.emit(health_percentage)

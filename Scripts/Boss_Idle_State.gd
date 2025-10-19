@@ -22,3 +22,6 @@ func _on_idle_timer_timeout() -> void:
 		finite_state_machine.change_state("BossRingBulletAttackState")
 	else:
 		finite_state_machine.change_state("BossFollowState")
+
+func exit():
+	idle_timer.stop()

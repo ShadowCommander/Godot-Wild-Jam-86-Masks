@@ -948,4 +948,5 @@ boss = NodePath("..")
 [connection signal="body_entered" from="MeleeRadius" to="MeleeRadius" method="_on_body_entered"]
 [connection signal="body_exited" from="MeleeRadius" to="MeleeRadius" method="_on_body_exited"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="timeout" from="FiniteStateMachine/BossIdleState/IdleTimer" to="FiniteStateMachine/BossIdleState" method="_on_idle_timer_timeout"]

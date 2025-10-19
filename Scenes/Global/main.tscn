@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=28 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
 [ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
 [ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
 [ext_resource type="Texture2D" uid="uid://cwhaxoms306vb" path="res://Resources/Textures/top-down-background-placeholder.png" id="4_sonv7"]
+[ext_resource type="Script" uid="uid://sxnqekunsljy" path="res://Scenes/Global/hud.gd" id="9_faua5"]
 [ext_resource type="Script" path="res://Scenes/Global/bullet_container.gd" id="12_4hvx0"]
 [ext_resource type="Script" path="res://Scenes/Global/rune_system.gd" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
@@ -21,6 +22,25 @@
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
 [ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pftu5"]
+bg_color = Color(0.78352344, 0.78352344, 0.78352326, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faua5"]
+bg_color = Color(0.6589196, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nh1kb"]
 
@@ -77,7 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HUD" type="Control" parent="UICanvasLayer/Control"]
+[node name="HUD" type="Control" parent="UICanvasLayer/Control" node_paths=PackedStringArray("boss", "player")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,6 +105,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("9_faua5")
+boss = NodePath("../../../World/BulwarkBoss")
+player = NodePath("../../../World/Player")
 
 [node name="BossHUD" type="MarginContainer" parent="UICanvasLayer/Control/HUD"]
 layout_mode = 1
@@ -98,9 +121,15 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 100
 
 [node name="BossHealthProgressBar" type="ProgressBar" parent="UICanvasLayer/Control/HUD/BossHUD"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_pftu5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_faua5")
+max_value = 1.0
+step = 0.001
+value = 1.0
+show_percentage = false
 
 [node name="PlayerHUD" type="MarginContainer" parent="UICanvasLayer/Control/HUD"]
 layout_mode = 1
@@ -140,10 +169,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
+[node name="PlayerHealthProgressBar" type="ProgressBar" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+max_value = 1.0
+step = 0.001
+show_percentage = false
 
 [node name="Control2" type="Control" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
 layout_mode = 2
