@@ -1,0 +1,373 @@
+[gd_scene load_steps=33 format=3 uid="uid://bcbdtx37ux1tc"]
+
+[ext_resource type="Texture2D" uid="uid://c75jgn8qhkpkg" path="res://Resources/Textures/Shadow.png" id="1_eksi1"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="2_jincj"]
+[ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="3_rqdc0"]
+[ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="4_qr1w5"]
+[ext_resource type="Resource" uid="uid://b4ohhg41gt67j" path="res://Resources/GUIDE/movement.tres" id="5_ythyg"]
+[ext_resource type="Resource" uid="uid://da2fk4posdcw2" path="res://Resources/GUIDE/dash.tres" id="6_bmb2s"]
+[ext_resource type="Resource" uid="uid://cinp6vo04icik" path="res://Resources/GUIDE/look_absolute.tres" id="7_ur3l4"]
+[ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="8_2ahak"]
+[ext_resource type="Script" uid="uid://ninwddymmigh" path="res://Scenes/Player/player_combat_component.gd" id="9_rukb4"]
+[ext_resource type="Resource" uid="uid://cyl0vj45n1ot3" path="res://Resources/GUIDE/attack_action.tres" id="10_4no11"]
+[ext_resource type="Texture2D" uid="uid://ciwvq5sftm566" path="res://Resources/Textures/Walk1.png" id="11_fcwna"]
+[ext_resource type="Texture2D" uid="uid://c6oisnrx5i3fi" path="res://Resources/Textures/Walk2.png" id="12_1agin"]
+[ext_resource type="Texture2D" uid="uid://kn3xsw24yrwc" path="res://Resources/Textures/Walk3.png" id="13_2jnj1"]
+[ext_resource type="Texture2D" uid="uid://dgcdssxspwm3u" path="res://Resources/Textures/Walk4.png" id="14_enij7"]
+[ext_resource type="Texture2D" uid="uid://dd0p4gddcwlmv" path="res://Resources/Textures/Walk5.png" id="15_mwii3"]
+[ext_resource type="Texture2D" uid="uid://di68ui4xw1cru" path="res://Resources/Textures/StaffIdle1.png" id="16_2aanf"]
+[ext_resource type="Texture2D" uid="uid://sxxjotquo4qr" path="res://Resources/Textures/StaffIdle2.png" id="17_m6ahd"]
+[ext_resource type="Texture2D" uid="uid://dsqe2hmkpl6bx" path="res://Resources/Textures/StaffIdle3.png" id="18_ogmfp"]
+[ext_resource type="Texture2D" uid="uid://ubej3b4cta6u" path="res://Resources/Textures/StaffIdle4.png" id="19_ixrbb"]
+[ext_resource type="Texture2D" uid="uid://co3waqkhjeno3" path="res://Resources/Textures/StaffIdle5.png" id="20_ei2r2"]
+[ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="21_j6uq4"]
+[ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="22_h5u0x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
+radius = 40.0
+
+[sub_resource type="Animation" id="Animation_wgbh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_jincj")]
+}
+
+[sub_resource type="Animation" id="Animation_jwr1e"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_fcwna"), ExtResource("12_1agin"), ExtResource("13_2jnj1"), ExtResource("14_enij7"), ExtResource("15_mwii3")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05t85"]
+_data = {
+&"RESET": SubResource("Animation_wgbh3"),
+&"walk": SubResource("Animation_jwr1e")
+}
+
+[sub_resource type="Animation" id="Animation_xhlri"]
+resource_name = "Idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("16_2aanf"), ExtResource("17_m6ahd"), ExtResource("18_ogmfp"), ExtResource("19_ixrbb"), ExtResource("20_ei2r2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8aqcy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack/HitboxComponent/AttackSprite:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_j6uq4")]
+}
+
+[sub_resource type="Animation" id="Animation_sonv7"]
+resource_name = "Swing1"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.023087297, 0.29628697),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="Animation" id="Animation_8otfh"]
+resource_name = "Swing2"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/HitboxComponent/AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack/HitboxComponent/AttackSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.023087297, 0.29628697),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack/HitboxComponent:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack/HitboxComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attack/HitboxComponent/AttackSprite:flip_h")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hvx0"]
+_data = {
+&"Idle": SubResource("Animation_xhlri"),
+&"RESET": SubResource("Animation_8aqcy"),
+&"Swing1": SubResource("Animation_sonv7"),
+&"Swing2": SubResource("Animation_8otfh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmq7r"]
+radius = 116.01724
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.5019608)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_eksi1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("2_jincj")
+offset = Vector2(0, -165.69)
+
+[node name="PlayerMovementComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("3_rqdc0")
+player_stats = ExtResource("4_qr1w5")
+body = NodePath("..")
+move_action = ExtResource("5_ythyg")
+dash_action = ExtResource("6_bmb2s")
+look_absolute = ExtResource("7_ur3l4")
+look_relative = ExtResource("8_2ahak")
+
+[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "animation_player", "attack_node")]
+script = ExtResource("9_rukb4")
+player_stats = ExtResource("4_qr1w5")
+attack_action = ExtResource("10_4no11")
+movement_component = NodePath("../PlayerMovementComponent")
+animation_player = NodePath("../AttackAnimationPlayer")
+attack_node = NodePath("../Attack")
+
+[node name="WeaponPivot" type="Node2D" parent="."]
+position = Vector2(-1, 0)
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_05t85")
+}
+autoplay = "walk"
+
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4hvx0")
+}
+
+[node name="Attack" type="Node2D" parent="."]
+light_mask = 3
+
+[node name="HitboxComponent" parent="Attack" instance=ExtResource("22_h5u0x")]
+visible = false
+position = Vector2(100, 0)
+collision_layer = 3
+monitoring = false
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/HitboxComponent"]
+shape = SubResource("CircleShape2D_pmq7r")
+
+[node name="AttackSprite" type="Sprite2D" parent="Attack/HitboxComponent"]
+modulate = Color(1, 1, 1, 0)
+rotation = -1.5707964
+scale = Vector2(4.503, 4.655)
+texture = ExtResource("21_j6uq4")
+hframes = 12
