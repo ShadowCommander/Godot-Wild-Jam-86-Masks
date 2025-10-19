@@ -3,7 +3,7 @@ class_name PlayerMovementComponent
 
 signal update_dash_ui(dashes_remaining: int, dash_recharge_timer: float)
 
-@export var player_stats: PlayerStats
+@export var player_stats: StatsComponent
 
 @export var body: Node2D
 @export var move_action: GUIDEAction

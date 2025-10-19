@@ -1,4 +1,5 @@
 extends Control
+class_name MaskMenu
 
 const RUNE_ENTRY = preload("uid://bj2p0w3hnbpah")
 

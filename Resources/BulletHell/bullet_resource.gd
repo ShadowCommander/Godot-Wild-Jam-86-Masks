@@ -1,6 +1,7 @@
 extends Resource
 class_name BulletData
 
+@export var combo_entry: AttackComboEntry
 @export var damage: int = 10
 @export var speed: float = 20000
 @export var point_toward_player: bool = false

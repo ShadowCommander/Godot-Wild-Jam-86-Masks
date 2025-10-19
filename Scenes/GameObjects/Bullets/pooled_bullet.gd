@@ -8,7 +8,7 @@ signal collision
 var bullet_data: BulletData:
 	set(value):
 		bullet_data = value
-		hitbox_component.damage = bullet_data.damage
+		hitbox_component.data = bullet_data.combo_entry
 
 var lifetime: float = 0
 

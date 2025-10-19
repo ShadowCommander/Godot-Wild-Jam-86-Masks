@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RuneData" load_steps=4 format=3 uid="uid://vtcnmuyoduje"]
+
+[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="1_cni4h"]
+[ext_resource type="Texture2D" uid="uid://ck43el4fq80ii" path="res://Resources/Textures/slowness_rune.png" id="2_l3joh"]
+[ext_resource type="Script" uid="uid://7hwnp45xrhtr" path="res://Scenes/Runes/player_stat_modifier.gd" id="2_mhet2"]
+
+[resource]
+script = ExtResource("1_cni4h")
+texture = ExtResource("2_l3joh")
+name = "Slowness"
+description = "On hit, target is slowed by 150 for 2.5 seconds."

@@ -63,7 +63,7 @@ func do_impact(bullet: PooledBullet, collision) -> bool:
 	if node is not HurtboxComponent:
 		return false
 	var hurtbox := node as HurtboxComponent 
-	hurtbox._receive_damage(bullet.damage)
+	hurtbox._receive_damage(bullet.bullet_data.combo_entry)
 	return true
 
 func fire(node: PooledBullet, player_global_position: Vector2, bullet_spawn_dir: Vector2, offset: float) -> void:

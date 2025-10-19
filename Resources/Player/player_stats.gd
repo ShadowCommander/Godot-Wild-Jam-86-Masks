@@ -18,3 +18,17 @@ class_name PlayerStats
 @export_category("Health")
 @export var max_health: float = 0 # 10
 @export var health_damage_invincibility_time: float = 0
+
+enum BuffableStats {
+	DAMAGE,
+	ATTACK_SPEED,
+	SPEED,
+	DASH_COUNT,
+	DASH_RECHARGE_TIME,
+	DASH_CURVE,
+	DASH_TIME,
+	DASH_DISTANCE,
+	DASH_INVINCIBILITY_TIME,
+	MAX_HEALTH,
+	HEALTH_DAMAGE_INVINCIBILITY_TIME,
+}

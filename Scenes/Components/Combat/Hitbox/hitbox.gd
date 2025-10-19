@@ -3,11 +3,10 @@ extends Area2D
 
 signal hit
 
-@export var damage: int = 10
+var data: AttackComboEntry
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
-
 
 # for modular and one-directional communication (Hitbox → Hurtbox → Health)
 func _on_area_entered(area: Area2D) -> void:
@@ -16,5 +15,8 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	
 	var hurtbox := area as HurtboxComponent 
-	hurtbox._receive_damage(self.damage)
+	hurtbox._receive_damage(data)
 	hit.emit()
+
+func attack(entry: AttackComboEntry) -> void:
+	data = entry
