@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=44 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
@@ -315,7 +315,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 4.1),
 "update": 0,
-"values": [Vector2(-30, 90), Vector2(-30, 110)]
+"values": [Vector2(-6, 3), Vector2(-6, 21)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -469,7 +469,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xe2o"]
-radius = 388.12885
+radius = 222.89908
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4efw0"]
 radius = 1047.0234
@@ -477,26 +477,19 @@ radius = 1047.0234
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp72i"]
 radius = 81.22192
 
+[sub_resource type="LabelSettings" id="LabelSettings_yp72i"]
+font_size = 50
+
 [node name="BulwarkBoss" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_uc58w")
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(0, -86)
+position = Vector2(11, -34)
 scale = Vector2(0.3, 0.3)
 
 [node name="Body" type="Sprite2D" parent="Visuals"]
 texture = ExtResource("2_l813j")
-
-[node name="LeftFeet" type="Sprite2D" parent="Visuals"]
-z_index = 1
-texture = ExtResource("3_gmqhx")
-offset = Vector2(250, -210)
-
-[node name="RightFeet" type="Sprite2D" parent="Visuals"]
-z_index = 1
-texture = ExtResource("3_gmqhx")
-flip_h = true
 
 [node name="LeftEar" type="Sprite2D" parent="Visuals"]
 z_index = 2
@@ -508,6 +501,15 @@ position = Vector2(-47, 0)
 texture = ExtResource("4_l813j")
 flip_h = true
 
+[node name="LeftFeet" type="Sprite2D" parent="Visuals"]
+z_index = 1
+texture = ExtResource("3_gmqhx")
+
+[node name="RightFeet" type="Sprite2D" parent="Visuals"]
+z_index = 1
+texture = ExtResource("3_gmqhx")
+flip_h = true
+
 [node name="Head" type="Sprite2D" parent="Visuals"]
 z_index = 5
 texture = ExtResource("5_etqsu")
@@ -517,11 +519,10 @@ z_index = 10
 position = Vector2(-6, 3)
 sprite_frames = SubResource("SpriteFrames_8qhpy")
 animation = &"whip"
-offset = Vector2(30, -90)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 50
-position = Vector2(0, -94)
+position = Vector2(0, -26)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_3ak4t")
 
@@ -531,11 +532,11 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="PlayerDetection" type="Area2D" parent="."]
+[node name="MeleeRadius" type="Area2D" parent="."]
 collision_layer = 0
 script = ExtResource("22_47pc1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeRadius"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_2xe2o")
 debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
@@ -566,8 +567,8 @@ metadata/_custom_type_script = "uid://crm220r5offy1"
 
 [node name="BossIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("collision_shape_2d", "player_detection", "charge_radius", "animation_player", "velocity_component")]
 script = ExtResource("4_8gn4i")
-collision_shape_2d = NodePath("../../PlayerDetection/CollisionShape2D")
-player_detection = NodePath("../../PlayerDetection")
+collision_shape_2d = NodePath("../../MeleeRadius/CollisionShape2D")
+player_detection = NodePath("../../MeleeRadius")
 charge_radius = NodePath("../../ChargeRadius")
 animation_player = NodePath("../../AnimationPlayer")
 velocity_component = NodePath("../../VelocityComponent")
@@ -585,7 +586,7 @@ script = ExtResource("6_2pwef")
 [node name="BossShootState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "player_detection")]
 script = ExtResource("9_gy0wg")
 animation_player = NodePath("../../AnimationPlayer")
-player_detection = NodePath("../../PlayerDetection")
+player_detection = NodePath("../../MeleeRadius")
 metadata/_custom_type_script = "uid://k1klqgk4sbtm"
 
 [node name="BossChargeAttackState" type="Node" parent="FiniteStateMachine"]
@@ -594,5 +595,21 @@ script = ExtResource("29_4efw0")
 [node name="BossMeleeAttackState" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("31_tl4fq")
 
-[connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_body_entered"]
-[connection signal="body_exited" from="PlayerDetection" to="PlayerDetection" method="_on_body_exited"]
+[node name="DebugLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -427.0
+offset_top = -309.0
+offset_right = 439.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TESTING!"
+label_settings = SubResource("LabelSettings_yp72i")
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="MeleeRadius" to="MeleeRadius" method="_on_body_entered"]
+[connection signal="body_exited" from="MeleeRadius" to="MeleeRadius" method="_on_body_exited"]

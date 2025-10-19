@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_ndffd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndffd"]
+resource_local_to_scene = true
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 1
 border_width_top = 1

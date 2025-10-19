@@ -1,7 +1,7 @@
 class_name FiniteStateMachine
 extends Node
 
-@onready var debug_label: Label = owner.find_child("debug_label")
+@onready var debug_label: Label = owner.find_child("DebugLabel")
 @export var initial_state: State
 @export var parent: CharacterBody2D
 var current_state: State

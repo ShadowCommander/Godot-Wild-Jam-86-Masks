@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqy37l28m3yet"
-path="res://.godot/imported/dash_count_rune.png-ca524a9b1dde80dfb91e35f717e49579.ctex"
+uid="uid://cx2mn6s46jjqj"
+path="res://.godot/imported/SpeedPowerUp.png-5916f8cace84c7a30a57c64a94c3df70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/dash_count_rune.png"
-dest_files=["res://.godot/imported/dash_count_rune.png-ca524a9b1dde80dfb91e35f717e49579.ctex"]
+source_file="res://Resources/Textures/UI/SpeedPowerUp.png"
+dest_files=["res://.godot/imported/SpeedPowerUp.png-5916f8cace84c7a30a57c64a94c3df70.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yuo77s15aisb"
-path="res://.godot/imported/speed_rune.png-a3571d84d1cf65bc74e10c6d6020808d.ctex"
+path="res://.godot/imported/speed_rune.png-0481978906e533179d6ec5e5ad812c68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/speed_rune.png"
-dest_files=["res://.godot/imported/speed_rune.png-a3571d84d1cf65bc74e10c6d6020808d.ctex"]
+source_file="res://Resources/Textures/UI/speed_rune.png"
+dest_files=["res://.godot/imported/speed_rune.png-0481978906e533179d6ec5e5ad812c68.ctex"]
 
 [params]
 

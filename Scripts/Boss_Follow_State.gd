@@ -10,10 +10,8 @@ func _ready() -> void:
 	follow_timer.timeout.connect(_on_follow_timer_timeout)
 
 
-func enter():	
-	print("follow state entered")
+func enter():
 	follow_timer.start(3.0)
-	print("follow timer start")
 	velocity_component.disabled = false
 
 func update(_delta: float):
@@ -27,4 +25,4 @@ func exit():
  
 
 func _on_follow_timer_timeout():
-	finite_state_machine.change_state("bossshootstate")
+	finite_state_machine.change_state("BossIdleState")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p6e8i5ly5iwf"
-path="res://.godot/imported/heart.png-7c5b19b16db04cb4bd50908a4b4a282f.ctex"
+uid="uid://cqy37l28m3yet"
+path="res://.godot/imported/dash_count_rune.png-a07a521b43e73c983d41af64565d570f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/heart.png"
-dest_files=["res://.godot/imported/heart.png-7c5b19b16db04cb4bd50908a4b4a282f.ctex"]
+source_file="res://Resources/Textures/UI/dash_count_rune.png"
+dest_files=["res://.godot/imported/dash_count_rune.png-a07a521b43e73c983d41af64565d570f.ctex"]
 
 [params]
 

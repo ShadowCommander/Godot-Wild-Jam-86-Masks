@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k0hy0pnur2k1"
-path="res://.godot/imported/damage_rune.png-88a7f4ea3dc9152584ef601701c0306e.ctex"
+uid="uid://bom2byhjdqje5"
+path="res://.godot/imported/WoodPanel.png-209b9d4f132f8d0ff8306ce0549e74ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/damage_rune.png"
-dest_files=["res://.godot/imported/damage_rune.png-88a7f4ea3dc9152584ef601701c0306e.ctex"]
+source_file="res://Resources/Textures/UI/WoodPanel.png"
+dest_files=["res://.godot/imported/WoodPanel.png-209b9d4f132f8d0ff8306ce0549e74ea.ctex"]
 
 [params]
 

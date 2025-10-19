@@ -12,6 +12,8 @@ func physics_update(delta: float):
 		finite_state_machine.change_state("BossMeleeAttackState")
 	elif charge_radius.player_detected:
 		finite_state_machine.change_state("BossChargeAttackState")
+	else:
+		finite_state_machine.change_state("BossFollowState")
 
 func enter():
 	velocity_component.disabled = true
