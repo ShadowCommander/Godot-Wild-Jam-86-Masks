@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwhaxoms306vb" path="res://Resources/Textures/top-down-background-placeholder.png" id="4_sonv7"]
 [ext_resource type="Script" uid="uid://sxnqekunsljy" path="res://Scenes/Global/hud.gd" id="9_faua5"]
 [ext_resource type="Script" path="res://Scenes/Global/bullet_container.gd" id="12_4hvx0"]
-[ext_resource type="Script" path="res://Scenes/Global/rune_system.gd" id="14_4hvx0"]
+[ext_resource type="Script" uid="uid://bgtfc0oah0ae2" path="res://Scenes/Global/rune_system.gd" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 [ext_resource type="Script" path="res://Scenes/Runes/rune.gd" id="15_8otfh"]

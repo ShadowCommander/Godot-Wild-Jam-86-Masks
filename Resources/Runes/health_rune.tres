@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Runes/rune.gd" id="1_lqp4l"]
 [ext_resource type="Script" path="res://Scenes/Runes/player_stat_modifier.gd" id="2_offyx"]
-[ext_resource type="Texture2D" uid="uid://p6e8i5ly5iwf" path="res://Resources/Textures/UI/heart.png" id="4_p54nc"]
+[ext_resource type="Texture2D" uid="uid://bh73viu6h3q0o" path="res://Resources/Textures/health_rune.png" id="3_offyx"]
 
 [sub_resource type="Resource" id="Resource_offyx"]
 script = ExtResource("2_offyx")
@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://7hwnp45xrhtr"
 
 [resource]
 script = ExtResource("1_lqp4l")
-texture = ExtResource("4_p54nc")
+texture = ExtResource("3_offyx")
 name = "Health"
 description = "Increases health by 1"
 stats_modifiers = Array[ExtResource("2_offyx")]([SubResource("Resource_offyx")])

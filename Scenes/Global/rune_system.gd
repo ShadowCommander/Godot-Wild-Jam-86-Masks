@@ -11,6 +11,7 @@ func _ready() -> void:
 	add_default_runes()
 	mask_menu.mask_saved.connect(handle_mask_saved)
 	mask_menu.populate_runes(get_runes())
+	mask_menu.open()
 
 func handle_mask_saved(data: Array[RuneData]) -> void:
 	var modifiers: Array[PlayerStatModifier] = []
