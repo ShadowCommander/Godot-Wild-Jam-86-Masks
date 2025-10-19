@@ -8,12 +8,13 @@ class_name BossIdleState
 @export var velocity_component: VelocityComponent
 
 func physics_update(delta: float):
-	if player_detection.player_detected:
-		finite_state_machine.change_state("BossMeleeAttackState")
-	elif charge_radius.player_detected:
-		finite_state_machine.change_state("BossChargeAttackState")
-	else:
-		finite_state_machine.change_state("BossFollowState")
+	finite_state_machine.change_state("BossRingBulletAttackState")
+	#if player_detection.player_detected:
+		#finite_state_machine.change_state("BossMeleeAttackState")
+	#elif charge_radius.player_detected:
+		#finite_state_machine.change_state("BossChargeAttackState")
+	#else:
+		#finite_state_machine.change_state("BossFollowState")
 
 func enter():
 	velocity_component.disabled = true

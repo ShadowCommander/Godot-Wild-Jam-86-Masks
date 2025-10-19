@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://d28l0c5wd4jxv"]
+
+[ext_resource type="Script" uid="uid://ckdogixv2y42v" path="res://Scenes/GameObjects/Bullets/pooled_bullet.gd" id="1_4860e"]
+[ext_resource type="Texture2D" uid="uid://cih6xfecuuxyo" path="res://Assets/P1 Bullet Stream.png" id="1_h3u3g"]
+[ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="3_yd30o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cyab"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4860e"]
+atlas = ExtResource("1_h3u3g")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yd30o"]
+radius = 36.013885
+
+[node name="PooledBullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_4860e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1cyab")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5707964
+scale = Vector2(4.55, 4.55)
+texture = SubResource("AtlasTexture_4860e")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_yd30o")
+metadata/_custom_type_script = "uid://b0m372h3eo0vo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_yd30o")
+
+[connection signal="hit" from="HitboxComponent" to="." method="_on_hitbox_component_hit"]

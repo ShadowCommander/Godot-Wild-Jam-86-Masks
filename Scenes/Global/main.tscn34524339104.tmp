@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=19 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
 [ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
+size = Vector2(100, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16ua7"]
 size = Vector2(127, 125)
@@ -40,18 +43,21 @@ position = Vector2(7, 35)
 
 [node name="Player" parent="World" instance=ExtResource("4_qqyxy")]
 position = Vector2(-1397, 377)
-collision_layer = 0
 
-[node name="HitboxComponent" parent="World/Player/Attack" index="0"]
-collision_layer = 0
-collision_mask = 2
+[node name="Node2D" type="Node2D" parent="World"]
+position = Vector2(176, 0)
+
+[node name="Area2D" type="Area2D" parent="World/Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Node2D/Area2D"]
+position = Vector2(237, -15)
+shape = SubResource("RectangleShape2D_i1iex")
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 zoom = Vector2(0.25, 0.25)
 script = ExtResource("14_sonv7")
 
 [node name="EnemyDummy" type="CharacterBody2D" parent="World"]
-position = Vector2(1326, -15)
 
 [node name="HealthComponent" parent="World/EnemyDummy" instance=ExtResource("17_8otfh")]
 player_stats = ExtResource("7_dx1n6")

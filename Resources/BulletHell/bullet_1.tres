@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BulletData" load_steps=2 format=3 uid="uid://cn6c1m5jvq633"]
+
+[ext_resource type="Script" uid="uid://86jcdbbx1a1u" path="res://Resources/BulletHell/bullet_resource.gd" id="1_hcbpe"]
+
+[resource]
+script = ExtResource("1_hcbpe")
+damage = 1
+speed = 800.0
+lifetime = 10.0
+collision_mask = 1
+metadata/_custom_type_script = "uid://86jcdbbx1a1u"

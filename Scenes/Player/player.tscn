@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcbdtx37ux1tc"]
+[gd_scene load_steps=23 format=3 uid="uid://bcbdtx37ux1tc"]
 
 [ext_resource type="Script" uid="uid://byft2libyxvku" path="res://Scenes/Player/player.gd" id="1_06tpx"]
 [ext_resource type="Texture2D" uid="uid://c75jgn8qhkpkg" path="res://Resources/Textures/Shadow.png" id="1_oikmp"]
@@ -13,9 +13,11 @@
 [ext_resource type="Resource" uid="uid://cyl0vj45n1ot3" path="res://Resources/GUIDE/attack_action.tres" id="10_h8ma5"]
 [ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="11_eksi1"]
 [ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="12_jincj"]
+[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="14_7g0yx"]
+[ext_resource type="Script" uid="uid://nlsdeed6wtds" path="res://Scenes/Components/Combat/Health/health.gd" id="15_dey5f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
-radius = 40.0
+radius = 7.071068
 
 [sub_resource type="Animation" id="Animation_8aqcy"]
 length = 0.001
@@ -218,6 +220,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmq7r"]
 radius = 116.01724
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dey5f"]
+radius = 40.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 0
 motion_mode = 1
@@ -280,3 +285,16 @@ rotation = -1.5707964
 scale = Vector2(4.503, 4.655)
 texture = ExtResource("12_jincj")
 hframes = 12
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("14_7g0yx")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_dey5f")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("15_dey5f")
+player_stats = ExtResource("4_dey5f")
+metadata/_custom_type_script = "uid://nlsdeed6wtds"
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

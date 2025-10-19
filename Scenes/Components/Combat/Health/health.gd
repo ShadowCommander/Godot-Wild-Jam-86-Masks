@@ -33,10 +33,9 @@ func check_death():
 		# Probably need to be refactored, right now im relate on parent to be 
 		# character2d node and queue_free after emiting signal.
 		# later , perbably will rewrite using signal;
-		var parent = get_parent()
-		if parent:
-			parent.queue_free()
-		
+		#var parent = get_parent()
+		#if parent:
+			#parent.queue_free()
 
 func get_curr_health():
 	return current_health

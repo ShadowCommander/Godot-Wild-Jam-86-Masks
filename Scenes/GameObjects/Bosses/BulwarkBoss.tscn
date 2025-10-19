@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=53 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://cxvwain8gvnww" path="res://Assets/Bulwark/ElephantNoseSlam2.png" id="8_47pc1"]
 [ext_resource type="Script" uid="uid://b87nvbdksyc1s" path="res://Scripts/boss_shoot_state.gd" id="9_gy0wg"]
 [ext_resource type="Texture2D" uid="uid://b48sc0sbos0t" path="res://Assets/Bulwark/ElephantNoseSlam3.png" id="9_tl4fq"]
-[ext_resource type="PackedScene" uid="uid://div2d2oawlbwr" path="res://Scenes/Components/bullet_spawner_comp.tscn" id="10_1qmxd"]
 [ext_resource type="Texture2D" uid="uid://8eqkpmgo6d3u" path="res://Assets/Bulwark/ElephantNoseSlam4.png" id="10_yp72i"]
 [ext_resource type="Texture2D" uid="uid://bh5uureddfh17" path="res://Assets/Bulwark/ElephantNoseSlam5.png" id="11_p4guo"]
 [ext_resource type="Texture2D" uid="uid://cthgkmtu10k1h" path="res://Assets/Bulwark/ElephantNoseSlam6.png" id="12_h8w8p"]
@@ -28,10 +27,17 @@
 [ext_resource type="Texture2D" uid="uid://b0iepa2hac6jb" path="res://Assets/Bulwark/ElephantNoseWhip7.png" id="19_el8yc"]
 [ext_resource type="Texture2D" uid="uid://solmk7xr8vpj" path="res://Assets/Bulwark/ElephantNoseWhip8.png" id="20_habbs"]
 [ext_resource type="Texture2D" uid="uid://batnja4a6ja10" path="res://Assets/Bulwark/ElephantNoseWhip9.png" id="21_irr2r"]
+[ext_resource type="Resource" uid="uid://cpd7hv2ipsob2" path="res://Resources/BulletHell/gound_pound.tres" id="22_8oovy"]
 [ext_resource type="Script" uid="uid://b5lqt3jj45oyq" path="res://Scenes/GameObjects/Bosses/player_detection.gd" id="22_47pc1"]
 [ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="23_yp72i"]
+[ext_resource type="Script" uid="uid://cingroyq4smja" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.gd" id="24_h8w8p"]
 [ext_resource type="Script" uid="uid://bjt84w2yhyfpa" path="res://boss_charge_state.gd" id="29_4efw0"]
 [ext_resource type="Script" uid="uid://v7gtq4bey3v1" path="res://Scenes/GameObjects/Bosses/boss_melee_attack_state.gd" id="31_tl4fq"]
+[ext_resource type="Script" uid="uid://6fhi2nxakmfy" path="res://Scenes/GameObjects/Bosses/bullet_hell_spawner.gd" id="33_p4guo"]
+[ext_resource type="Script" uid="uid://4v0lgmef6qk1" path="res://Scenes/GameObjects/Bosses/boss_ring_bullet_attack_state.gd" id="34_cj0ja"]
+[ext_resource type="Script" uid="uid://nlsdeed6wtds" path="res://Scenes/Components/Combat/Health/health.gd" id="36_8lyj6"]
+[ext_resource type="Script" uid="uid://dabn266ja3eup" path="res://Resources/attack_combo_entry.gd" id="37_j3dym"]
+[ext_resource type="Script" uid="uid://rhe8kqa7qiqt" path="res://Resources/Player/player_stats.gd" id="38_cd5r3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8qhpy"]
 animations = [{
@@ -111,19 +117,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/LeftFeet:rotation")
+tracks/0/path = NodePath("Visuals/LeftFeet:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(-240, 200)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/RightFeet:rotation")
+tracks/1/path = NodePath("Visuals/LeftFeet:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -135,67 +141,67 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Body:position")
+tracks/2/path = NodePath("Visuals/RightFeet:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(240, 200)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/LeftEar:position")
+tracks/3/path = NodePath("Visuals/RightFeet:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/RightEar:position")
+tracks/4/path = NodePath("Visuals/Body:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-47, 0)]
+"values": [Vector2(0, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visuals/Head:position")
-tracks/5/interp = 1
+tracks/5/path = NodePath("Visuals/HeadPivot/LeftEar:position")
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-25, 70)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Visuals/Hose:position")
+tracks/6/path = NodePath("Visuals/HeadPivot/RightEar:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-6, 3)]
+"values": [Vector2(25, 70)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Visuals/LeftFeet:position")
+tracks/7/path = NodePath("Visuals/HeadPivot/Head:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -207,31 +213,31 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Visuals/RightFeet:position")
+tracks/8/path = NodePath("Visuals/HeadPivot/Head/Nose:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 260)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Visuals/Hose:animation")
+tracks/9/path = NodePath("Visuals/HeadPivot/Head/Nose:animation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"whip"]
+"values": [&"idle"]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Visuals/Hose:frame")
+tracks/10/path = NodePath("Visuals/HeadPivot/Head/Nose:frame")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -243,7 +249,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Visuals/Hose:flip_h")
+tracks/11/path = NodePath("Visuals/HeadPivot/Head/Nose:flip_h")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -252,10 +258,118 @@ tracks/11/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Visuals/Body:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Visuals/HeadPivot:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Visuals/HeadPivot/RightEar:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Visuals/HeadPivot/Head:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Visuals/HeadPivot/Head/Nose:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Visuals/HeadPivot:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -140)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Visuals:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -50)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("HitboxComponent:monitorable")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("HitboxComponent:monitoring")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3ak4t"]
 resource_name = "idle"
-length = 0.6
+length = 0.80000335
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -264,58 +378,58 @@ tracks/0/path = NodePath("Visuals/Body:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 10)]
+"values": [Vector2(0, 0), Vector2(0, 10), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/LeftEar:position")
+tracks/1/path = NodePath("Visuals/HeadPivot/LeftEar:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 4.1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1.7846265, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 18)]
+"values": [Vector2(-25, 70), Vector2(-25, 88), Vector2(-25, 70)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/RightEar:position")
+tracks/2/path = NodePath("Visuals/HeadPivot/RightEar:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 4.1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1.9127166, 1),
 "update": 0,
-"values": [Vector2(-47, 0), Vector2(-47, 18)]
+"values": [Vector2(25, 70), Vector2(25, 88), Vector2(25, 70)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/Head:position")
+tracks/3/path = NodePath("Visuals/HeadPivot/Head:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 4.1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1.9801707, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 18)]
+"values": [Vector2(0, 0), Vector2(0, 18), Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Hose:position")
+tracks/4/path = NodePath("Visuals/HeadPivot/Head/Nose:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 4.1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1.8475629, 1),
 "update": 0,
-"values": [Vector2(-6, 3), Vector2(-6, 21)]
+"values": [Vector2(0, 260), Vector2(0, 281), Vector2(0, 260)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -324,10 +438,10 @@ tracks/5/path = NodePath("Visuals/LeftFeet:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 4.1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 2.1222942, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-20, 0)]
+"values": [Vector2(-240, 200), Vector2(-260, 200), Vector2(-240, 200)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -336,22 +450,22 @@ tracks/6/path = NodePath("Visuals/RightFeet:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 4.1),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 2.0500011, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(20, 0)]
+"values": [Vector2(240, 200), Vector2(260, 200), Vector2(240, 200)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Visuals/Hose:animation")
+tracks/7/path = NodePath("Visuals/HeadPivot/Head/Nose:animation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"idle"]
+"values": [&"idle", &"idle"]
 }
 
 [sub_resource type="Animation" id="Animation_1qmxd"]
@@ -385,79 +499,146 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_p4guo"]
 resource_name = "Swipe"
-length = 3.00002
-step = 0.2
+length = 5.00001
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/LeftFeet:position")
+tracks/0/path = NodePath("Visuals/HeadPivot/Head/Nose:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-250, 210), Vector2(-543.33325, -36.66666)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/LeftFeet:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -0.6416458]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Visuals/Hose:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"whip"]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/HeadPivot/Head/Nose:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/HeadPivot/Head/Nose:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Visuals/Hose:frame")
+tracks/3/path = NodePath("Visuals/HeadPivot/Head/Nose:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 2, 2.2, 2.4, 2.6, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 0]
+"values": [Vector2(0, 260), Vector2(-70, 260), Vector2(0, 260), Vector2(-70, 260), Vector2(0, 260)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Visuals/Hose:flip_h")
+tracks/4/path = NodePath("Visuals/HeadPivot:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"times": PackedFloat32Array(0, 1.9, 3, 4, 5),
+"transitions": PackedFloat32Array(1, -2, 1, -2, 1),
+"update": 0,
+"values": [Vector2(0, -140), Vector2(0, -140), Vector2(0, -100), Vector2(0, -100), Vector2(0, -140)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visuals/Hose:position")
-tracks/5/interp = 1
+tracks/5/path = NodePath("Visuals/HeadPivot:rotation")
+tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.5, 0.9, 1.2, 1.5, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [0.0, -0.17453292519943295, -0.17453292519943295, 0.17453292519943295, -0.08726646259971647, 0.08726646259971647, -0.08726646, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ndmw2"]
+resource_name = "ring_attack"
+length = 1.2000101
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BulletHellSpawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("22_8oovy")],
+"method": &"fire"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/LeftFeet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(2, 2, 2),
+"update": 0,
+"values": [Vector2(-240, 200), Vector2(-240, 130), Vector2(-240, 200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/RightFeet:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(2, 2, 2),
+"update": 0,
+"values": [Vector2(240, 200), Vector2(240, 130), Vector2(240, 200)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, -50), Vector2(0, -200), Vector2(0, -50)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/HeadPivot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.8, 0.9, 1.1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 1, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, -140), Vector2(0, -80), Vector2(0, -140), Vector2(0, -200), Vector2(0, -200), Vector2(0, -80), Vector2(0, -140)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ur5j5"]
@@ -465,11 +646,12 @@ _data = {
 &"RESET": SubResource("Animation_gy0wg"),
 &"idle": SubResource("Animation_3ak4t"),
 &"melee_attack": SubResource("Animation_p4guo"),
+&"ring_attack": SubResource("Animation_ndmw2"),
 &"shoot": SubResource("Animation_1qmxd")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xe2o"]
-radius = 222.89908
+radius = 300.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4efw0"]
 radius = 1047.0234
@@ -477,48 +659,70 @@ radius = 1047.0234
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp72i"]
 radius = 81.22192
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cj0ja"]
+radius = 150.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_yp72i"]
 font_size = 50
 
+[sub_resource type="Resource" id="Resource_el8yc"]
+script = ExtResource("38_cd5r3")
+metadata/_custom_type_script = "uid://rhe8kqa7qiqt"
+
 [node name="BulwarkBoss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_uc58w")
 
 [node name="Visuals" type="Node2D" parent="."]
-position = Vector2(11, -34)
+position = Vector2(0, -50)
 scale = Vector2(0.3, 0.3)
 
 [node name="Body" type="Sprite2D" parent="Visuals"]
 texture = ExtResource("2_l813j")
-
-[node name="LeftEar" type="Sprite2D" parent="Visuals"]
-z_index = 2
-texture = ExtResource("4_l813j")
-
-[node name="RightEar" type="Sprite2D" parent="Visuals"]
-z_index = 2
-position = Vector2(-47, 0)
-texture = ExtResource("4_l813j")
-flip_h = true
+offset = Vector2(10, -60)
 
 [node name="LeftFeet" type="Sprite2D" parent="Visuals"]
 z_index = 1
+position = Vector2(-240, 200)
 texture = ExtResource("3_gmqhx")
+offset = Vector2(240, -200)
 
 [node name="RightFeet" type="Sprite2D" parent="Visuals"]
 z_index = 1
+position = Vector2(240, 200)
 texture = ExtResource("3_gmqhx")
+offset = Vector2(-240, -200)
 flip_h = true
 
-[node name="Head" type="Sprite2D" parent="Visuals"]
+[node name="HeadPivot" type="Node2D" parent="Visuals"]
+position = Vector2(0, -140)
+
+[node name="LeftEar" type="Sprite2D" parent="Visuals/HeadPivot"]
+z_index = 2
+position = Vector2(-25, 70)
+texture = ExtResource("4_l813j")
+offset = Vector2(60, 90)
+
+[node name="RightEar" type="Sprite2D" parent="Visuals/HeadPivot"]
+z_index = 2
+position = Vector2(25, 70)
+texture = ExtResource("4_l813j")
+offset = Vector2(-60, 90)
+flip_h = true
+
+[node name="Head" type="Sprite2D" parent="Visuals/HeadPivot"]
 z_index = 5
 texture = ExtResource("5_etqsu")
+offset = Vector2(40, 180)
 
-[node name="Hose" type="AnimatedSprite2D" parent="Visuals"]
+[node name="Nose" type="AnimatedSprite2D" parent="Visuals/HeadPivot/Head"]
 z_index = 10
-position = Vector2(-6, 3)
+position = Vector2(0, 260)
 sprite_frames = SubResource("SpriteFrames_8qhpy")
-animation = &"whip"
+animation = &"idle"
+offset = Vector2(30, -90)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 50
@@ -537,27 +741,38 @@ collision_layer = 0
 script = ExtResource("22_47pc1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeRadius"]
-position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_2xe2o")
 debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
 
 [node name="ChargeRadius" type="Area2D" parent="."]
+collision_layer = 0
 script = ExtResource("22_47pc1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeRadius"]
 shape = SubResource("CircleShape2D_4efw0")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+monitoring = false
+monitorable = false
 script = ExtResource("23_yp72i")
 metadata/_custom_type_script = "uid://b0m372h3eo0vo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_yp72i")
 
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("24_h8w8p")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://cingroyq4smja"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_cj0ja")
+
 [node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
 max_speed = 60
-
-[node name="BulletSpawnerComp" parent="." instance=ExtResource("10_1qmxd")]
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent")]
 script = ExtResource("4_2pwef")
@@ -592,8 +807,15 @@ metadata/_custom_type_script = "uid://k1klqgk4sbtm"
 [node name="BossChargeAttackState" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("29_4efw0")
 
-[node name="BossMeleeAttackState" type="Node" parent="FiniteStateMachine"]
+[node name="BossMeleeAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "velocity_component")]
 script = ExtResource("31_tl4fq")
+animation_player = NodePath("../../AnimationPlayer")
+velocity_component = NodePath("../../VelocityComponent")
+
+[node name="BossRingBulletAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "velocity_component")]
+script = ExtResource("34_cj0ja")
+animation_player = NodePath("../../AnimationPlayer")
+velocity_component = NodePath("../../VelocityComponent")
 
 [node name="DebugLabel" type="Label" parent="."]
 anchors_preset = 8
@@ -607,9 +829,19 @@ offset_right = 439.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.0017752339
 text = "TESTING!"
 label_settings = SubResource("LabelSettings_yp72i")
 horizontal_alignment = 1
+
+[node name="BulletHellSpawner" type="Node" parent="." node_paths=PackedStringArray("boss")]
+script = ExtResource("33_p4guo")
+boss = NodePath("..")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("36_8lyj6")
+player_stats = SubResource("Resource_el8yc")
+metadata/_custom_type_script = "uid://nlsdeed6wtds"
 
 [connection signal="body_entered" from="MeleeRadius" to="MeleeRadius" method="_on_body_entered"]
 [connection signal="body_exited" from="MeleeRadius" to="MeleeRadius" method="_on_body_exited"]

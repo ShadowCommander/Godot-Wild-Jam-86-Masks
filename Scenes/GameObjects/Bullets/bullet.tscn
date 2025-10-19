@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cgmdchwb3c3t3"]
 
 [ext_resource type="Texture2D" uid="uid://cih6xfecuuxyo" path="res://Assets/P1 Bullet Stream.png" id="1_48wxc"]
-[ext_resource type="Script" path="res://Scenes/GameObjects/Bullets/bullet.gd" id="1_n0qqh"]
+[ext_resource type="Script" uid="uid://cu4qohpu2siy4" path="res://Scenes/GameObjects/Bullets/bullet.gd" id="1_n0qqh"]
 [ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="2_6m5o6"]
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="4_n0qqh"]
 
