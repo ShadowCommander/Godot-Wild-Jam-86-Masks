@@ -5,8 +5,10 @@
 
 [resource]
 script = ExtResource("1_1kv6p")
-arc_length = 90.0
+arc_length = 40.0
 amount = 13
-arc_offset = -45.0
+arc_offset = -20.0
+interations = 2
+iteration_cooldown = 0.3
 bullet_data = ExtResource("1_uvtct")
 metadata/_custom_type_script = "uid://bd3jq8g2heclr"
