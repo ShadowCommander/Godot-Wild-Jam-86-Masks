@@ -35,8 +35,9 @@ func setup_stats() -> void:
 	var combined_modifiers: Dictionary[PlayerStatModifier.BuffableStats, Dictionary] = {}
 
 	for modifier: PlayerStatModifier in modifiers:
-		var type_dict: Dictionary[PlayerStatModifier.StatType, float] = combined_modifiers.get_or_add(modifier.buff_stat, {})
-		var init_value = 1 if modifier.type == PlayerStatModifier.StatType.MULTIPLICATIVEMULTIPLIER or modifier.type == PlayerStatModifier.StatType.ADDITIVEMULTIPLIER else 0
+		var type_dict: Dictionary[PlayerStatModifier.StatType, float] = {}
+		type_dict.assign(combined_modifiers.get_or_add(modifier.buff_stat, {}))
+		var init_value = 1 if modifier.type == PlayerStatModifier.StatType.MULTIPLICATIVEMULTIPLIER else 0
 		var value = type_dict.get_or_add(modifier.type, init_value)
 		match modifier.type:
 			PlayerStatModifier.StatType.FLAT:
@@ -81,7 +82,7 @@ func calculate_modifiers(base_stat: float, buff_stat: PlayerStatModifier.Buffabl
 		result += flat
 	var additive = stat_types.get(PlayerStatModifier.StatType.ADDITIVEMULTIPLIER)
 	if additive:
-		result *= additive
+		result *= 1 + additive
 	var multiplicative = stat_types.get(PlayerStatModifier.StatType.MULTIPLICATIVEMULTIPLIER)
 	if multiplicative:
 		result *= multiplicative
@@ -89,6 +90,14 @@ func calculate_modifiers(base_stat: float, buff_stat: PlayerStatModifier.Buffabl
 
 func add_modifier(modifier: PlayerStatModifier) -> void:
 	modifiers.append(modifier)
+	setup_stats()
+	modifiers_changed.emit(modifiers)
+
+func set_modifiers(new_mods: Array[PlayerStatModifier]) -> void:
+	modifiers.clear()
+	for modifier in new_mods:
+		modifiers.append(modifier)
+	setup_stats()
 	modifiers_changed.emit(modifiers)
 
 func get_attack_combo_entry(index: int) -> AttackComboEntry:

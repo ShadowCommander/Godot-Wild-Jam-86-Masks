@@ -5,4 +5,4 @@ class_name RuneData
 @export var name: String
 @export var description: String
 
-@export var stats_modifier: PlayerStatModifier
+@export var stats_modifiers: Array[PlayerStatModifier]

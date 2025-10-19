@@ -1,17 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=23 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
 [ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
+[ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
 [ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
+[ext_resource type="Script" uid="uid://bgtfc0oah0ae2" path="res://Scenes/Global/rune_system.gd" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
+[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="15_8otfh"]
+[ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="16_pmq7r"]
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
+[ext_resource type="Resource" uid="uid://d6f62hfdntw3" path="res://Resources/Runes/damage_rune.tres" id="17_16ua7"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
+[ext_resource type="Script" uid="uid://c7wd1jsjkw8ii" path="res://Scenes/Runes/player_starting_runes.gd" id="18_xq145"]
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
-[ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
+[ext_resource type="Script" uid="uid://0qjrr6bvq2s" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
@@ -22,6 +27,11 @@ size = Vector2(127, 125)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8otfh"]
 radius = 26.476404
+
+[sub_resource type="Resource" id="Resource_faua5"]
+script = ExtResource("18_xq145")
+runes = Array[ExtResource("15_8otfh")]([ExtResource("16_pmq7r"), ExtResource("17_16ua7")])
+metadata/_custom_type_script = "uid://c7wd1jsjkw8ii"
 
 [node name="Main" type="Node"]
 script = ExtResource("1_wufuc")
@@ -43,6 +53,7 @@ position = Vector2(237, -15)
 shape = SubResource("RectangleShape2D_i1iex")
 
 [node name="Camera2D" type="Camera2D" parent="World"]
+zoom = Vector2(0.25, 0.25)
 script = ExtResource("14_sonv7")
 
 [node name="EnemyDummy" type="CharacterBody2D" parent="World"]
@@ -124,6 +135,12 @@ layout_mode = 1
 
 [node name="BulwarkBoss" parent="." instance=ExtResource("20_16ua7")]
 position = Vector2(248, -282)
+
+[node name="RuneSystem" type="Node" parent="." node_paths=PackedStringArray("mask_menu", "player_stats_comp")]
+script = ExtResource("14_4hvx0")
+mask_menu = NodePath("../UICanvasLayer/Control/MaskMenu")
+player_stats_comp = NodePath("../World/Player/StatsComponent")
+starting_runes = SubResource("Resource_faua5")
 
 [connection signal="pressed" from="UICanvasLayer/Control/OutOfBattleButtons/MaskMenuButton" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_button_pressed"]
 [connection signal="mask_saved" from="UICanvasLayer/Control/MaskMenu" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_mask_saved"]

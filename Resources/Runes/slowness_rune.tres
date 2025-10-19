@@ -1,30 +1,11 @@
-[gd_resource type="Resource" script_class="RuneData" load_steps=5 format=3 uid="uid://vtcnmuyoduje"]
+[gd_resource type="Resource" script_class="RuneData" load_steps=4 format=3 uid="uid://vtcnmuyoduje"]
 
-[ext_resource type="Script" path="res://Scenes/Runes/rune.gd" id="1_cni4h"]
+[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="1_cni4h"]
 [ext_resource type="Texture2D" uid="uid://ck43el4fq80ii" path="res://Resources/Textures/slowness_rune.png" id="2_l3joh"]
 [ext_resource type="Script" uid="uid://7hwnp45xrhtr" path="res://Scenes/Runes/player_stat_modifier.gd" id="2_mhet2"]
-
-[sub_resource type="Resource" id="Resource_jerig"]
-script = ExtResource("2_mhet2")
-damage_flat = null
-damage_multiplier = null
-attack_effects = null
-speed_flat = null
-speed_multiplier = null
-dash_count = null
-dash_recharge_time_flat = null
-dash_recharge_time_multiplier = null
-dash_time_flat = null
-dash_time_multiplier = null
-dash_distance_flat = null
-dash_distance_multiplier = null
-max_health_flat = null
-max_health_multiplier = null
-metadata/_custom_type_script = "uid://7hwnp45xrhtr"
 
 [resource]
 script = ExtResource("1_cni4h")
 texture = ExtResource("2_l3joh")
 name = "Slowness"
 description = "On hit, target is slowed by 150 for 2.5 seconds."
-stats_modifier = SubResource("Resource_jerig")
