@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=32 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
@@ -22,6 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
 [ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
+[ext_resource type="Resource" uid="uid://dmsorfw5j0r1u" path="res://Resources/Runes/health_rune.tres" id="22_g6eqj"]
+[ext_resource type="Resource" uid="uid://b48k3tq21bwob" path="res://Resources/Runes/dash_count_rune.tres" id="23_nh1kb"]
+[ext_resource type="Resource" uid="uid://b6d1dpk0fsl08" path="res://Resources/Runes/juggernaut_rune.tres" id="24_ami22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pftu5"]
 bg_color = Color(0.78352344, 0.78352344, 0.78352326, 1)
@@ -52,7 +55,7 @@ bg_color = Color(0.3882353, 0.36078432, 0.30588236, 0.7647059)
 
 [sub_resource type="Resource" id="Resource_faua5"]
 script = ExtResource("18_xq145")
-runes = Array[ExtResource("15_8otfh")]([ExtResource("16_pmq7r"), ExtResource("17_16ua7")])
+runes = Array[ExtResource("15_8otfh")]([ExtResource("16_pmq7r"), ExtResource("17_16ua7"), ExtResource("22_g6eqj"), ExtResource("23_nh1kb"), ExtResource("24_ami22")])
 metadata/_custom_type_script = "uid://c7wd1jsjkw8ii"
 
 [node name="Main" type="Node"]
