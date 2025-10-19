@@ -10,4 +10,4 @@ class_name BulletData
 @export var impact_effects: Array = []
 @export var lifetime: float = 30
 @export var collision_layer: int
-@export var collision_mask: int
+@export var collision_mask: int = 1

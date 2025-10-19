@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=57 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
 [ext_resource type="Texture2D" uid="uid://b4k215uoofmjw" path="res://Assets/Bulwark/ElephantBody.png" id="2_l813j"]
 [ext_resource type="Texture2D" uid="uid://bnq75gxowb71q" path="res://Assets/Bulwark/ElephantLeftFoot.png" id="3_gmqhx"]
-[ext_resource type="Script" uid="uid://kuyypslo3ibe" path="res://Scenes/Player/stats_component.gd" id="4_1qmxd"]
+[ext_resource type="Script" path="res://Scenes/Player/stats_component.gd" id="4_1qmxd"]
 [ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
 [ext_resource type="Script" uid="uid://c2efvbipnx4yx" path="res://Scripts/Boss_Idle_State.gd" id="4_8gn4i"]
 [ext_resource type="Texture2D" uid="uid://bilc37if4secc" path="res://Assets/Bulwark/ElephantEarLeft.png" id="4_l813j"]
@@ -28,8 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://b0iepa2hac6jb" path="res://Assets/Bulwark/ElephantNoseWhip7.png" id="19_el8yc"]
 [ext_resource type="Texture2D" uid="uid://solmk7xr8vpj" path="res://Assets/Bulwark/ElephantNoseWhip8.png" id="20_habbs"]
 [ext_resource type="Texture2D" uid="uid://batnja4a6ja10" path="res://Assets/Bulwark/ElephantNoseWhip9.png" id="21_irr2r"]
-[ext_resource type="Resource" uid="uid://cpd7hv2ipsob2" path="res://Resources/BulletHell/gound_pound.tres" id="22_8oovy"]
+[ext_resource type="Resource" uid="uid://cpd7hv2ipsob2" path="res://Resources/BulletHell/gound_pound_pattern.tres" id="22_8oovy"]
 [ext_resource type="Script" uid="uid://b5lqt3jj45oyq" path="res://Scenes/GameObjects/Bosses/player_detection.gd" id="22_47pc1"]
+[ext_resource type="Resource" uid="uid://dgpmjyaf0jdu3" path="res://Resources/BulletHell/bullet_swipe_pattern.tres" id="23_el8yc"]
 [ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="23_yp72i"]
 [ext_resource type="Script" uid="uid://cingroyq4smja" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.gd" id="24_h8w8p"]
 [ext_resource type="Script" uid="uid://bjt84w2yhyfpa" path="res://boss_charge_state.gd" id="29_4efw0"]
@@ -37,6 +38,7 @@
 [ext_resource type="Script" uid="uid://6fhi2nxakmfy" path="res://Scenes/GameObjects/Bosses/bullet_hell_spawner.gd" id="33_p4guo"]
 [ext_resource type="Script" uid="uid://4v0lgmef6qk1" path="res://Scenes/GameObjects/Bosses/boss_ring_bullet_attack_state.gd" id="34_cj0ja"]
 [ext_resource type="Script" uid="uid://nlsdeed6wtds" path="res://Scenes/Components/Combat/Health/health.gd" id="36_8lyj6"]
+[ext_resource type="Script" uid="uid://1oy5hgsxjco" path="res://Scenes/GameObjects/Bosses/boss_bullet_swipe_attack_state.gd" id="36_cd5r3"]
 [ext_resource type="Script" uid="uid://dabn266ja3eup" path="res://Resources/attack_combo_entry.gd" id="37_j3dym"]
 [ext_resource type="Script" uid="uid://rhe8kqa7qiqt" path="res://Resources/Player/player_stats.gd" id="38_cd5r3"]
 
@@ -469,35 +471,6 @@ tracks/7/keys = {
 "values": [&"idle", &"idle"]
 }
 
-[sub_resource type="Animation" id="Animation_1qmxd"]
-resource_name = "shoot"
-length = 0.5
-step = 0.0167
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/LeftFeet:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.7330382858376184, 0.6632251157578453]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/RightFeet:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.7330382858376184, -0.6632251157578453]
-}
-
 [sub_resource type="Animation" id="Animation_p4guo"]
 resource_name = "Swipe"
 length = 5.00001
@@ -642,9 +615,105 @@ tracks/4/keys = {
 "values": [Vector2(0, -140), Vector2(0, -80), Vector2(0, -140), Vector2(0, -200), Vector2(0, -200), Vector2(0, -80), Vector2(0, -140)]
 }
 
+[sub_resource type="Animation" id="Animation_1qmxd"]
+resource_name = "shoot"
+length = 0.5
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/LeftFeet:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7330382858376184, 0.6632251157578453]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/RightFeet:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.7330382858376184, -0.6632251157578453]
+}
+
+[sub_resource type="Animation" id="Animation_cd5r3"]
+resource_name = "bullet_swipe"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BulletHellSpawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("23_el8yc")],
+"method": &"fire"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/LeftFeet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [Vector2(-240, 200), Vector2(-240, 180), Vector2(-240, 200), Vector2(-240, 180), Vector2(-240, 200), Vector2(-240, 140), Vector2(-240, 200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/LeftFeet:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/RightFeet:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(240, 200), Vector2(240, 200), Vector2(240, 180), Vector2(240, 200), Vector2(240, 180), Vector2(240, 200)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/RightFeet:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ur5j5"]
 _data = {
 &"RESET": SubResource("Animation_gy0wg"),
+&"bullet_swipe": SubResource("Animation_cd5r3"),
 &"idle": SubResource("Animation_3ak4t"),
 &"melee_attack": SubResource("Animation_p4guo"),
 &"ring_attack": SubResource("Animation_ndmw2"),
@@ -818,6 +887,11 @@ velocity_component = NodePath("../../VelocityComponent")
 
 [node name="BossRingBulletAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "velocity_component")]
 script = ExtResource("34_cj0ja")
+animation_player = NodePath("../../AnimationPlayer")
+velocity_component = NodePath("../../VelocityComponent")
+
+[node name="BossBulletSwipeAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "velocity_component")]
+script = ExtResource("36_cd5r3")
 animation_player = NodePath("../../AnimationPlayer")
 velocity_component = NodePath("../../VelocityComponent")
 

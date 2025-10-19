@@ -16,6 +16,7 @@ func fire_bullet(spawn_pos: Vector2, angle: float, bullet_data: BulletData):
 	var bullet: PooledBullet = node_pool.get_pooled()
 	move_child(bullet, 0)
 	bullet.bullet_data = bullet_data
+	bullet.lifetime = 0
 	bullet.collision_layer = bullet_data.collision_layer
 	bullet.collision_mask = bullet_data.collision_mask
 	bullet.collision.connect(handle_bullet_collision.bind(bullet))
@@ -24,8 +25,9 @@ func fire_bullet(spawn_pos: Vector2, angle: float, bullet_data: BulletData):
 	
 	var bullet_spawn_dir = deg_to_rad(angle)
 	if bullet_data.point_toward_player:
-		var player_direction = spawn_pos.angle_to(player.global_position)
+		var player_direction = spawn_pos.angle_to_point(player.global_position)
 		bullet_spawn_dir += player_direction
+		print(spawn_pos, " ", player.global_position)
 	fire(bullet, spawn_pos, Vector2.from_angle(bullet_spawn_dir), 30)
 
 var counter = 0.0
@@ -70,7 +72,6 @@ func fire(node: PooledBullet, player_global_position: Vector2, bullet_spawn_dir:
 	node.global_position = player_global_position + (bullet_spawn_dir * offset)
 	node.global_rotation = bullet_spawn_dir.angle()
 	node.velocity = Vector2.from_angle(node.global_rotation) * node.bullet_data.speed
-	print(node.velocity)
 	node.reset_physics_interpolation()
 
 func handle_bullet_collision(bullet: PooledBullet) -> void:

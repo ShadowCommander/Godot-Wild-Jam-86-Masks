@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BulletHellSpawnPattern" load_steps=3 format=3 uid="uid://dgpmjyaf0jdu3"]
+
+[ext_resource type="Script" uid="uid://bd3jq8g2heclr" path="res://Resources/BulletHell/bullet_hell_spawn_pattern.gd" id="1_1kv6p"]
+[ext_resource type="Resource" uid="uid://falo24auj77t" path="res://Resources/BulletHell/bullet_swipe_bullet.tres" id="1_uvtct"]
+
+[resource]
+script = ExtResource("1_1kv6p")
+arc_length = 90.0
+amount = 13
+arc_offset = -45.0
+bullet_data = ExtResource("1_uvtct")
+metadata/_custom_type_script = "uid://bd3jq8g2heclr"

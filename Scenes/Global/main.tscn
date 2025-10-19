@@ -88,8 +88,9 @@ shape = SubResource("CircleShape2D_8otfh")
 
 [node name="BulletEntities" type="Node2D" parent="World" groups=["bullet_entities"]]
 
-[node name="BulletContainer" type="Node2D" parent="World"]
+[node name="BulletContainer" type="Node2D" parent="World" node_paths=PackedStringArray("player")]
 script = ExtResource("12_4hvx0")
+player = NodePath("../Player")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 

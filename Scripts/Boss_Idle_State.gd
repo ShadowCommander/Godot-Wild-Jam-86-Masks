@@ -8,7 +8,8 @@ class_name BossIdleState
 @export var velocity_component: VelocityComponent
 
 func physics_update(delta: float):
-	finite_state_machine.change_state("BossRingBulletAttackState")
+	finite_state_machine.change_state("BossBulletSwipeAttackState")
+	#finite_state_machine.change_state("BossRingBulletAttackState")
 	#if player_detection.player_detected:
 		#finite_state_machine.change_state("BossMeleeAttackState")
 	#elif charge_radius.player_detected:
