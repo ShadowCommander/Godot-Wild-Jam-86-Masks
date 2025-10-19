@@ -11,6 +11,8 @@ signal update_dash_ui(dashes_remaining: int, dash_recharge_timer: float)
 @export var look_absolute: GUIDEAction
 @export var look_relative: GUIDEAction
 
+@export var hurt_box: HurtboxComponent
+
 func _ready() -> void:
 	dash_action.triggered.connect(do_dash)
 	ready_dash()
@@ -63,6 +65,8 @@ func process_dash(delta: float) -> void:
 	if not dashing:
 		return
 	dash_timer += delta
+	if dash_timer > player_stats.dash_invincibility_time:
+		hurt_box.monitorable = true
 	var distance_this_tick = player_stats.dash_curve.sample(dash_timer / player_stats.dash_time) - player_stats.dash_curve.sample(progress)
 	progress = dash_timer / player_stats.dash_time
 	body.position += lerp(start_position, end_position, distance_this_tick) #player_stats.curve
@@ -88,6 +92,7 @@ func do_dash() -> void:
 	dash_timer = 0#player_stats.dash_time
 	current_dashes_available -= 1
 	progress = 0
+	hurt_box.monitorable = false
 
 func ready_dash() -> void:
 	current_dashes_available = player_stats.dash_count

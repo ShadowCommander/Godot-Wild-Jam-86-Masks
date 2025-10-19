@@ -25,4 +25,8 @@ func exit():
  
 
 func _on_follow_timer_timeout():
-	finite_state_machine.change_state("BossIdleState")
+	var pick = randi() % 2
+	if pick == 0:
+		finite_state_machine.change_state("BossBulletSwipeAttackState")
+	elif pick == 1:
+		finite_state_machine.change_state("BossRingBulletAttackState")

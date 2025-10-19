@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BulletHellSpawnPattern" load_steps=3 format=3 uid="uid://cpd7hv2ipsob2"]
 
 [ext_resource type="Resource" uid="uid://cn6c1m5jvq633" path="res://Resources/BulletHell/bullet_1.tres" id="1_ctnps"]
-[ext_resource type="Script" uid="uid://bd3jq8g2heclr" path="res://Resources/BulletHell/bullet_hell_spawn_pattern.gd" id="1_oq4b0"]
+[ext_resource type="Script" path="res://Resources/BulletHell/bullet_hell_spawn_pattern.gd" id="1_oq4b0"]
 
 [resource]
 script = ExtResource("1_oq4b0")

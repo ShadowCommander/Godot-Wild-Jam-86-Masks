@@ -6,18 +6,19 @@ class_name BossIdleState
 @export var charge_radius: PlayerDetectionArea
 @export var animation_player: AnimationPlayer
 @export var velocity_component: VelocityComponent
-
-func physics_update(delta: float):
-	finite_state_machine.change_state("BossBulletSwipeAttackState")
-	#finite_state_machine.change_state("BossRingBulletAttackState")
-	#if player_detection.player_detected:
-		#finite_state_machine.change_state("BossMeleeAttackState")
-	#elif charge_radius.player_detected:
-		#finite_state_machine.change_state("BossChargeAttackState")
-	#else:
-		#finite_state_machine.change_state("BossFollowState")
+@export var idle_timer: Timer
 
 func enter():
 	velocity_component.disabled = true
 	if animation_player != null:
 		animation_player.play("idle")
+	idle_timer.start(3.0)
+
+func _on_idle_timer_timeout() -> void:
+	var pick = randi() % 4
+	if pick == 0:
+		finite_state_machine.change_state("BossBulletSwipeAttackState")
+	elif pick == 1:
+		finite_state_machine.change_state("BossRingBulletAttackState")
+	else:
+		finite_state_machine.change_state("BossFollowState")

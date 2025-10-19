@@ -8,7 +8,7 @@ class_name BulletHellSpawnPattern
 # Offset of the initial arc in degrees
 @export var arc_offset: float
 # Amount of times to repeat
-@export var interations: int
+@export var interations: int = 1
 @export var iteration_cooldown: float = 0.1
 
 @export var bullet_data: BulletData

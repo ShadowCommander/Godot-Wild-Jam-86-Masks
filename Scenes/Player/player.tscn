@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://bcbdtx37ux1tc"]
+[gd_scene load_steps=32 format=3 uid="uid://bcbdtx37ux1tc"]
 
-[ext_resource type="Script" uid="uid://byft2libyxvku" path="res://Scenes/Player/player.gd" id="1_06tpx"]
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_06tpx"]
 [ext_resource type="Texture2D" uid="uid://c75jgn8qhkpkg" path="res://Resources/Textures/Shadow.png" id="1_oikmp"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="2_06tpx"]
 [ext_resource type="Script" uid="uid://c7fy7qi87mtbu" path="res://Scenes/Player/player_movement_component.gd" id="3_7g0yx"]
@@ -14,11 +14,54 @@
 [ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="11_eksi1"]
 [ext_resource type="Script" path="res://Scenes/Player/stats_component.gd" id="12_7g0yx"]
 [ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="12_jincj"]
+[ext_resource type="Texture2D" uid="uid://ciwvq5sftm566" path="res://Resources/Textures/Walk1.png" id="13_h8ma5"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="14_7g0yx"]
+[ext_resource type="Texture2D" uid="uid://c6oisnrx5i3fi" path="res://Resources/Textures/Walk2.png" id="14_eksi1"]
 [ext_resource type="Script" uid="uid://nlsdeed6wtds" path="res://Scenes/Components/Combat/Health/health.gd" id="15_dey5f"]
+[ext_resource type="Texture2D" uid="uid://kn3xsw24yrwc" path="res://Resources/Textures/Walk3.png" id="15_jincj"]
+[ext_resource type="Texture2D" uid="uid://dgcdssxspwm3u" path="res://Resources/Textures/Walk4.png" id="16_rqdc0"]
+[ext_resource type="Texture2D" uid="uid://dd0p4gddcwlmv" path="res://Resources/Textures/Walk5.png" id="17_qr1w5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
 radius = 7.071068
+
+[sub_resource type="Animation" id="Animation_wgbh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_06tpx")]
+}
+
+[sub_resource type="Animation" id="Animation_jwr1e"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("13_h8ma5"), ExtResource("14_eksi1"), ExtResource("15_jincj"), ExtResource("16_rqdc0"), ExtResource("17_qr1w5")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05t85"]
+_data = {
+&"RESET": SubResource("Animation_wgbh3"),
+&"walk": SubResource("Animation_jwr1e")
+}
 
 [sub_resource type="Animation" id="Animation_8aqcy"]
 length = 0.001
@@ -238,15 +281,15 @@ texture = ExtResource("1_oikmp")
 shape = SubResource("CircleShape2D_7dm0k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.775, 0.775)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_06tpx")
-offset = Vector2(0, -64.29)
+offset = Vector2(0, -100)
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("12_7g0yx")
 base_stats = ExtResource("4_dey5f")
 
-[node name="PlayerMovementComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "body")]
+[node name="PlayerMovementComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "body", "hurt_box")]
 script = ExtResource("3_7g0yx")
 player_stats = NodePath("../StatsComponent")
 body = NodePath("..")
@@ -254,6 +297,7 @@ move_action = ExtResource("5_r5xpd")
 dash_action = ExtResource("6_ks1b7")
 look_absolute = ExtResource("7_hnuln")
 look_relative = ExtResource("8_aqm4k")
+hurt_box = NodePath("../Hurtbox")
 
 [node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "movement_component", "animation_player", "attack_node", "attack_box")]
 script = ExtResource("9_rcvs5")
@@ -266,6 +310,12 @@ attack_box = NodePath("../Attack/HitboxComponent")
 
 [node name="WeaponPivot" type="Node2D" parent="."]
 position = Vector2(-1, 0)
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_05t85")
+}
+autoplay = "walk"
 
 [node name="AttackAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

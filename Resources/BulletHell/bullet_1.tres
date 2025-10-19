@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletData" load_steps=4 format=3 uid="uid://cn6c1m5jvq633"]
 
-[ext_resource type="Script" uid="uid://86jcdbbx1a1u" path="res://Resources/BulletHell/bullet_resource.gd" id="1_hcbpe"]
+[ext_resource type="Script" path="res://Resources/BulletHell/bullet_resource.gd" id="1_hcbpe"]
 [ext_resource type="Script" uid="uid://dabn266ja3eup" path="res://Resources/attack_combo_entry.gd" id="1_ja7wi"]
 
 [sub_resource type="Resource" id="Resource_gjfdv"]
@@ -14,5 +14,4 @@ combo_entry = SubResource("Resource_gjfdv")
 damage = 1
 speed = 800.0
 lifetime = 10.0
-collision_mask = 1
 metadata/_custom_type_script = "uid://86jcdbbx1a1u"

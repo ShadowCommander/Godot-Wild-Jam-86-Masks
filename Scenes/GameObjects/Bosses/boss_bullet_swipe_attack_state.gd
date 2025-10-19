@@ -10,4 +10,16 @@ func enter():
 		animation_player.animation_finished.connect(handle_animation_finished)
 
 func handle_animation_finished(anim_name: StringName) -> void:
-	finite_state_machine.change_state("BossIdleState")
+	var pick = randf()
+	if pick < 0.65:
+		finite_state_machine.change_state("BossIdleState")
+	elif pick >= 0.80:
+		finite_state_machine.change_state("BossFollowState")
+	else:
+		if pick < 0.725:
+			finite_state_machine.change_state("BossBulletSwipeAttackState")
+		else:
+			finite_state_machine.change_state("BossRingBulletAttackState")
+
+func exit():
+	animation_player.play("idle")

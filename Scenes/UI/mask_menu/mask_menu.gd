@@ -38,11 +38,11 @@ func handle_rune_tree_exiting(rune_data: RuneData) -> void:
 
 #region Load mask
 
-@onready var rune_entry: RuneEntry = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control/RuneEntry
-@onready var rune_entry_2: RuneEntry = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control/RuneEntry2
-@onready var rune_entry_3: RuneEntry = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control/RuneEntry3
-@onready var rune_entry_4: RuneEntry = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control/RuneEntry4
-@onready var rune_entry_5: RuneEntry = $VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Control/RuneEntry5
+@export var rune_entry: RuneEntry
+@export var rune_entry_2: RuneEntry
+@export var rune_entry_3: RuneEntry
+@export var rune_entry_4: RuneEntry
+@export var rune_entry_5: RuneEntry
 
 func load_mask() -> void:
 	pass
