@@ -1,5 +1,5 @@
 extends Resource
-class_name Stats
+class_name PlayerStats
 
 @export_category("Attack")
 @export var attack_combo: Array[AttackComboEntry]

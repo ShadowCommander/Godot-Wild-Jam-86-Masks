@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Stats" load_steps=6 format=3 uid="uid://ctldpqko1cmnb"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=6 format=3 uid="uid://ctldpqko1cmnb"]
 
 [ext_resource type="Script" uid="uid://dabn266ja3eup" path="res://Resources/attack_combo_entry.gd" id="1_3n4w4"]
 [ext_resource type="Script" uid="uid://rhe8kqa7qiqt" path="res://Resources/Player/player_stats.gd" id="2_n2dab"]

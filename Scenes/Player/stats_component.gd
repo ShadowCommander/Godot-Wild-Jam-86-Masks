@@ -3,7 +3,7 @@ class_name StatsComponent
 
 signal modifiers_changed(modifiers: Array[PlayerStatModifier])
 
-@export var base_stats: Stats
+@export var base_stats: PlayerStats
 var modifiers: Array[PlayerStatModifier]
 
 @export_category("Attack")
