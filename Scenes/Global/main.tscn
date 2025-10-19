@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
-[ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
+[ext_resource type="Script" uid="uid://0qjrr6bvq2s" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
@@ -46,6 +46,7 @@ position = Vector2(237, -15)
 shape = SubResource("RectangleShape2D_i1iex")
 
 [node name="Camera2D" type="Camera2D" parent="World"]
+zoom = Vector2(0.25, 0.25)
 script = ExtResource("14_sonv7")
 
 [node name="EnemyDummy" type="CharacterBody2D" parent="World"]

@@ -25,6 +25,7 @@ func shoot_bullet(angle: float):
 		bullet_group.add_child.call(bullet_instance)
 	
 	bullet_instance.position = global_position
+	bullet_instance.reset_physics_interpolation()
 	#var vel_comp = bullet_instance.get_velocity_component()
 	var vel_comp = bullet_instance.velocity_component
 	if vel_comp == null:
