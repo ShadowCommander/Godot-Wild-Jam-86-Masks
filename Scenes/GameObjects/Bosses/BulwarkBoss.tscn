@@ -1,7 +1,7 @@
 [gd_scene load_steps=56 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
-[ext_resource type="Script" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
+[ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
 [ext_resource type="Texture2D" uid="uid://b4k215uoofmjw" path="res://Assets/Bulwark/ElephantBody.png" id="2_l813j"]
 [ext_resource type="Texture2D" uid="uid://bnq75gxowb71q" path="res://Assets/Bulwark/ElephantLeftFoot.png" id="3_gmqhx"]
 [ext_resource type="Script" path="res://Scenes/Player/stats_component.gd" id="4_1qmxd"]
@@ -372,6 +372,7 @@ tracks/20/keys = {
 
 [sub_resource type="Animation" id="Animation_cd5r3"]
 resource_name = "bullet_swipe"
+length = 1.4
 step = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -434,6 +435,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visuals/HeadPivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.29999998, 0.4, 0.5, 0.6, 0.7, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -140), Vector2(-5, -140), Vector2(5, -140), Vector2(-5, -140), Vector2(5, -140), Vector2(-5, -140), Vector2(0, -140), Vector2(0, -160), Vector2(0, -150), Vector2(0, -160), Vector2(0, -140)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visuals/HeadPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.29999998, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.03490658503988659, 0.03490658503988659, -0.03490658503988659, 0.03490658503988659, -0.03490658503988659, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_3ak4t"]
@@ -923,3 +948,4 @@ metadata/_custom_type_script = "uid://nlsdeed6wtds"
 [connection signal="body_entered" from="MeleeRadius" to="MeleeRadius" method="_on_body_entered"]
 [connection signal="body_exited" from="MeleeRadius" to="MeleeRadius" method="_on_body_exited"]
 [connection signal="timeout" from="FiniteStateMachine/BossIdleState/IdleTimer" to="FiniteStateMachine/BossIdleState" method="_on_idle_timer_timeout"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

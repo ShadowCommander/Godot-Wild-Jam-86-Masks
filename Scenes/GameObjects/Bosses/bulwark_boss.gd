@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name BulwarkBoss
+
+signal died
 
 #@onready var player = get_tree().get_first_node_in_group("player")
 @onready var velocity_component: VelocityComponent = $VelocityComponent
@@ -11,3 +14,7 @@ func _ready():
 #
 #func _physics_process(_delta: float) -> void:
 	#velocity_component.move(self)
+
+
+func _on_health_component_died() -> void:
+	died.emit()
