@@ -2,29 +2,18 @@ extends State
 class_name BossIdleState
 
 @export var collision_shape_2d: CollisionShape2D
-@export var player_detection: Area2D
+@export var player_detection: PlayerDetectionArea
+@export var charge_radius: PlayerDetectionArea
 @export var animation_player: AnimationPlayer
+@export var velocity_component: VelocityComponent
 
-var player_entered: bool = false:
-	set(val):
-		player_entered = val
-		#collision_shape_2d.set_deferred("disabled", val)
-		if val == true:
-			finite_state_machine.change_state("bossshootstate")
-
-
-func _ready() -> void:
-	player_detection.body_entered.connect(_on_player_detection_body_entered)
-
-
-func _on_player_detection_body_entered(_body: CharacterBody2D):
-	if _body.is_in_group("player"):
-		player_entered = true
-
+func physics_update(delta: float):
+	if player_detection.player_detected:
+		finite_state_machine.change_state("BossMeleeAttackState")
+	elif charge_radius.player_detected:
+		finite_state_machine.change_state("BossChargeAttackState")
 
 func enter():
-	print("boss idle state")
-	player_entered = false
-	set_physics_process(false)
+	velocity_component.disabled = true
 	if animation_player != null:
 		animation_player.play("idle")

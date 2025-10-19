@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=43 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
@@ -28,6 +28,10 @@
 [ext_resource type="Texture2D" uid="uid://b0iepa2hac6jb" path="res://Assets/Bulwark/ElephantNoseWhip7.png" id="19_el8yc"]
 [ext_resource type="Texture2D" uid="uid://solmk7xr8vpj" path="res://Assets/Bulwark/ElephantNoseWhip8.png" id="20_habbs"]
 [ext_resource type="Texture2D" uid="uid://batnja4a6ja10" path="res://Assets/Bulwark/ElephantNoseWhip9.png" id="21_irr2r"]
+[ext_resource type="Script" uid="uid://b5lqt3jj45oyq" path="res://Scenes/GameObjects/Bosses/player_detection.gd" id="22_47pc1"]
+[ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="23_yp72i"]
+[ext_resource type="Script" uid="uid://bjt84w2yhyfpa" path="res://boss_charge_state.gd" id="29_4efw0"]
+[ext_resource type="Script" uid="uid://v7gtq4bey3v1" path="res://Scenes/GameObjects/Bosses/boss_melee_attack_state.gd" id="31_tl4fq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8qhpy"]
 animations = [{
@@ -213,35 +217,6 @@ tracks/8/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1qmxd"]
-resource_name = "shoot"
-length = 0.5
-step = 0.0167
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals/LeftFeet:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.7330382858376184, 0.6632251157578453]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visuals/RightFeet:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, -0.7330382858376184, -0.6632251157578453]
-}
-
 [sub_resource type="Animation" id="Animation_3ak4t"]
 resource_name = "idle"
 length = 0.6
@@ -331,15 +306,54 @@ tracks/6/keys = {
 "values": [Vector2(0, 0), Vector2(20, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1qmxd"]
+resource_name = "shoot"
+length = 0.5
+step = 0.0167
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/LeftFeet:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7330382858376184, 0.6632251157578453]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/RightFeet:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.7330382858376184, -0.6632251157578453]
+}
+
+[sub_resource type="Animation" id="Animation_p4guo"]
+resource_name = "Swipe"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ur5j5"]
 _data = {
 &"RESET": SubResource("Animation_gy0wg"),
 &"idle": SubResource("Animation_3ak4t"),
+&"melee_attack": SubResource("Animation_p4guo"),
 &"shoot": SubResource("Animation_1qmxd")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xe2o"]
 radius = 388.12885
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4efw0"]
+radius = 1047.0234
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yp72i"]
+radius = 81.22192
 
 [node name="BulwarkBoss" type="CharacterBody2D"]
 motion_mode = 1
@@ -395,26 +409,44 @@ autoplay = "idle"
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 0
+script = ExtResource("22_47pc1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_2xe2o")
 debug_color = Color(0.785515, 0.34481153, 0.67640424, 0.41960785)
 
+[node name="ChargeRadius" type="Area2D" parent="."]
+script = ExtResource("22_47pc1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeRadius"]
+shape = SubResource("CircleShape2D_4efw0")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("23_yp72i")
+metadata/_custom_type_script = "uid://b0m372h3eo0vo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_yp72i")
+
 [node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
 max_speed = 60
 
 [node name="BulletSpawnerComp" parent="." instance=ExtResource("10_1qmxd")]
 
-[node name="FiniteStateMachine" type="Node" parent="."]
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent")]
 script = ExtResource("4_2pwef")
+initial_state = NodePath("BossIdleState")
+parent = NodePath("..")
 metadata/_custom_type_script = "uid://crm220r5offy1"
 
-[node name="BossIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("collision_shape_2d", "player_detection", "animation_player")]
+[node name="BossIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("collision_shape_2d", "player_detection", "charge_radius", "animation_player", "velocity_component")]
 script = ExtResource("4_8gn4i")
 collision_shape_2d = NodePath("../../PlayerDetection/CollisionShape2D")
 player_detection = NodePath("../../PlayerDetection")
+charge_radius = NodePath("../../ChargeRadius")
 animation_player = NodePath("../../AnimationPlayer")
+velocity_component = NodePath("../../VelocityComponent")
 metadata/_custom_type_script = "uid://c2efvbipnx4yx"
 
 [node name="BossFollowState" type="Node" parent="FiniteStateMachine"]
@@ -431,3 +463,12 @@ script = ExtResource("9_gy0wg")
 animation_player = NodePath("../../AnimationPlayer")
 player_detection = NodePath("../../PlayerDetection")
 metadata/_custom_type_script = "uid://k1klqgk4sbtm"
+
+[node name="BossChargeAttackState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("29_4efw0")
+
+[node name="BossMeleeAttackState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("31_tl4fq")
+
+[connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="PlayerDetection" method="_on_body_exited"]

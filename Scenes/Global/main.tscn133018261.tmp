@@ -1,18 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=17 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
 [ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
 [ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
-[ext_resource type="Texture2D" uid="uid://cwhaxoms306vb" path="res://Resources/Textures/top-down-background-placeholder.png" id="4_sonv7"]
 [ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
-[ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
+[ext_resource type="Script" uid="uid://0qjrr6bvq2s" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i1iex"]
@@ -31,14 +30,8 @@ mapping_contexts = Array[ExtResource("2_xpfiu")]([ExtResource("3_vcq4h")])
 [node name="World" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
-[node name="BackgroundSprite2D" type="Sprite2D" parent="World"]
-modulate = Color(0.37673542, 0.29305133, 0.12995419, 1)
-position = Vector2(-73, 83.99991)
-scale = Vector2(6.683516, 6.6835165)
-texture = ExtResource("4_sonv7")
-
 [node name="BulwarkBoss" parent="World" instance=ExtResource("20_16ua7")]
-position = Vector2(7, 35)
+position = Vector2(177, -48)
 
 [node name="Player" parent="World" instance=ExtResource("4_qqyxy")]
 position = Vector2(-407, 114)
@@ -81,7 +74,7 @@ visibility_layer = 2
 position = Vector2(415, 47)
 shape = SubResource("CircleShape2D_8otfh")
 
-[node name="BulletEntities" type="Node2D" parent="World" groups=["bullet_entities"]]
+[node name="BulletEntities" type="Node" parent="World" groups=["bullet_entities"]]
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 

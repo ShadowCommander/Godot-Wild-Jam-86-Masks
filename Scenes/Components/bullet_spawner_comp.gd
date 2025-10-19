@@ -22,7 +22,7 @@ func shoot_bullet(angle: float):
 	
 	var bullet_group = get_tree().get_first_node_in_group("bullet_entities")
 	if bullet_group != null:
-		bullet_group.add_child.call(bullet_instance)
+		bullet_group.add_child(bullet_instance)
 	
 	bullet_instance.position = global_position
 	bullet_instance.reset_physics_interpolation()

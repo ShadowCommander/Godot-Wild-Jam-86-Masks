@@ -1,7 +1,8 @@
 extends Node
 class_name State
- 
+
 var finite_state_machine: FiniteStateMachine
+var parent: CharacterBody2D
 
 func enter():
 	pass

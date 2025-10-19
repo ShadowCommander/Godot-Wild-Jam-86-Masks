@@ -5,6 +5,7 @@ extends Node
 @export var acceleration : float = 5.0
 
 var velocity := Vector2.ZERO
+var disabled: bool = false
 
 func accelerate_to_player():
 	var owner_2d := owner as Node2D
@@ -29,6 +30,8 @@ func decelerate():
 
 
 func move(character_body: Node2D):
+	if disabled:
+		return
 	if character_body is not CharacterBody2D and character_body is Node2D:
 		character_body.translate(velocity)
 		return
