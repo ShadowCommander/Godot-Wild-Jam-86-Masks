@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=29 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
@@ -42,6 +42,9 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhfi3"]
+bg_color = Color(0, 0.6770576, 0, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nh1kb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ami22"]
@@ -70,7 +73,6 @@ position = Vector2(7, 35)
 
 [node name="Player" parent="World" instance=ExtResource("4_qqyxy")]
 position = Vector2(-1397, 377)
-collision_layer = 0
 
 [node name="HitboxComponent" parent="World/Player/Attack" index="0"]
 collision_layer = 0
@@ -170,11 +172,14 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="PlayerHealthProgressBar" type="ProgressBar" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_yhfi3")
 max_value = 1.0
 step = 0.001
+value = 1.0
 show_percentage = false
 
 [node name="Control2" type="Control" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]

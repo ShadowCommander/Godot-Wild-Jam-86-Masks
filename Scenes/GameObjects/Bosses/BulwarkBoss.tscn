@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=57 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" uid="uid://1oy5hgsxjco" path="res://Scenes/GameObjects/Bosses/boss_bullet_swipe_attack_state.gd" id="36_cd5r3"]
 [ext_resource type="Script" uid="uid://boh0kifsijqyp" path="res://Scenes/GameObjects/Bosses/boss_dead_state.gd" id="39_el8yc"]
 [ext_resource type="Resource" uid="uid://d0xfxgdcd4j32" path="res://Resources/Player/boss_stats.tres" id="40_cd5r3"]
+[ext_resource type="Script" uid="uid://b7s3020jq66ad" path="res://Scenes/GameObjects/Bosses/boss_wait_state.gd" id="41_habbs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8qhpy"]
 animations = [{
@@ -876,7 +877,7 @@ base_stats = ExtResource("40_cd5r3")
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent")]
 script = ExtResource("4_2pwef")
-initial_state = NodePath("BossIdleState")
+initial_state = NodePath("BossWaitState")
 parent = NodePath("..")
 
 [node name="BossIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("collision_shape_2d", "player_detection", "charge_radius", "animation_player", "velocity_component", "idle_timer")]
@@ -924,6 +925,9 @@ velocity_component = NodePath("../../VelocityComponent")
 [node name="BossDeadState" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("39_el8yc")
 
+[node name="BossWaitState" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("41_habbs")
+
 [node name="DebugLabel" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -947,6 +951,7 @@ boss = NodePath("..")
 
 [connection signal="body_entered" from="MeleeRadius" to="MeleeRadius" method="_on_body_entered"]
 [connection signal="body_exited" from="MeleeRadius" to="MeleeRadius" method="_on_body_exited"]
+[connection signal="body_entered" from="ChargeRadius" to="FiniteStateMachine/BossWaitState" method="_on_charge_radius_body_entered"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="timeout" from="FiniteStateMachine/BossIdleState/IdleTimer" to="FiniteStateMachine/BossIdleState" method="_on_idle_timer_timeout"]
