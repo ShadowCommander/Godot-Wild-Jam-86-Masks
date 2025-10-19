@@ -22,4 +22,5 @@ func handle_animation_finished(anim_name: StringName) -> void:
 			finite_state_machine.change_state("BossRingBulletAttackState")
 
 func exit():
+	animation_player.animation_finished.disconnect(handle_animation_finished)
 	animation_player.play("idle")

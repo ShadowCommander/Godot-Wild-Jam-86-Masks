@@ -12,7 +12,7 @@ func enter():
 	velocity_component.disabled = true
 	if animation_player != null:
 		animation_player.play("idle")
-	idle_timer.start(3.0)
+	idle_timer.start(1.0)
 
 func _on_idle_timer_timeout() -> void:
 	var pick = randi() % 4
