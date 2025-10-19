@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c57d6kcvpo8x"]
+[gd_scene load_steps=16 format=3 uid="uid://c57d6kcvpo8x"]
 
 [ext_resource type="Script" uid="uid://cco4oy8m62hbf" path="res://Scenes/UI/mask_menu/mask_menu.gd" id="1_6ap05"]
 [ext_resource type="Resource" uid="uid://cey8h412bkkdm" path="res://Resources/GUIDE/close_menu.tres" id="2_cedhl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bj2p0w3hnbpah" path="res://Scenes/UI/mask_menu/rune_entry.tscn" id="5_cedhl"]
 [ext_resource type="Texture2D" uid="uid://bt2ns6ltghr21" path="res://Resources/Textures/UI/Face.png" id="6_fwld5"]
 [ext_resource type="Script" path="res://Scenes/UI/mask_menu/drag_drop_control_component.gd" id="6_gyhsb"]
+[ext_resource type="Texture2D" uid="uid://beebpu58235tc" path="res://Resources/Textures/UI/Eyes.png" id="7_fwld5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va0kb"]
 content_margin_left = 6.0
@@ -26,6 +27,10 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aypvp"]
+content_margin_left = 40.0
+content_margin_top = 10.0
+content_margin_right = 40.0
+content_margin_bottom = 10.0
 texture = ExtResource("4_od4jb")
 region_rect = Rect2(161, 156, 636, 1155)
 
@@ -36,30 +41,11 @@ bg_color = Color(1, 1, 1, 1)
 atlas = ExtResource("6_fwld5")
 region = Rect2(852, 393, 1113, 630)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od4jb"]
-resource_local_to_scene = true
-bg_color = Color(0.78039217, 0.68235296, 0.43529412, 1)
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwld5"]
+atlas = ExtResource("7_fwld5")
+region = Rect2(852, 393, 1113, 630)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwld5"]
-resource_local_to_scene = true
-bg_color = Color(0.78039217, 0.68235296, 0.43529412, 1)
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aypvp"]
-resource_local_to_scene = true
-bg_color = Color(0.78039217, 0.68235296, 0.43529412, 1)
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vk00x"]
-resource_local_to_scene = true
-bg_color = Color(0.78039217, 0.68235296, 0.43529412, 1)
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msky4"]
-resource_local_to_scene = true
-bg_color = Color(0.78039217, 0.68235296, 0.43529412, 1)
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fwld5"]
 
 [node name="MaskMenu" type="Control" node_paths=PackedStringArray("rune_container", "rune_entry", "rune_entry_2", "rune_entry_3", "rune_entry_4", "rune_entry_5")]
 layout_mode = 3
@@ -152,7 +138,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 3
+columns = 2
 
 [node name="RuneContainerDrop" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer"]
 script = ExtResource("2_kkl72")
@@ -174,94 +160,100 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_vk00x")
 expand_mode = 5
 
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_fwld5")
+expand_mode = 2
+
 [node name="MaskSlots" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
 [node name="RuneEntry" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots" instance=ExtResource("5_cedhl")]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1494024
-anchor_top = 0.20571429
-anchor_right = 0.2715239
-anchor_bottom = 0.30857143
+anchor_left = 0.15139443
+anchor_top = 0.19714285
+anchor_right = 0.29343623
+anchor_bottom = 0.3
 offset_left = 281.0
 offset_top = 79.0
-offset_right = 294.695
-offset_bottom = 119.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_od4jb")
+offset_right = 269.695
+offset_bottom = 118.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwld5")
 metadata/_edit_use_anchors_ = true
 
 [node name="DragDropControlComponent" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots/RuneEntry"]
 script = ExtResource("6_gyhsb")
 
 [node name="RuneEntry2" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots" instance=ExtResource("5_cedhl")]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.10557769
-anchor_top = 0.08571429
-anchor_right = 0.17529881
-anchor_bottom = 0.18571429
+anchor_left = 0.11354582
+anchor_top = 0.09428571
+anchor_right = 0.20318726
+anchor_bottom = 0.19428572
 offset_left = 228.0
 offset_top = 46.0
-offset_right = 268.0
+offset_right = 243.0
 offset_bottom = 86.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fwld5")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwld5")
 metadata/_edit_use_anchors_ = true
 
 [node name="DragDropControlComponent" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots/RuneEntry2"]
 script = ExtResource("6_gyhsb")
 
 [node name="RuneEntry3" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots" instance=ExtResource("5_cedhl")]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.087649405
-anchor_top = 0.2742857
-anchor_right = 0.15737052
-anchor_bottom = 0.37428573
+anchor_left = 0.0936255
+anchor_top = 0.29142857
+anchor_right = 0.18326694
+anchor_bottom = 0.39142856
 offset_left = 169.0
 offset_top = 119.0
-offset_right = 209.0
+offset_right = 184.0
 offset_bottom = 159.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_aypvp")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwld5")
 metadata/_edit_use_anchors_ = true
 
 [node name="DragDropControlComponent" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots/RuneEntry3"]
 script = ExtResource("6_gyhsb")
 
 [node name="RuneEntry4" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots" instance=ExtResource("5_cedhl")]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.055776894
-anchor_top = 0.08571429
-anchor_right = 0.12549801
-anchor_bottom = 0.18571429
+anchor_left = 0.06374502
+anchor_top = 0.10285714
+anchor_right = 0.15338646
+anchor_bottom = 0.20285714
 offset_left = 116.0
 offset_top = 45.0
-offset_right = 156.0
+offset_right = 131.0
 offset_bottom = 85.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vk00x")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwld5")
 metadata/_edit_use_anchors_ = true
 
 [node name="DragDropControlComponent" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots/RuneEntry4"]
 script = ExtResource("6_gyhsb")
 
 [node name="RuneEntry5" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots" instance=ExtResource("5_cedhl")]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.007968128
-anchor_top = 0.18857142
-anchor_right = 0.077689245
-anchor_bottom = 0.28857142
+anchor_left = 0.017928287
+anchor_top = 0.20857143
+anchor_right = 0.107569724
+anchor_bottom = 0.3085714
 offset_left = 64.0
 offset_top = 79.0
-offset_right = 104.0
-offset_bottom = 119.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_msky4")
+offset_right = 79.0
+offset_bottom = 119.00001
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fwld5")
 metadata/_edit_use_anchors_ = true
 
 [node name="DragDropControlComponent" type="Node" parent="VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/MaskSlots/RuneEntry5"]

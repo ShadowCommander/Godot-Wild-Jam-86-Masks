@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj2p0w3hnbpah"]
 
-[ext_resource type="Script" uid="uid://te5geigb8s40" path="res://Scenes/UI/mask_menu/rune_entry.gd" id="1_cxj5w"]
+[ext_resource type="Script" path="res://Scenes/UI/mask_menu/rune_entry.gd" id="1_cxj5w"]
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_ndffd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndffd"]
 resource_local_to_scene = true
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 0)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -46,7 +46,8 @@ theme_override_constants/separation = 0
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("1_ndffd")
-expand_mode = 4
+expand_mode = 5
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
