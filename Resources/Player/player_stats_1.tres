@@ -6,14 +6,14 @@
 [sub_resource type="Resource" id="Resource_3n4w4"]
 script = ExtResource("1_3n4w4")
 animation = "Swing1"
-attack_time = 0.2
+attack_time = 0.4
 damage = 30.0
 metadata/_custom_type_script = "uid://dabn266ja3eup"
 
 [sub_resource type="Resource" id="Resource_n2dab"]
 script = ExtResource("1_3n4w4")
 animation = "Swing2"
-attack_time = 0.2
+attack_time = 0.4
 damage = 30.0
 metadata/_custom_type_script = "uid://dabn266ja3eup"
 
