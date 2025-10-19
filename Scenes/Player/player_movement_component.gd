@@ -81,9 +81,9 @@ func do_dash() -> void:
 	if dashing:
 		return
 	if current_dashes_available <= 0:
-		return
+		return 
 	start_position = Vector2.ZERO #body.global_position
-	end_position = look_direction.normalized() * player_stats.dash_distance
+	end_position = move_action.value_axis_2d.normalized() * player_stats.dash_distance
 	dashing = true
 	dash_timer = 0#player_stats.dash_time
 	current_dashes_available -= 1
