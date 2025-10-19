@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://hy80gvfepiwc"]
+
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_g5y03"]
+[ext_resource type="Texture2D" uid="uid://ciwvq5sftm566" path="res://Resources/Textures/Walk1.png" id="2_ki2qe"]
+[ext_resource type="Texture2D" uid="uid://c6oisnrx5i3fi" path="res://Resources/Textures/Walk2.png" id="3_uv6pn"]
+[ext_resource type="Texture2D" uid="uid://kn3xsw24yrwc" path="res://Resources/Textures/Walk3.png" id="4_u4b7n"]
+[ext_resource type="Texture2D" uid="uid://dgcdssxspwm3u" path="res://Resources/Textures/Walk4.png" id="5_sbns2"]
+[ext_resource type="Texture2D" uid="uid://dd0p4gddcwlmv" path="res://Resources/Textures/Walk5.png" id="6_fuk47"]
+
+[sub_resource type="Animation" id="Animation_wgbh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_g5y03")]
+}
+
+[sub_resource type="Animation" id="Animation_jwr1e"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ki2qe"), ExtResource("3_uv6pn"), ExtResource("4_u4b7n"), ExtResource("5_sbns2"), ExtResource("6_fuk47")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05t85"]
+_data = {
+&"RESET": SubResource("Animation_wgbh3"),
+&"walk": SubResource("Animation_jwr1e")
+}
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_05t85")
+}
+autoplay = "walk"
