@@ -2,6 +2,7 @@ extends Node
 class_name StatsComponent
 
 signal modifiers_changed(modifiers: Array[PlayerStatModifier])
+signal stats_changed
 
 @export var base_stats: PlayerStats
 var modifiers: Array[PlayerStatModifier]
@@ -71,6 +72,7 @@ func setup_stats() -> void:
 	
 	max_health = calculate_modifiers(base_stats.max_health, PlayerStatModifier.BuffableStats.MAX_HEALTH, combined_modifiers)
 	health_damage_invincibility_time = calculate_modifiers(base_stats.health_damage_invincibility_time, PlayerStatModifier.BuffableStats.HEALTH_DAMAGE_INVINCIBILITY_TIME, combined_modifiers)
+	stats_changed.emit()
 
 func calculate_modifiers(base_stat: float, buff_stat: PlayerStatModifier.BuffableStats, combined_modifiers: Dictionary[PlayerStatModifier.BuffableStats, Dictionary]) -> float:
 	var result = base_stat

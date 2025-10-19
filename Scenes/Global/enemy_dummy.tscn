@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxfdaq5lplrxs"]
+
+[ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="1_6gine"]
+[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="2_c5hvb"]
+[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="3_ia5e2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16ua7"]
+size = Vector2(127, 125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8otfh"]
+radius = 26.476404
+
+[node name="EnemyDummy" type="CharacterBody2D"]
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_6gine")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(2.052564, 0, 0, 1)
+position = Vector2(413, -16)
+texture = ExtResource("2_c5hvb")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_ia5e2")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(414, -17)
+shape = SubResource("RectangleShape2D_16ua7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(415, 47)
+shape = SubResource("CircleShape2D_8otfh")

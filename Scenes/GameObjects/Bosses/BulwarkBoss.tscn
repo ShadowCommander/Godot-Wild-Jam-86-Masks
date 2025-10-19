@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
 [ext_resource type="Texture2D" uid="uid://b4k215uoofmjw" path="res://Assets/Bulwark/ElephantBody.png" id="2_l813j"]
 [ext_resource type="Texture2D" uid="uid://bnq75gxowb71q" path="res://Assets/Bulwark/ElephantLeftFoot.png" id="3_gmqhx"]
-[ext_resource type="Script" path="res://Scenes/Player/stats_component.gd" id="4_1qmxd"]
+[ext_resource type="Script" uid="uid://kuyypslo3ibe" path="res://Scenes/Player/stats_component.gd" id="4_1qmxd"]
 [ext_resource type="Script" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
 [ext_resource type="Script" uid="uid://c2efvbipnx4yx" path="res://Scripts/Boss_Idle_State.gd" id="4_8gn4i"]
 [ext_resource type="Texture2D" uid="uid://bilc37if4secc" path="res://Assets/Bulwark/ElephantEarLeft.png" id="4_l813j"]
@@ -862,12 +862,17 @@ metadata/_custom_type_script = "uid://cingroyq4smja"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_cj0ja")
 
+[node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
+max_speed = 600
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats")]
+script = ExtResource("36_8lyj6")
+player_stats = NodePath("../StatsComponent")
+metadata/_custom_type_script = "uid://nlsdeed6wtds"
+
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("4_1qmxd")
 base_stats = ExtResource("40_cd5r3")
-
-[node name="VelocityComponent" parent="." instance=ExtResource("1_2pwef")]
-max_speed = 600
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent")]
 script = ExtResource("4_2pwef")
@@ -940,12 +945,7 @@ horizontal_alignment = 1
 script = ExtResource("33_p4guo")
 boss = NodePath("..")
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("36_8lyj6")
-player_stats = ExtResource("40_cd5r3")
-metadata/_custom_type_script = "uid://nlsdeed6wtds"
-
 [connection signal="body_entered" from="MeleeRadius" to="MeleeRadius" method="_on_body_entered"]
 [connection signal="body_exited" from="MeleeRadius" to="MeleeRadius" method="_on_body_exited"]
-[connection signal="timeout" from="FiniteStateMachine/BossIdleState/IdleTimer" to="FiniteStateMachine/BossIdleState" method="_on_idle_timer_timeout"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="timeout" from="FiniteStateMachine/BossIdleState/IdleTimer" to="FiniteStateMachine/BossIdleState" method="_on_idle_timer_timeout"]

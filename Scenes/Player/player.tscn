@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ninwddymmigh" path="res://Scenes/Player/player_combat_component.gd" id="9_rcvs5"]
 [ext_resource type="Resource" uid="uid://cyl0vj45n1ot3" path="res://Resources/GUIDE/attack_action.tres" id="10_h8ma5"]
 [ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="11_eksi1"]
-[ext_resource type="Script" path="res://Scenes/Player/stats_component.gd" id="12_7g0yx"]
+[ext_resource type="Script" uid="uid://kuyypslo3ibe" path="res://Scenes/Player/stats_component.gd" id="12_7g0yx"]
 [ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="12_jincj"]
 [ext_resource type="Texture2D" uid="uid://ciwvq5sftm566" path="res://Resources/Textures/Walk1.png" id="13_h8ma5"]
 [ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="14_7g0yx"]
@@ -285,6 +285,11 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_06tpx")
 offset = Vector2(0, -100)
 
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats")]
+script = ExtResource("15_dey5f")
+player_stats = NodePath("../StatsComponent")
+metadata/_custom_type_script = "uid://nlsdeed6wtds"
+
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("12_7g0yx")
 base_stats = ExtResource("4_dey5f")
@@ -347,10 +352,5 @@ health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_dey5f")
-
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("15_dey5f")
-player_stats = ExtResource("4_dey5f")
-metadata/_custom_type_script = "uid://nlsdeed6wtds"
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

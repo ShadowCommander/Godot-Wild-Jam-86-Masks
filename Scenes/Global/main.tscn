@@ -1,12 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=25 format=3 uid="uid://gutnfusrxgny"]
 
-[ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_xpfiu"]
 [ext_resource type="Resource" uid="uid://cs0gaq8ubft0v" path="res://Resources/GUIDE/mouse_and_keyboard.tres" id="3_vcq4h"]
 [ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
 [ext_resource type="Texture2D" uid="uid://cwhaxoms306vb" path="res://Resources/Textures/top-down-background-placeholder.png" id="4_sonv7"]
-[ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
 [ext_resource type="Script" path="res://Scenes/Global/bullet_container.gd" id="12_4hvx0"]
 [ext_resource type="Script" path="res://Scenes/Global/rune_system.gd" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
@@ -15,22 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://ch4gx8qtfjw5u" path="res://Resources/Textures/UI/WinLose/GameOver.png" id="16_faua5"]
 [ext_resource type="Script" uid="uid://lfu88qqh0fqn" path="res://Scenes/Global/panel_container.gd" id="16_g6eqj"]
 [ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="16_pmq7r"]
-[ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="Resource" uid="uid://d6f62hfdntw3" path="res://Resources/Runes/damage_rune.tres" id="17_16ua7"]
 [ext_resource type="Texture2D" uid="uid://c2gks3pnv6p2p" path="res://Resources/Textures/UI/WinLose/YouWin.png" id="17_pftu5"]
-[ext_resource type="PackedScene" uid="uid://dmcm8gbd1xmen" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.tscn" id="18_pmq7r"]
 [ext_resource type="Script" path="res://Scenes/Runes/player_starting_runes.gd" id="18_xq145"]
 [ext_resource type="Texture2D" uid="uid://dwd001j52lpok" path="res://Resources/Textures/UI/WinLose/CoconutWin.png" id="18_yhfi3"]
 [ext_resource type="Texture2D" uid="uid://cjwlm1f0fyp46" path="res://Resources/Textures/UI/WinLose/StaffWin4.png" id="19_g6eqj"]
 [ext_resource type="PackedScene" uid="uid://dyl2rkcrigf2o" path="res://Scenes/GameObjects/Bosses/BulwarkBoss.tscn" id="20_16ua7"]
 [ext_resource type="Script" path="res://Scenes/Global/out_of_battle_buttons.gd" id="20_xq145"]
 [ext_resource type="PackedScene" uid="uid://c57d6kcvpo8x" path="res://Scenes/UI/mask_menu/mask_menu.tscn" id="21_faua5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_16ua7"]
-size = Vector2(127, 125)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8otfh"]
-radius = 26.476404
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nh1kb"]
 
@@ -70,32 +60,6 @@ collision_mask = 2
 zoom = Vector2(0.25, 0.25)
 script = ExtResource("14_sonv7")
 
-[node name="EnemyDummy" type="CharacterBody2D" parent="World"]
-position = Vector2(1326, -15)
-
-[node name="HealthComponent" parent="World/EnemyDummy" instance=ExtResource("17_8otfh")]
-player_stats = ExtResource("7_dx1n6")
-
-[node name="Sprite2D" type="Sprite2D" parent="World/EnemyDummy"]
-self_modulate = Color(2.052564, 0, 0, 1)
-position = Vector2(413, -16)
-texture = ExtResource("1_l0goq")
-
-[node name="Hurtbox" parent="World/EnemyDummy" node_paths=PackedStringArray("health_component") instance=ExtResource("18_pmq7r")]
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/EnemyDummy/Hurtbox"]
-light_mask = 0
-visibility_layer = 2
-position = Vector2(414, -17)
-shape = SubResource("RectangleShape2D_16ua7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/EnemyDummy"]
-light_mask = 0
-visibility_layer = 2
-position = Vector2(415, 47)
-shape = SubResource("CircleShape2D_8otfh")
-
 [node name="BulletEntities" type="Node2D" parent="World" groups=["bullet_entities"]]
 
 [node name="BulletContainer" type="Node2D" parent="World" node_paths=PackedStringArray("player")]
@@ -113,42 +77,86 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DashCountUI" type="HBoxContainer" parent="UICanvasLayer/Control" node_paths=PackedStringArray("player_movement")]
-modulate = Color(1, 1, 1, 0.5019608)
+[node name="HUD" type="Control" parent="UICanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -10.0
-offset_right = 106.0
 grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
-script = ExtResource("15_4hvx0")
-player_movement = NodePath("../../../World/Player/PlayerMovementComponent")
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="OutOfBattleButtons" type="HBoxContainer" parent="UICanvasLayer/Control"]
+[node name="BossHUD" type="MarginContainer" parent="UICanvasLayer/Control/HUD"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.95
-anchor_right = 0.5
-anchor_bottom = 0.95
-offset_left = -49.0
-offset_top = -31.0
-offset_right = 49.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+
+[node name="BossHealthProgressBar" type="ProgressBar" parent="UICanvasLayer/Control/HUD/BossHUD"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PlayerHUD" type="MarginContainer" parent="UICanvasLayer/Control/HUD"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer/Control/HUD/PlayerHUD"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="OutOfBattleButtons" type="HBoxContainer" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
 script = ExtResource("20_xq145")
 metadata/_edit_use_anchors_ = true
 
-[node name="MaskMenuButton" type="Button" parent="UICanvasLayer/Control/OutOfBattleButtons"]
+[node name="MaskMenuButton" type="Button" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/OutOfBattleButtons"]
 layout_mode = 2
 text = "Mask Menu"
 metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control2" type="Control" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="DashCountUI" type="HBoxContainer" parent="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer" node_paths=PackedStringArray("player_movement")]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+script = ExtResource("15_4hvx0")
+player_movement = NodePath("../../../../../../World/Player/PlayerMovementComponent")
 
 [node name="MaskMenu" parent="UICanvasLayer/Control" instance=ExtResource("21_faua5")]
 visible = false
@@ -224,7 +232,7 @@ mask_menu = NodePath("../UICanvasLayer/Control/MaskMenu")
 player_stats_comp = NodePath("../World/Player/StatsComponent")
 starting_runes = SubResource("Resource_faua5")
 
-[connection signal="pressed" from="UICanvasLayer/Control/OutOfBattleButtons/MaskMenuButton" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_button_pressed"]
-[connection signal="mask_saved" from="UICanvasLayer/Control/MaskMenu" to="UICanvasLayer/Control/OutOfBattleButtons" method="_on_mask_menu_mask_saved"]
+[connection signal="pressed" from="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/OutOfBattleButtons/MaskMenuButton" to="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/OutOfBattleButtons" method="_on_mask_menu_button_pressed"]
+[connection signal="mask_saved" from="UICanvasLayer/Control/MaskMenu" to="UICanvasLayer/Control/HUD/PlayerHUD/VBoxContainer/OutOfBattleButtons" method="_on_mask_menu_mask_saved"]
 
 [editable path="World/Player"]

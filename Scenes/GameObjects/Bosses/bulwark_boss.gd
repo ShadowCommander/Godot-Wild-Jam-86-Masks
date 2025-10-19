@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name BulwarkBoss
 
 signal died
+signal health_updated(health: float)
 
 #@onready var player = get_tree().get_first_node_in_group("player")
 @onready var velocity_component: VelocityComponent = $VelocityComponent
