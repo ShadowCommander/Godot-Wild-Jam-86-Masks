@@ -21,3 +21,28 @@ class_name PlayerStatModifier
 @export_category("Health")
 @export var max_health_flat: float = 0
 @export var max_health_multiplier: float = 0
+
+enum BuffableStats {
+	NONE,
+	DAMAGE,
+	ATTACK_SPEED,
+	SPEED,
+	DASH_COUNT,
+	DASH_RECHARGE_TIME,
+	DASH_TIME,
+	DASH_DISTANCE,
+	DASH_INVINCIBILITY_TIME,
+	MAX_HEALTH,
+	HEALTH_DAMAGE_INVINCIBILITY_TIME,
+}
+
+enum StatType {
+	NONE,
+	FLAT,
+	ADDITIVEMULTIPLIER,
+	MULTIPLICATIVEMULTIPLIER,
+}
+
+@export var buff_stat: BuffableStats
+@export var type: StatType
+@export var value: float

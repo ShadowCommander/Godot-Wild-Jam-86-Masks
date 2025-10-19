@@ -1,6 +1,6 @@
 extends Node
 
-@export var player_stats: Stats
+@export var player_stats: StatsComponent
 @export var attack_action: GUIDEAction
 @export var movement_component: PlayerMovementComponent
 @export var animation_player: AnimationPlayer

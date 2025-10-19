@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://o4rdm0by3gl2"]
+[gd_scene load_steps=21 format=3 uid="uid://bcbdtx37ux1tc"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_06tpx"]
 [ext_resource type="Texture2D" uid="uid://c75jgn8qhkpkg" path="res://Resources/Textures/Shadow.png" id="1_oikmp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://ninwddymmigh" path="res://Scenes/Player/player_combat_component.gd" id="9_rcvs5"]
 [ext_resource type="Resource" uid="uid://cyl0vj45n1ot3" path="res://Resources/GUIDE/attack_action.tres" id="10_h8ma5"]
 [ext_resource type="PackedScene" uid="uid://cdr8exlh5c3kn" path="res://Scenes/Components/Combat/Hitbox/hitbox.tscn" id="11_eksi1"]
+[ext_resource type="Script" uid="uid://kuyypslo3ibe" path="res://Scenes/Player/stats_component.gd" id="12_7g0yx"]
 [ext_resource type="Texture2D" uid="uid://828wxk6c8ujs" path="res://AttackSprite01.png" id="12_jincj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
@@ -236,18 +237,22 @@ scale = Vector2(0.775, 0.775)
 texture = ExtResource("2_06tpx")
 offset = Vector2(0, -64.29)
 
-[node name="PlayerMovementComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("12_7g0yx")
+base_stats = ExtResource("4_dey5f")
+
+[node name="PlayerMovementComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "body")]
 script = ExtResource("3_7g0yx")
-player_stats = ExtResource("4_dey5f")
+player_stats = NodePath("../StatsComponent")
 body = NodePath("..")
 move_action = ExtResource("5_r5xpd")
 dash_action = ExtResource("6_ks1b7")
 look_absolute = ExtResource("7_hnuln")
 look_relative = ExtResource("8_aqm4k")
 
-[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component", "animation_player", "attack_node", "attack_box")]
+[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "movement_component", "animation_player", "attack_node", "attack_box")]
 script = ExtResource("9_rcvs5")
-player_stats = ExtResource("4_dey5f")
+player_stats = NodePath("../StatsComponent")
 attack_action = ExtResource("10_h8ma5")
 movement_component = NodePath("../PlayerMovementComponent")
 animation_player = NodePath("../AttackAnimationPlayer")

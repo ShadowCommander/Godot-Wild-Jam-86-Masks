@@ -19,7 +19,9 @@ class_name Stats
 @export var max_health: float = 0 # 10
 @export var health_damage_invincibility_time: float = 0
 
-enum Stat {
+enum BuffableStats {
+	DAMAGE,
+	ATTACK_SPEED,
 	SPEED,
 	DASH_COUNT,
 	DASH_RECHARGE_TIME,
