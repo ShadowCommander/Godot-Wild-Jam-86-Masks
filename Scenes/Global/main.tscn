@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://gutnfusrxgny"]
+[gd_scene load_steps=26 format=3 uid="uid://gutnfusrxgny"]
 
 [ext_resource type="Texture2D" uid="uid://6sr6yqwbybdj" path="res://icon.svg" id="1_l0goq"]
 [ext_resource type="Script" uid="uid://chhlsbc84jcef" path="res://Scenes/Global/main.gd" id="1_wufuc"]
@@ -7,11 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://bcbdtx37ux1tc" path="res://Scenes/Player/player.tscn" id="4_qqyxy"]
 [ext_resource type="Texture2D" uid="uid://cwhaxoms306vb" path="res://Resources/Textures/top-down-background-placeholder.png" id="4_sonv7"]
 [ext_resource type="Resource" uid="uid://ctldpqko1cmnb" path="res://Resources/Player/player_stats_1.tres" id="7_dx1n6"]
-[ext_resource type="Script" uid="uid://d5f383l1kkvp" path="res://Scenes/Global/bullet_container.gd" id="12_4hvx0"]
+[ext_resource type="Resource" uid="uid://cinp6vo04icik" path="res://Resources/GUIDE/look_absolute.tres" id="7_faua5"]
+[ext_resource type="Resource" uid="uid://dr6mgmicn0g2a" path="res://Resources/GUIDE/look_relative.tres" id="8_pftu5"]
+[ext_resource type="Script" path="res://Scenes/Global/bullet_container.gd" id="12_4hvx0"]
 [ext_resource type="Script" path="res://Scenes/Global/rune_system.gd" id="14_4hvx0"]
 [ext_resource type="Script" uid="uid://b6ra6ejxaal7d" path="res://Scenes/Global/camera_2d.gd" id="14_sonv7"]
 [ext_resource type="Script" uid="uid://x7qabrt4jjxi" path="res://Scenes/UI/dash_count_ui.gd" id="15_4hvx0"]
-[ext_resource type="Script" uid="uid://y482ac15g14u" path="res://Scenes/Runes/rune.gd" id="15_8otfh"]
+[ext_resource type="Script" path="res://Scenes/Runes/rune.gd" id="15_8otfh"]
 [ext_resource type="Resource" uid="uid://bcwqx78rkbehp" path="res://Resources/Runes/speed_rune.tres" id="16_pmq7r"]
 [ext_resource type="PackedScene" uid="uid://csksfx5fp73rf" path="res://Scenes/Components/Combat/Health/health.tscn" id="17_8otfh"]
 [ext_resource type="Resource" uid="uid://d6f62hfdntw3" path="res://Resources/Runes/damage_rune.tres" id="17_16ua7"]
@@ -51,6 +53,10 @@ position = Vector2(7, 35)
 [node name="Player" parent="World" instance=ExtResource("4_qqyxy")]
 position = Vector2(-1397, 377)
 collision_layer = 0
+
+[node name="PlayerCombatComponent" parent="World/Player" index="5"]
+look_absolute = ExtResource("7_faua5")
+look_relative = ExtResource("8_pftu5")
 
 [node name="HitboxComponent" parent="World/Player/Attack" index="0"]
 collision_layer = 0

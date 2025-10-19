@@ -295,18 +295,19 @@ player_stats = NodePath("../StatsComponent")
 body = NodePath("..")
 move_action = ExtResource("5_r5xpd")
 dash_action = ExtResource("6_ks1b7")
-look_absolute = ExtResource("7_hnuln")
-look_relative = ExtResource("8_aqm4k")
 hurt_box = NodePath("../Hurtbox")
 
-[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "movement_component", "animation_player", "attack_node", "attack_box")]
+[node name="PlayerCombatComponent" type="Node" parent="." node_paths=PackedStringArray("player_stats", "movement_component", "animation_player", "attack_node", "attack_box", "body")]
 script = ExtResource("9_rcvs5")
 player_stats = NodePath("../StatsComponent")
 attack_action = ExtResource("10_h8ma5")
+look_absolute = ExtResource("7_hnuln")
+look_relative = ExtResource("8_aqm4k")
 movement_component = NodePath("../PlayerMovementComponent")
 animation_player = NodePath("../AttackAnimationPlayer")
 attack_node = NodePath("../Attack")
 attack_box = NodePath("../Attack/HitboxComponent")
+body = NodePath("..")
 
 [node name="WeaponPivot" type="Node2D" parent="."]
 position = Vector2(-1, 0)

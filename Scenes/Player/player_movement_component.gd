@@ -8,8 +8,6 @@ signal update_dash_ui(dashes_remaining: int, dash_recharge_timer: float)
 @export var body: Node2D
 @export var move_action: GUIDEAction
 @export var dash_action: GUIDEAction
-@export var look_absolute: GUIDEAction
-@export var look_relative: GUIDEAction
 
 @export var hurt_box: HurtboxComponent
 
@@ -19,34 +17,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	process_movement(delta)
-	process_look(delta)
+	#process_look(delta)
 	process_dash(delta)
 	
 func process_movement(delta: float) -> void:
 	var move = move_action.value_axis_2d.normalized() * player_stats.speed * delta
 	body.position += move
 	
-var look_direction: Vector2
-
-func process_look(delta: float) -> void:
-	var target = _get_controller_target()
-	look_direction = get_look_direction(target)
-	#print(target, look_direction)
-
-func _get_controller_target():
-	var target = Vector2.INF
-	
-	# Looking at absolute coordinates. This is the case when we use a mouse.
-	if look_absolute.is_triggered():
-		target = look_absolute.value_axis_2d
-	# Looking at relative coordinates. This is the case when we use a controller	
-	elif look_relative.is_triggered():
-		target = body.global_position + look_relative.value_axis_2d
-	
-	return target
-	
-func get_look_direction(target: Vector2):
-	return target - body.global_position
 	
 var progress: float
 	
