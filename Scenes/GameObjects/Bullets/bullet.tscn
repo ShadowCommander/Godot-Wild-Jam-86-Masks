@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgmdchwb3c3t3"]
+[gd_scene load_steps=7 format=3 uid="uid://cgmdchwb3c3t3"]
 
 [ext_resource type="Texture2D" uid="uid://cih6xfecuuxyo" path="res://Assets/P1 Bullet Stream.png" id="1_48wxc"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Bullets/bullet.gd" id="1_n0qqh"]
 [ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="2_6m5o6"]
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="4_n0qqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0qqh"]
+atlas = ExtResource("1_48wxc")
+region = Rect2(0, 0, 8, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hg8y"]
 radius = 30.0
@@ -12,8 +16,9 @@ radius = 30.0
 script = ExtResource("1_n0qqh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5707964
 scale = Vector2(3.235, 3.235)
-texture = ExtResource("1_48wxc")
+texture = SubResource("AtlasTexture_n0qqh")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 monitorable = false
