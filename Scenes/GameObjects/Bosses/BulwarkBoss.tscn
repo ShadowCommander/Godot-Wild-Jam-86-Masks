@@ -1,20 +1,18 @@
-[gd_scene load_steps=57 format=3 uid="uid://dyl2rkcrigf2o"]
+[gd_scene load_steps=54 format=3 uid="uid://dyl2rkcrigf2o"]
 
 [ext_resource type="PackedScene" uid="uid://djedbuo076opo" path="res://Scenes/Components/velocity_component.tscn" id="1_2pwef"]
 [ext_resource type="Script" uid="uid://wo3qr834msm5" path="res://Scenes/GameObjects/Bosses/bulwark_boss.gd" id="1_uc58w"]
 [ext_resource type="Texture2D" uid="uid://b4k215uoofmjw" path="res://Assets/Bulwark/ElephantBody.png" id="2_l813j"]
 [ext_resource type="Texture2D" uid="uid://bnq75gxowb71q" path="res://Assets/Bulwark/ElephantLeftFoot.png" id="3_gmqhx"]
 [ext_resource type="Script" uid="uid://kuyypslo3ibe" path="res://Scenes/Player/stats_component.gd" id="4_1qmxd"]
-[ext_resource type="Script" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
+[ext_resource type="Script" uid="uid://crm220r5offy1" path="res://Scripts/Finite_State_Machine.gd" id="4_2pwef"]
 [ext_resource type="Script" uid="uid://c2efvbipnx4yx" path="res://Scripts/Boss_Idle_State.gd" id="4_8gn4i"]
 [ext_resource type="Texture2D" uid="uid://bilc37if4secc" path="res://Assets/Bulwark/ElephantEarLeft.png" id="4_l813j"]
 [ext_resource type="Texture2D" uid="uid://ds1nvov1nc1og" path="res://Assets/Bulwark/head.png" id="5_etqsu"]
 [ext_resource type="Script" uid="uid://cgait63vr837p" path="res://Scripts/Boss_Follow_State.gd" id="5_ttf6s"]
-[ext_resource type="Script" path="res://Scripts/Boss_GndRip_State.gd" id="6_2pwef"]
 [ext_resource type="Texture2D" uid="uid://dyhc8di4jcep4" path="res://Assets/Bulwark/ElephantNoseSlam1.png" id="6_3ak4t"]
 [ext_resource type="Texture2D" uid="uid://cv12kgw8dc0mg" path="res://Assets/Bulwark/ElephantNoseWhip1.png" id="7_4efw0"]
 [ext_resource type="Texture2D" uid="uid://cxvwain8gvnww" path="res://Assets/Bulwark/ElephantNoseSlam2.png" id="8_47pc1"]
-[ext_resource type="Script" path="res://Scripts/boss_shoot_state.gd" id="9_gy0wg"]
 [ext_resource type="Texture2D" uid="uid://b48sc0sbos0t" path="res://Assets/Bulwark/ElephantNoseSlam3.png" id="9_tl4fq"]
 [ext_resource type="Texture2D" uid="uid://8eqkpmgo6d3u" path="res://Assets/Bulwark/ElephantNoseSlam4.png" id="10_yp72i"]
 [ext_resource type="Texture2D" uid="uid://bh5uureddfh17" path="res://Assets/Bulwark/ElephantNoseSlam5.png" id="11_p4guo"]
@@ -33,7 +31,6 @@
 [ext_resource type="Resource" uid="uid://dgpmjyaf0jdu3" path="res://Resources/BulletHell/bullet_swipe_pattern.tres" id="23_el8yc"]
 [ext_resource type="Script" uid="uid://b0m372h3eo0vo" path="res://Scenes/Components/Combat/Hitbox/hitbox.gd" id="23_yp72i"]
 [ext_resource type="Script" uid="uid://cingroyq4smja" path="res://Scenes/Components/Combat/Hurtbox/hurtbox.gd" id="24_h8w8p"]
-[ext_resource type="Script" path="res://boss_charge_state.gd" id="29_4efw0"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Bosses/boss_melee_attack_state.gd" id="31_tl4fq"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Bosses/bullet_hell_spawner.gd" id="33_p4guo"]
 [ext_resource type="Script" uid="uid://4v0lgmef6qk1" path="res://Scenes/GameObjects/Bosses/boss_ring_bullet_attack_state.gd" id="34_cj0ja"]
@@ -895,17 +892,6 @@ idle_timer = NodePath("IdleTimer")
 script = ExtResource("5_ttf6s")
 
 [node name="FollowTimer" type="Timer" parent="FiniteStateMachine/BossFollowState"]
-
-[node name="BossGndRipState" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("6_2pwef")
-
-[node name="BossShootState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "player_detection")]
-script = ExtResource("9_gy0wg")
-animation_player = NodePath("../../AnimationPlayer")
-player_detection = NodePath("../../MeleeRadius")
-
-[node name="BossChargeAttackState" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("29_4efw0")
 
 [node name="BossMeleeAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("animation_player", "velocity_component")]
 script = ExtResource("31_tl4fq")
